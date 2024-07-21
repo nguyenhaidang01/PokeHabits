@@ -1,0 +1,7 @@
+module ui.component
+CalendarHeader 1.0 CalendarHeader.qml
+NoteBoard 1.0 NoteBoard.qml
+HabitBoard 1.0 HabitBoard.qml
+HabitDelegate 1.0 HabitDelegate.qml
+ToolItem 1.0 ToolItem.qml
+ToolPanel 1.0 ToolPanel.qml
