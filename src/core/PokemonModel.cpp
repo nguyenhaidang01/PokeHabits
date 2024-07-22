@@ -8,7 +8,7 @@ PokemonModel::PokemonModel(QObject *parent)
 {
 }
 
-PokemonModel::PokemonModel(PokemonList *pkmList, QObject *parent)
+PokemonModel::PokemonModel(std::shared_ptr<PokemonList> pkmList, QObject *parent)
     : QAbstractListModel{parent}
     , m_pkmList{pkmList}
 {
@@ -27,7 +27,7 @@ QVariant PokemonModel::data(const QModelIndex &index, int role) const
 	if (!index.isValid() || !m_pkmList)
 		return QVariant();
 
-	const Pokemon* item = m_pkmList->items()->at(index.row());
+	const std::shared_ptr<Pokemon> item = m_pkmList->items()->at(index.row());
 	switch (role) {
 	case sIndexRole:
 		return QVariant(item->sIndex);
@@ -53,7 +53,7 @@ bool PokemonModel::setData(const QModelIndex &index, const QVariant &value, int 
 	if (!m_pkmList)
 		return false;
 
-	Pokemon* item = m_pkmList->items()->at(index.row());
+	std::shared_ptr<Pokemon> item = m_pkmList->items()->at(index.row());
 	switch (role) {
 	case sIndexRole:
 		item->sIndex = value.toInt();
@@ -107,12 +107,12 @@ QHash<int, QByteArray> PokemonModel::roleNames() const
 	return names;
 }
 
-PokemonList *PokemonModel::pokemonList() const
+std::shared_ptr<PokemonList> PokemonModel::pokemonList() const
 {
 	return m_pkmList;
 }
 
-void PokemonModel::setPokemonList(PokemonList *list)
+void PokemonModel::setPokemonList(std::shared_ptr<PokemonList> list)
 {
 	beginResetModel();
 
@@ -123,18 +123,18 @@ void PokemonModel::setPokemonList(PokemonList *list)
 	m_pkmList = list;
 
 	if (m_pkmList) {
-		connect(m_pkmList, &PokemonList::prePokemonItemAppended, this, [=]() {
+		connect(m_pkmList.get(), &PokemonList::prePokemonItemAppended, this, [=]() {
 			const int index = m_pkmList->items()->size();
 			beginInsertRows(QModelIndex(), index, index);
 		});
-		connect(m_pkmList, &PokemonList::postPokemonItemAppended, this, [=]() {
+		connect(m_pkmList.get(), &PokemonList::postPokemonItemAppended, this, [=]() {
 			endInsertRows();
 		});
 
-		connect(m_pkmList, &PokemonList::prePokemonItemRemoved, this, [=](int index) {
+		connect(m_pkmList.get(), &PokemonList::prePokemonItemRemoved, this, [=](int index) {
 			beginRemoveRows(QModelIndex(), index, index);
 		});
-		connect(m_pkmList, &PokemonList::postPokemonItemRemoved, this, [=]() {
+		connect(m_pkmList.get(), &PokemonList::postPokemonItemRemoved, this, [=]() {
 			endRemoveRows();
 		});
 	}

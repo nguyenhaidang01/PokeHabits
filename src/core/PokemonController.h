@@ -6,6 +6,8 @@
 
 class PokemonList;
 
+using QMapDatePokemonModelPtr = std::shared_ptr<QMap<QDate, std::shared_ptr<PokemonModel>>>;
+
 class PokemonController : public QObject
 {
 	Q_OBJECT
@@ -20,5 +22,5 @@ public slots:
 	PokemonModel* getPokemonModel(QDate &date);
 
 private:
-	QMap<QDate, PokemonModel*> *m_allPkmModels;
+	QMapDatePokemonModelPtr m_allPkmModels;
 };

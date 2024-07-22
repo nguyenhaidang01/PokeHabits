@@ -5,16 +5,18 @@
 
 struct Pokemon;
 
+using ListPokemonPtr = std::shared_ptr<QList<std::shared_ptr<Pokemon>>>;
+
 class PokemonList : public QObject
 {
 	Q_OBJECT
 public:
 	explicit PokemonList(QObject *parent = nullptr);
-	explicit PokemonList(QList<Pokemon*> *list, QObject *parent = nullptr);
+	explicit PokemonList(ListPokemonPtr list, QObject *parent = nullptr);
 
-	QList<Pokemon*>* items() const;
+	ListPokemonPtr items() const;
 
-	bool setPokemonItemAt(int index, Pokemon *item);
+	bool setPokemonItemAt(int index, std::shared_ptr<Pokemon> item);
 
 signals:
 	void prePokemonItemAppended();
@@ -24,8 +26,8 @@ signals:
 	void postPokemonItemRemoved();
 
 public slots:
-	void appendPokemonItem(Pokemon *item);
+	void appendPokemonItem(std::shared_ptr<Pokemon> item);
 
 private:
-	QList<Pokemon*> *m_list;
+	ListPokemonPtr m_list;
 };

@@ -7,7 +7,7 @@ CalendarModel::CalendarModel(QObject *parent)
 {
 }
 
-CalendarModel::CalendarModel(CalendarList *calendarList, QObject *parent)
+CalendarModel::CalendarModel(std::shared_ptr<CalendarList> calendarList, QObject *parent)
     : QAbstractListModel{parent}
     , m_calendarList{calendarList}
 {
@@ -26,7 +26,7 @@ QVariant CalendarModel::data(const QModelIndex &index, int role) const
 	if (!index.isValid() || !m_calendarList)
 		return QVariant();
 
-	const QDate* item = m_calendarList->items()->at(index.row());
+	const std::shared_ptr<QDate> item = m_calendarList->items()->at(index.row());
 	switch (role) {
 	case DayOfWeekRole:
 		return QVariant(item->toString("ddd"));
@@ -60,12 +60,12 @@ QHash<int, QByteArray> CalendarModel::roleNames() const
 	return names;
 }
 
-CalendarList *CalendarModel::calendarList() const
+std::shared_ptr<CalendarList> CalendarModel::calendarList() const
 {
 	return m_calendarList;
 }
 
-void CalendarModel::setCalendarList(CalendarList *list)
+void CalendarModel::setCalendarList(std::shared_ptr<CalendarList> list)
 {
 	beginResetModel();
 
@@ -76,18 +76,18 @@ void CalendarModel::setCalendarList(CalendarList *list)
 	m_calendarList = list;
 
 	if (m_calendarList) {
-		connect(m_calendarList, &CalendarList::preDateItemAppended, this, [=]() {
+		connect(m_calendarList.get(), &CalendarList::preDateItemAppended, this, [=]() {
 			const int index = m_calendarList->items()->size();
 			beginInsertRows(QModelIndex(), index, index);
 		});
-		connect(m_calendarList, &CalendarList::postDateItemAppended, this, [=]() {
+		connect(m_calendarList.get(), &CalendarList::postDateItemAppended, this, [=]() {
 			endInsertRows();
 		});
 
-		connect(m_calendarList, &CalendarList::preDateItemRemoved, this, [=](int index) {
+		connect(m_calendarList.get(), &CalendarList::preDateItemRemoved, this, [=](int index) {
 			beginRemoveRows(QModelIndex(), index, index);
 		});
-		connect(m_calendarList, &CalendarList::postDateItemRemoved, this, [=]() {
+		connect(m_calendarList.get(), &CalendarList::postDateItemRemoved, this, [=]() {
 			endRemoveRows();
 		});
 	}

@@ -8,11 +8,11 @@ Q_MOC_INCLUDE("CalendarList.h")
 class CalendarModel : public QAbstractListModel
 {
 	Q_OBJECT
-	Q_PROPERTY(CalendarList *calendarList READ calendarList WRITE setCalendarList)
+	Q_PROPERTY(std::shared_ptr<CalendarList> calendarList READ calendarList WRITE setCalendarList)
 
 public:
 	explicit CalendarModel(QObject *parent = nullptr);
-	explicit CalendarModel(CalendarList *calendarList, QObject *parent = nullptr);
+	explicit CalendarModel(std::shared_ptr<CalendarList> calendarList, QObject *parent = nullptr);
 
 	enum {
 		DayOfWeekRole = Qt::UserRole,
@@ -29,9 +29,9 @@ public:
 
 	virtual QHash<int, QByteArray> roleNames() const override;
 
-	CalendarList* calendarList() const;
-	void setCalendarList(CalendarList* list);
+	std::shared_ptr<CalendarList> calendarList() const;
+	void setCalendarList(std::shared_ptr<CalendarList> list);
 
 private:
-	CalendarList* m_calendarList;
+	std::shared_ptr<CalendarList> m_calendarList;
 };
