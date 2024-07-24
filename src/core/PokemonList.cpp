@@ -20,6 +20,10 @@ ListPokemonPtr PokemonList::items() const
 
 bool PokemonList::setPokemonItemAt(int index, std::shared_ptr<Pokemon> item)
 {
+	if (!m_list) {
+		return false;
+	}
+
 	if (index < 0 || index >= m_list->size())
 		return false;
 
@@ -29,6 +33,10 @@ bool PokemonList::setPokemonItemAt(int index, std::shared_ptr<Pokemon> item)
 
 void PokemonList::appendPokemonItem(std::shared_ptr<Pokemon> item)
 {
+	if (!m_list) {
+		return;
+	}
+	
 	emit prePokemonItemAppended();
 	m_list->append(item);
 	emit postPokemonItemAppended();

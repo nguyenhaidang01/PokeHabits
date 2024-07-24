@@ -2,7 +2,7 @@
 
 CalendarList::CalendarList(QObject *parent)
     : QObject(parent)
-    , m_list{nullptr}
+    , m_list{std::make_shared<QList<std::shared_ptr<QDate>>>()}
 {
 }
 
@@ -19,6 +19,10 @@ QListDatePtr CalendarList::items() const
 
 bool CalendarList::setDateItemAt(int index, std::shared_ptr<QDate> item)
 {
+    if (!m_list) {
+        return false;
+    }
+
 	if (index < 0 || index >= m_list->size())
 		return false;
 
@@ -28,6 +32,10 @@ bool CalendarList::setDateItemAt(int index, std::shared_ptr<QDate> item)
 
 void CalendarList::appendDateItem(std::shared_ptr<QDate> item)
 {
+    if (!m_list) {
+        return;
+    }
+
 	emit preDateItemAppended();
 	m_list->append(item);
 	emit postDateItemAppended();
