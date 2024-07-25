@@ -42,7 +42,7 @@ ApplicationWindow  {
 			Layout.topMargin: 24
 			Layout.leftMargin: 62
 
-			model: internal.model
+			model: internal.pokemonModel
 		}
 
 		Rectangle {
@@ -61,6 +61,7 @@ ApplicationWindow  {
 	QtObject {
 		id: internal
 
-		property QtObject model: pkmController.getPokemonModel(10, 7, 2024)
+		property QtObject pokemonModel: pkmController.getPokemonModel()
+		property QtObject calendarModel: pkmController.getCalendarModel()
 	}
 }
