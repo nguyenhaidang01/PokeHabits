@@ -2,6 +2,16 @@
 #include "PokemonList.h"
 #include "Pokemon.h"
 
+static PokemonController* instance = nullptr;
+
+PokemonController* PokemonController::getInstance()
+{
+	if (!instance) {
+		instance = new PokemonController();
+	}
+	return instance;
+}
+
 PokemonController::PokemonController(QObject *parent)
     : QObject(parent)
     , m_allCalendarModel{ std::make_shared<QMap<int, std::shared_ptr<CalendarModel>>>() }

@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
 	QGuiApplication app(argc, argv);
 
-	PokemonController* pkmController = new PokemonController();
+	PokemonController* pkmController = PokemonController::getInstance();
 
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty(QStringLiteral("pkmController"), pkmController);
