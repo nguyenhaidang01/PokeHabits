@@ -13,13 +13,13 @@ PokemonController* PokemonController::getInstance()
 }
 
 PokemonController::PokemonController(QObject *parent)
-    : QObject(parent)
-    , m_allCalendarModel{ std::make_shared<QMap<int, std::shared_ptr<CalendarModel>>>() }
-    , m_allPkmModels{ std::make_shared<QMap<QDate, std::shared_ptr<PokemonModel>>>() }
-    , m_currentDate{ QDate::currentDate() }
+	: QObject(parent)
+	, m_allCalendarModel{ std::make_shared<QMap<int, CalendarModel*>>() }
+	, m_allPkmModels{ std::make_shared<QMap<QDate, PokemonModel*>>() }
+	, m_currentDate{ QDate::currentDate() }
 {
-    createCurrentYearCalendarList();
-    createAllPokemonModel();
+	createCurrentYearCalendarList();
+	createAllPokemonModel();
 }
 
 PokemonModel* PokemonController::getPokemonModel(int day, int month, int year)
@@ -32,7 +32,7 @@ PokemonModel* PokemonController::getPokemonModel(int day, int month, int year)
 	if (!m_allPkmModels->contains(date)) {
 		return nullptr;
 	}
-	return m_allPkmModels->value(date).get();
+	return m_allPkmModels->value(date);
 }
 
 CalendarModel* PokemonController::getCalendarModel(int year)
@@ -44,7 +44,7 @@ CalendarModel* PokemonController::getCalendarModel(int year)
 	if (!m_allCalendarModel->contains(year)) {
 		return nullptr;
 	}
-	return m_allCalendarModel->value(year).get();
+	return m_allCalendarModel->value(year);
 }
 
 void PokemonController::createCurrentYearCalendarList()
@@ -69,7 +69,7 @@ void PokemonController::createCurrentYearCalendarList()
 		currentDate = currentDate.addDays(1);
 	}
 	
-	std::shared_ptr<CalendarModel> calendarModel = std::make_shared<CalendarModel>(calendarList);
+	CalendarModel* calendarModel = new CalendarModel(calendarList);
 
 	m_allCalendarModel->insert(m_currentDate.year(), calendarModel);
 }
@@ -80,19 +80,19 @@ void PokemonController::createAllPokemonModel()
 		return;
 	}
 	
-    std::shared_ptr<Pokemon> pkmItem1 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
-    std::shared_ptr<Pokemon> pkmItem2 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
-    std::shared_ptr<Pokemon> pkmItem3 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
-    std::shared_ptr<Pokemon> pkmItem4 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem1 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem2 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem3 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem4 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
 	
-    std::shared_ptr<PokemonList> pkmList = std::make_shared<PokemonList>();
+	std::shared_ptr<PokemonList> pkmList = std::make_shared<PokemonList>();
 	pkmList->appendPokemonItem(pkmItem1);
 	pkmList->appendPokemonItem(pkmItem2);
 	pkmList->appendPokemonItem(pkmItem3);
 	pkmList->appendPokemonItem(pkmItem4);
 	
-    std::shared_ptr<PokemonModel> pkmModel = std::make_shared<PokemonModel>();
+	PokemonModel* pkmModel = new PokemonModel();
 	pkmModel->setPokemonList(pkmList);
 		
-    m_allPkmModels->insert(m_currentDate, pkmModel);
+	m_allPkmModels->insert(m_currentDate, pkmModel);
 }

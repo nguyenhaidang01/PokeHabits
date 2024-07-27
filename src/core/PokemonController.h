@@ -7,8 +7,8 @@
 
 class PokemonList;
 
-using QMapDatePokemonModelPtr = std::shared_ptr<QMap<QDate, std::shared_ptr<PokemonModel>>>;
-using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, std::shared_ptr<CalendarModel>>>;
+using QMapDatePokemonModelPtr = std::shared_ptr<QMap<QDate, PokemonModel*>>;
+using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
 
 const int cDefaultDate = 0;
 
