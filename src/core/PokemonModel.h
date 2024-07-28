@@ -9,7 +9,6 @@ class PokemonList;
 class PokemonModel : public QAbstractListModel
 {
 	Q_OBJECT
-	Q_PROPERTY(std::shared_ptr<PokemonList> pokemonList READ pokemonList WRITE setPokemonList)
 
 public:
 	explicit PokemonModel(QObject *parent = nullptr);

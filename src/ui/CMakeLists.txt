@@ -27,6 +27,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/HabitDelegate.qml
         component/ToolItem.qml
         component/ToolPanel.qml
+        component/DayDelegate.qml
     RESOURCES
         component/qmldir
         assets/Jungle.png

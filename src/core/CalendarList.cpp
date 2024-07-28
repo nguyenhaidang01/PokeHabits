@@ -1,14 +1,14 @@
 #include "CalendarList.h"
 
 CalendarList::CalendarList(QObject *parent)
-    : QObject(parent)
-    , m_list{std::make_shared<QList<std::shared_ptr<QDate>>>()}
+	: QObject(parent)
+	, m_list{std::make_shared<QList<QDate>>()}
 {
 }
 
 CalendarList::CalendarList(QListDatePtr list, QObject *parent)
-    : QObject(parent)
-    , m_list{list}
+	: QObject(parent)
+	, m_list{list}
 {
 }
 
@@ -17,11 +17,11 @@ QListDatePtr CalendarList::items() const
 	return m_list;
 }
 
-bool CalendarList::setDateItemAt(int index, std::shared_ptr<QDate> item)
+bool CalendarList::setDateItemAt(int index, QDate &item)
 {
-    if (!m_list) {
-        return false;
-    }
+	if (!m_list) {
+		return false;
+	}
 
 	if (index < 0 || index >= m_list->size())
 		return false;
@@ -30,11 +30,11 @@ bool CalendarList::setDateItemAt(int index, std::shared_ptr<QDate> item)
 	return true;
 }
 
-void CalendarList::appendDateItem(std::shared_ptr<QDate> item)
+void CalendarList::appendDateItem(QDate &item)
 {
-    if (!m_list) {
-        return;
-    }
+	if (!m_list) {
+		return;
+	}
 
 	emit preDateItemAppended();
 	m_list->append(item);

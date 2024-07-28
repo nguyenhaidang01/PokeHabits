@@ -5,3 +5,4 @@ HabitBoard 1.0 HabitBoard.qml
 HabitDelegate 1.0 HabitDelegate.qml
 ToolItem 1.0 ToolItem.qml
 ToolPanel 1.0 ToolPanel.qml
+DayDelegate 1.0 DayDelegate.qml

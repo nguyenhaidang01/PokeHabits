@@ -1,15 +1,11 @@
 #include "CalendarModel.h"
 #include "CalendarList.h"
 
-CalendarModel::CalendarModel(QObject *parent)
-    : QAbstractListModel{parent}
-    , m_calendarList{nullptr}
-{
-}
-
-CalendarModel::CalendarModel(std::shared_ptr<CalendarList> calendarList, QObject *parent)
-    : QAbstractListModel{parent}
-    , m_calendarList{calendarList}
+CalendarModel::CalendarModel(std::shared_ptr<CalendarList> calendarList, QDate currentDate, QObject *parent)
+	: QAbstractListModel{parent}
+	, m_calendarList{calendarList}
+	, m_currentDate{currentDate}
+	, m_selectedDate{currentDate}
 {
 }
 
@@ -26,16 +22,22 @@ QVariant CalendarModel::data(const QModelIndex &index, int role) const
 	if (!index.isValid() || !m_calendarList)
 		return QVariant();
 
-	const std::shared_ptr<QDate> item = m_calendarList->items()->at(index.row());
+	const QDate item = m_calendarList->items()->at(index.row());
 	switch (role) {
 	case DayOfWeekRole:
-		return QVariant(item->toString("ddd"));
+		return QVariant(item.toString("ddd").toUpper());
 	case DayRole:
-		return QVariant(item->toString("d"));
+		return QVariant(item.toString("d"));
 	case MonthRole:
-		return QVariant(item->toString("MMMM"));
+		return QVariant(item.toString("MMMM"));
+	case NumericMonthRole:
+		return QVariant(item.month());
 	case YearRole:
-		return QVariant(item->toString("yyyy"));
+		return QVariant(item.toString("yyyy"));
+	case IsSundayRole:
+		return QVariant(item.dayOfWeek() == 7);
+	case IsCurrentDateRole:
+		return QVariant(item == m_currentDate);
 	}
 
 	return QVariant();
@@ -55,7 +57,10 @@ QHash<int, QByteArray> CalendarModel::roleNames() const
 	names[DayOfWeekRole] = "dayOfWeek";
 	names[DayRole] = "day";
 	names[MonthRole] = "month";
+	names[NumericMonthRole] = "numericMonth";
 	names[YearRole] = "year";
+	names[IsSundayRole] = "isSunday";
+	names[IsCurrentDateRole] = "isCurrentDate";
 
 	return names;
 }
@@ -93,4 +98,30 @@ void CalendarModel::setCalendarList(std::shared_ptr<CalendarList> list)
 	}
 
 	endResetModel();
+}
+
+int CalendarModel::currentDateIndex()
+{
+	return m_calendarList->items()->indexOf(m_currentDate);
+}
+
+QDate CalendarModel::selectedDate()
+{
+	return m_selectedDate;
+}
+
+void CalendarModel::setSelectedDate(QDate date)
+{
+	m_selectedDate = date;
+	emit selectedDateChanged();
+}
+
+QString CalendarModel::selectedMonth()
+{
+	return m_selectedDate.toString("MMMM").toUpper();
+}
+
+int CalendarModel::selectedYear()
+{
+	return m_selectedDate.year();
 }

@@ -4,7 +4,7 @@
 #include <QList>
 #include <QDate>
 
-using QListDatePtr = std::shared_ptr<QList<std::shared_ptr<QDate>>>;
+using QListDatePtr = std::shared_ptr<QList<QDate>>;
 
 class CalendarList : public QObject
 {
@@ -15,7 +15,7 @@ public:
 
 	QListDatePtr items() const;
 
-	bool setDateItemAt(int index, std::shared_ptr<QDate> item);
+	bool setDateItemAt(int index, QDate &item);
 
 signals:
 	void preDateItemAppended();
@@ -25,7 +25,7 @@ signals:
 	void postDateItemRemoved();
 
 public slots:
-	void appendDateItem(std::shared_ptr<QDate> item);
+	void appendDateItem(QDate &item);
 
 private:
 	QListDatePtr m_list;

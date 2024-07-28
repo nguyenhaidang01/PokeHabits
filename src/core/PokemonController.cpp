@@ -17,22 +17,25 @@ PokemonController::PokemonController(QObject *parent)
 	, m_allCalendarModel{ std::make_shared<QMap<int, CalendarModel*>>() }
 	, m_allPkmModels{ std::make_shared<QMap<QDate, PokemonModel*>>() }
 	, m_currentDate{ QDate::currentDate() }
+	, m_selectedDate { m_currentDate }
 {
 	createCurrentYearCalendarList();
 	createAllPokemonModel();
+
+	QObject::connect(this, &PokemonController::selectedDateChanged, this, [&]() {
+		if (!m_allCalendarModel->contains(m_selectedDate.year())) {
+			return;
+		}
+		m_allCalendarModel->value(m_selectedDate.year())->setSelectedDate(m_selectedDate);
+	});
 }
 
-PokemonModel* PokemonController::getPokemonModel(int day, int month, int year)
+PokemonModel* PokemonController::pokemonModel()
 {
-	QDate date(year, month, day);
-	if (day == month == year == cDefaultDate) {
-		date = QDate(m_currentDate);
-	}
-
-	if (!m_allPkmModels->contains(date)) {
+	if (!m_allPkmModels->contains(m_selectedDate)) {
 		return nullptr;
 	}
-	return m_allPkmModels->value(date);
+	return m_allPkmModels->value(m_selectedDate);
 }
 
 CalendarModel* PokemonController::getCalendarModel(int year)
@@ -65,11 +68,11 @@ void PokemonController::createCurrentYearCalendarList()
 	std::shared_ptr<CalendarList> calendarList = std::make_shared<CalendarList>();
 	
 	while (currentDate <= endDate) {
-		calendarList->appendDateItem(std::make_shared<QDate>(currentDate));
+		calendarList->appendDateItem(currentDate);
 		currentDate = currentDate.addDays(1);
 	}
 	
-	CalendarModel* calendarModel = new CalendarModel(calendarList);
+	CalendarModel* calendarModel = new CalendarModel(calendarList, m_currentDate);
 
 	m_allCalendarModel->insert(m_currentDate.year(), calendarModel);
 }
@@ -95,4 +98,14 @@ void PokemonController::createAllPokemonModel()
 	pkmModel->setPokemonList(pkmList);
 		
 	m_allPkmModels->insert(m_currentDate, pkmModel);
+}
+
+void PokemonController::setSelectedDate(int day, int month, int year)
+{
+	QDate newSelectedDate = QDate(year, month, day);
+	if (m_selectedDate == newSelectedDate) {
+		return;
+	}
+	m_selectedDate = newSelectedDate;
+	emit selectedDateChanged();
 }

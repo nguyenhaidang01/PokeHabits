@@ -30,6 +30,9 @@ ApplicationWindow  {
 
 		CalendarHeader {
 			id: calendar
+
+			model: internal.calendarModel
+			controller: internal.controller
 		}
 
 		NoteBoard {
@@ -61,7 +64,8 @@ ApplicationWindow  {
 	QtObject {
 		id: internal
 
-		property QtObject pokemonModel: pkmController.getPokemonModel()
+		property QtObject controller: pkmController
+		property QtObject pokemonModel: pkmController.pokemonModel
 		property QtObject calendarModel: pkmController.getCalendarModel()
 	}
 }

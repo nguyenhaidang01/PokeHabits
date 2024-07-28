@@ -15,13 +15,19 @@ const int cDefaultDate = 0;
 class PokemonController : public QObject
 {
 	Q_OBJECT
+	Q_PROPERTY(PokemonModel* pokemonModel READ pokemonModel NOTIFY selectedDateChanged FINAL)
 
 public:
 	static PokemonController* getInstance();
+	PokemonModel* pokemonModel();
 
 public slots:
-	PokemonModel* getPokemonModel(int day = cDefaultDate, int month = cDefaultDate, int year = cDefaultDate);
 	CalendarModel* getCalendarModel(int year = cDefaultDate);
+
+	void setSelectedDate(int day, int month, int year);
+
+signals:
+	void selectedDateChanged();
 
 private:
 	explicit PokemonController(QObject *parent = nullptr);
@@ -31,5 +37,7 @@ private:
 
 	QMapYearCalendarModelPtr m_allCalendarModel;
 	QMapDatePokemonModelPtr m_allPkmModels;
+
 	QDate m_currentDate;
+	QDate m_selectedDate;
 };
