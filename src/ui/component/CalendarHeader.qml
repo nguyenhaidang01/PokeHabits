@@ -22,7 +22,7 @@ Item {
 		id: background
 
 		anchors.fill: parent
-		color: internal.obsidian_10
+		color: UiStyle.obsidian_10
 	}
 
 	RowLayout {
@@ -42,7 +42,7 @@ Item {
 				pixelSize: 14
 				weight: Font.DemiBold
 			}
-			color: internal.etherealWhite_87
+			color: UiStyle.etherealWhite_87
 
 			text: model.selectedMonth
 		}
@@ -53,7 +53,7 @@ Item {
 				pixelSize: 10
 				weight: Font.DemiBold
 			}
-			color: internal.goldenYellow
+			color: UiStyle.goldenYellow
 
 			text: model.selectedYear
 		}
@@ -99,23 +99,11 @@ Item {
 			implicitHeight: 48
 
 			radius: 4
-			color: internal.obsidian_70
+			color: UiStyle.obsidian_70
 			border {
 				width: 1.5
-				color: internal.obsidian_40
+				color: UiStyle.obsidian_40
 			}
 		}
-	}
-
-	QtObject {
-		id: internal
-
-		readonly property color obsidian: "#000000"
-		readonly property color etherealWhite: "#FFFFFF"
-		readonly property color goldenYellow: "#ebc221"
-		readonly property color obsidian_10: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.1)
-		readonly property color obsidian_40: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.4)
-		readonly property color obsidian_70: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.7)
-		readonly property color etherealWhite_87: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.87)
 	}
 }

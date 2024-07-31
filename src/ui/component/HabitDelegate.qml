@@ -23,8 +23,7 @@ ColumnLayout {
 		implicitWidth: 414
 		implicitHeight: 32
 
-		color: internal.transObsidian
-
+		color: UiStyle.obsidian_10
 		Label {
 			id: nameLabel
 
@@ -41,7 +40,7 @@ ColumnLayout {
 				family: "Roboto"
 			}
 			text: name
-			color: internal.etherealWhite
+			color: UiStyle.etherealWhite
 		}
 	}
 
@@ -70,7 +69,7 @@ ColumnLayout {
 				}
 
 				radius: internal.radius
-				color: internal.transObsidian
+				color: UiStyle.obsidian_10
 			}
 
 			Image {
@@ -92,7 +91,7 @@ ColumnLayout {
 			implicitHeight: 145
 
 			radius: internal.radius
-			color: internal.transObsidian
+			color: UiStyle.obsidian_10
 		}
 	}
 	QtObject {
@@ -101,9 +100,5 @@ ColumnLayout {
 		readonly property int gridCellWidth: 476
 		readonly property int gridCellHeight: 187
 		readonly property int radius: 6
-		readonly property color ghostWhite: "#FCFCFC"
-		readonly property color etherealWhite: "#FFFFFF"
-		readonly property color obsidian: "#000000"
-		readonly property color transObsidian: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.1)
 	}
 }

@@ -24,7 +24,7 @@ Item {
 		implicitHeight: 54
 
 		radius: 27
-		color: internal.etherealWhite_20
+		color: UiStyle.etherealWhite_20
 	}
 
 	Image {
@@ -49,14 +49,6 @@ Item {
 			family: "Roboto"
 		}
 		text: root.toolName
-		color: internal.etherealWhite
-	}
-
-	QtObject {
-		id: internal
-
-		readonly property color etherealWhite: "#FFFFFF"
-		readonly property color etherealWhite_20: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.2)
+		color: UiStyle.etherealWhite
 	}
 }
-

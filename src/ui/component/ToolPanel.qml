@@ -19,7 +19,7 @@ Item {
 		anchors.fill: parent
 
 		radius: 28
-		color: internal.etherealWhite_11
+		color: UiStyle.etherealWhite_11
 
 		RowLayout {
 			implicitWidth: 486
@@ -53,13 +53,5 @@ Item {
 				toolImg: "qrc:/ui/assets/Camera.png"
 			}
 		}
-	}
-
-	QtObject {
-		id: internal
-
-		readonly property color etherealWhite: "#FFFFFF"
-		readonly property color etherealWhite_11: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.11)
-		readonly property color etherealWhite_20: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.2)
 	}
 }

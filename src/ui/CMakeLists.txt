@@ -21,6 +21,7 @@ qt6_add_qml_module(${PROJECT_NAME}
     NO_GENERATE_QMLTYPES
     QML_FILES
         view/Main.qml
+        component/UiStyle.qml
         component/CalendarHeader.qml
         component/NoteBoard.qml
         component/HabitBoard.qml
