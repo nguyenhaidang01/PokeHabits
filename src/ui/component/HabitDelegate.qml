@@ -8,6 +8,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 ColumnLayout {
 	id: root
@@ -69,7 +70,24 @@ ColumnLayout {
 				}
 
 				radius: internal.radius
-				color: UiStyle.obsidian_10
+				color: UiStyle.transparent
+				border.color: UiStyle.obsidian_10
+
+				RadialGradient {
+					anchors.fill: parent
+
+					gradient: Gradient {
+						GradientStop { position: 0.34; color: UiStyle.ghostWhite_0 }
+						GradientStop { position: 1; color: UiStyle.etherealWhite_12 }
+					}
+
+					source: Rectangle {
+						implicitWidth: 120
+						implicitHeight: 90
+						radius: internal.radius
+						border.color: UiStyle.obsidian_10
+					}
+				}
 			}
 
 			Image {

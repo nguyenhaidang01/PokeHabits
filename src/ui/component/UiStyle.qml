@@ -24,7 +24,10 @@ QtObject {
 	readonly property color obsidian_40: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.4)
 	readonly property color obsidian_70: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.7)
 
+	readonly property color ghostWhite_0: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0)
+
 	readonly property color etherealWhite_11: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.11)
+	readonly property color etherealWhite_12: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.12)
 	readonly property color etherealWhite_20: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.2)
 	readonly property color etherealWhite_87: Qt.rgba(etherealWhite.r, etherealWhite.g, etherealWhite.b, 0.87)
 }
