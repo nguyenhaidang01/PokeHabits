@@ -37,6 +37,7 @@ Item {
 	Label {
 		id: toolName
 
+		width: 45
 		anchors {
 			right: parent.right
 			verticalCenter: parent.verticalCenter
@@ -50,5 +51,6 @@ Item {
 		}
 		text: root.toolName
 		color: UiStyle.etherealWhite
+		wrapMode: Text.WordWrap
 	}
 }

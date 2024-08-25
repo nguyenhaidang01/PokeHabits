@@ -12,6 +12,8 @@ PokemonModel::PokemonModel(std::shared_ptr<PokemonList> pkmList, QObject *parent
     : QAbstractListModel{parent}
     , m_pkmList{pkmList}
 {
+	QObject::connect(m_pkmList.get(), &PokemonList::prePokemonItemAppended, this, &PokemonModel::countChanged);
+	QObject::connect(m_pkmList.get(), &PokemonList::postPokemonItemAppended, this, &PokemonModel::countChanged);
 }
 
 int PokemonModel::rowCount(const QModelIndex &parent) const
@@ -140,4 +142,9 @@ void PokemonModel::setPokemonList(std::shared_ptr<PokemonList> list)
 	}
 
 	endResetModel();
+}
+
+int PokemonModel::count()
+{
+	return m_pkmList->items()->size();
 }

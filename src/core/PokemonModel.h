@@ -9,6 +9,7 @@ class PokemonList;
 class PokemonModel : public QAbstractListModel
 {
 	Q_OBJECT
+	Q_PROPERTY(int count READ count NOTIFY countChanged FINAL)
 
 public:
 	explicit PokemonModel(QObject *parent = nullptr);
@@ -34,6 +35,11 @@ public:
 
 	std::shared_ptr<PokemonList> pokemonList() const;
 	void setPokemonList(std::shared_ptr<PokemonList> list);
+
+	int count();
+
+signals:
+	void countChanged();
 
 private:
 	std::shared_ptr<PokemonList> m_pkmList;

@@ -48,6 +48,22 @@ ApplicationWindow  {
 			model: internal.pokemonModel
 		}
 
+		Item {
+			id: scrolldown
+
+			visible: internal.scrolldownVisible
+			implicitWidth: 130
+			implicitHeight: 24
+			Layout.alignment: Qt.AlignHCenter
+
+			Image {
+				width: 95
+				height: 24
+				anchors.right: parent.right
+				source: "qrc:/ui/assets/ScrollDown.svg"
+			}
+		}
+
 		Rectangle {
 			Layout.fillHeight: true
 			// TODO
@@ -67,5 +83,6 @@ ApplicationWindow  {
 		property QtObject controller: pkmController
 		property QtObject pokemonModel: pkmController.pokemonModel
 		property QtObject calendarModel: pkmController.getCalendarModel()
+		property bool scrolldownVisible: pkmController.pokemonModel && pkmController.pokemonModel.count > 4
 	}
 }

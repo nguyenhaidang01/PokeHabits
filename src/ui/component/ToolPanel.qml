@@ -42,7 +42,7 @@ Item {
 			ToolItem {
 				id: tool2
 
-				toolName: "Tool 2"
+				toolName: "Add Habit"
 				toolImg: "qrc:/ui/assets/EggDistance.png"
 			}
 

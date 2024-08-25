@@ -41,6 +41,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets/Lures.png
         assets/EggDistance.png
         assets/Camera.png
+        assets/ScrollDown.svg
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
