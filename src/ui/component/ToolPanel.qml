@@ -15,6 +15,8 @@ Item {
 	implicitWidth: 486
 	implicitHeight: 117
 
+	signal addHabit()
+
 	Rectangle {
 		anchors.fill: parent
 
@@ -44,6 +46,11 @@ Item {
 
 				toolName: "Add Habit"
 				toolImg: "qrc:/ui/assets/EggDistance.png"
+
+				MouseArea {
+					anchors.fill: parent
+					onClicked: addHabit()
+				}
 			}
 
 			ToolItem {

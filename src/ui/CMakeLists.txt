@@ -29,6 +29,8 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/ToolItem.qml
         component/ToolPanel.qml
         component/DayDelegate.qml
+        component/AddHabitPopup.qml
+        component/PokemonFrame.qml
     RESOURCES
         component/qmldir
         assets/Jungle.png
@@ -41,6 +43,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets/Lures.png
         assets/EggDistance.png
         assets/Camera.png
+        assets/MaxRevive.png
         assets/ScrollDown.svg
 )
 

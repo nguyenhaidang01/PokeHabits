@@ -45,7 +45,15 @@ ApplicationWindow  {
 			Layout.topMargin: 24
 			Layout.leftMargin: 62
 
-			model: internal.pokemonModel
+			model: !addHabitPopup.opened? internal.pokemonModel : null
+
+			AddHabitPopup {
+				id: addHabitPopup
+
+				width: 383
+				height: 236
+				anchors.centerIn: parent
+			}
 		}
 
 		Item {
@@ -74,6 +82,8 @@ ApplicationWindow  {
 
 			Layout.alignment: Qt.AlignHCenter
 			Layout.bottomMargin: -50
+
+			onAddHabit: addHabitPopup.open()
 		}
 	}
 

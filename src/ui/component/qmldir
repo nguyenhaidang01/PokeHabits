@@ -7,3 +7,5 @@ HabitDelegate 1.0 HabitDelegate.qml
 ToolItem 1.0 ToolItem.qml
 ToolPanel 1.0 ToolPanel.qml
 DayDelegate 1.0 DayDelegate.qml
+AddHabitPopup 1.0 AddHabitPopup.qml
+PokemonFrame 1.0 PokemonFrame.qml
