@@ -57,9 +57,10 @@ ColumnLayout {
 			id: habitRepresent
 
 			implicitWidth: 120
-			implicitHeight: 122
+			implicitHeight: 142
 
 			pokemonImg: image
+			pokemonName: name
 		}
 
 		Rectangle {

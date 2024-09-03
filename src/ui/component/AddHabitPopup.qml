@@ -40,7 +40,7 @@ Popup {
 
 	Item {
 		width: 260
-		height: 154
+		height: 174
 		anchors.centerIn: parent
 
 		RowLayout {
@@ -73,7 +73,7 @@ Popup {
 
 		RowLayout {
 			width: 260
-			height: 122
+			height: 142
 			anchors.bottom: parent.bottom
 
 			Text {
@@ -96,9 +96,10 @@ Popup {
 				id: pokemonFrame
 
 				implicitWidth: 120
-				implicitHeight: 122
+				implicitHeight: 142
 
 				pokemonImg: internal.examplePokemon
+				pokemonName: internal.pokemonName
 			}
 		}
 	}
@@ -113,5 +114,6 @@ Popup {
 		id: internal
 
 		readonly property url examplePokemon: "qrc:/ui/assets/Leafeon.png"
+		readonly property string pokemonName: "Leafeon"
 	}
 }

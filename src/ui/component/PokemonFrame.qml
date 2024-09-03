@@ -13,9 +13,10 @@ Item {
 	id: root
 
 	implicitWidth: 120
-	implicitHeight: 122
+	implicitHeight: 142
 
 	property url pokemonImg
+	property string pokemonName
 
 	Rectangle {
 		id: pkmFrame
@@ -24,7 +25,7 @@ Item {
 		implicitHeight: 90
 		anchors {
 			bottom: parent.bottom
-			bottomMargin: 10
+			bottomMargin: 30
 		}
 
 		radius: internal.radius
@@ -57,6 +58,23 @@ Item {
 			verticalCenterOffset: -10
 		}
 		source: root.pokemonImg
+	}
+
+	Text {
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			top: pkmFrame.bottom
+			topMargin: 5
+		}
+
+		font {
+			family: "Roboto"
+			pixelSize: 12
+			bold: true
+		}
+
+		text: root.pokemonName
+		color: UiStyle.etherealWhite
 	}
 
 	QtObject {
