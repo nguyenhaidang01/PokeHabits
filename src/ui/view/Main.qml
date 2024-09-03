@@ -84,9 +84,9 @@ ApplicationWindow  {
 	QtObject {
 		id: internal
 
-		property QtObject controller: pkmController
-		property QtObject pokemonModel: pkmController.pokemonModel
-		property QtObject calendarModel: pkmController.getCalendarModel()
-		property bool scrolldownVisible: habitBoard.state == "idle" && pkmController.pokemonModel && pkmController.pokemonModel.count > 4
+		property QtObject controller: pokeHabitsApp
+		property QtObject pokemonModel: pokeHabitsApp.pokemonModel
+		property QtObject calendarModel: pokeHabitsApp.getCalendarModel()
+		property bool scrolldownVisible: habitBoard.state == "idle" && pokeHabitsApp.pokemonModel && pokeHabitsApp.pokemonModel.count > 4
 	}
 }

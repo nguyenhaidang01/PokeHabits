@@ -4,7 +4,7 @@ set(SOURCES
     Pokemon.h
     PokemonList.h PokemonList.cpp
     PokemonModel.h PokemonModel.cpp
-    PokemonController.h PokemonController.cpp
+    PokeHabitsApp.h PokeHabitsApp.cpp
     CalendarList.h CalendarList.cpp
     CalendarModel.h CalendarModel.cpp
 )

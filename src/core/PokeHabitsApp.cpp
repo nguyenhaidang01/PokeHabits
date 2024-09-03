@@ -1,18 +1,18 @@
-#include "PokemonController.h"
+#include "PokeHabitsApp.h"
 #include "PokemonList.h"
 #include "Pokemon.h"
 
-static PokemonController* instance = nullptr;
+static PokeHabitsApp* instance = nullptr;
 
-PokemonController* PokemonController::getInstance()
+PokeHabitsApp* PokeHabitsApp::getInstance()
 {
 	if (!instance) {
-		instance = new PokemonController();
+		instance = new PokeHabitsApp();
 	}
 	return instance;
 }
 
-PokemonController::PokemonController(QObject *parent)
+PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	: QObject(parent)
 	, m_allCalendarModel{ std::make_shared<QMap<int, CalendarModel*>>() }
 	, m_allPkmModels{ std::make_shared<QMap<QDate, PokemonModel*>>() }
@@ -22,7 +22,7 @@ PokemonController::PokemonController(QObject *parent)
 	createCurrentYearCalendarList();
 	createAllPokemonModel();
 
-	QObject::connect(this, &PokemonController::selectedDateChanged, this, [&]() {
+    QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, [&]() {
 		if (!m_allCalendarModel->contains(m_selectedDate.year())) {
 			return;
 		}
@@ -30,7 +30,7 @@ PokemonController::PokemonController(QObject *parent)
 	});
 }
 
-PokemonModel* PokemonController::pokemonModel()
+PokemonModel* PokeHabitsApp::pokemonModel()
 {
 	if (!m_allPkmModels->contains(m_selectedDate)) {
 		return nullptr;
@@ -38,7 +38,7 @@ PokemonModel* PokemonController::pokemonModel()
 	return m_allPkmModels->value(m_selectedDate);
 }
 
-CalendarModel* PokemonController::getCalendarModel(int year)
+CalendarModel* PokeHabitsApp::getCalendarModel(int year)
 {
 	if (year == cDefaultDate) {
 		year = m_currentDate.year();
@@ -50,7 +50,7 @@ CalendarModel* PokemonController::getCalendarModel(int year)
 	return m_allCalendarModel->value(year);
 }
 
-void PokemonController::createCurrentYearCalendarList()
+void PokeHabitsApp::createCurrentYearCalendarList()
 {
 	if (!m_allCalendarModel) {
 		return;
@@ -77,7 +77,7 @@ void PokemonController::createCurrentYearCalendarList()
 	m_allCalendarModel->insert(m_currentDate.year(), calendarModel);
 }
 
-void PokemonController::createAllPokemonModel()
+void PokeHabitsApp::createAllPokemonModel()
 {
 	if (!m_allPkmModels) {
 		return;
@@ -110,7 +110,7 @@ void PokemonController::createAllPokemonModel()
 	m_allPkmModels->insert(m_currentDate, pkmModel);
 }
 
-void PokemonController::setSelectedDate(int day, int month, int year)
+void PokeHabitsApp::setSelectedDate(int day, int month, int year)
 {
 	QDate newSelectedDate = QDate(year, month, day);
 	if (m_selectedDate == newSelectedDate) {

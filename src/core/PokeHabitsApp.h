@@ -12,13 +12,13 @@ using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
 
 const int cDefaultDate = 0;
 
-class PokemonController : public QObject
+class PokeHabitsApp : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(PokemonModel* pokemonModel READ pokemonModel NOTIFY selectedDateChanged FINAL)
 
 public:
-	static PokemonController* getInstance();
+	static PokeHabitsApp* getInstance();
 	PokemonModel* pokemonModel();
 
 public slots:
@@ -30,7 +30,7 @@ signals:
 	void selectedDateChanged();
 
 private:
-	explicit PokemonController(QObject *parent = nullptr);
+	explicit PokeHabitsApp(QObject *parent = nullptr);
 
 	void createCurrentYearCalendarList();
 	void createAllPokemonModel();
