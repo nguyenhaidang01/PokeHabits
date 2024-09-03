@@ -3,13 +3,27 @@
 #include <QList>
 #include <QDate>
 
-struct Pokemon
-{
-	int sIndex;
-	int eIndex;
-	int cIndex;
+struct Stats {
+	int hp;
+	int attack;
+	int defense;
+	int sAttack;
+	int sDefense;
+	int speed;
+};
+
+struct Pokemon {
+	int id;
 	QString name;
-	QString image;
+	int baseExp;
+	Stats stats;
+};
+
+struct PokeHabit
+{
+	QString habitName;
 	int exp;
 	bool done;
+	QString image;
+	Pokemon pokemon;
 };

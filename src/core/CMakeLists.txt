@@ -2,8 +2,8 @@ project(core)
 
 set(SOURCES 
     Pokemon.h
-    PokemonList.h PokemonList.cpp
-    PokemonModel.h PokemonModel.cpp
+    DailyReportList.h DailyReportList.cpp
+    DailyReportModel.h DailyReportModel.cpp
     PokeHabitsApp.h PokeHabitsApp.cpp
     CalendarList.h CalendarList.cpp
     CalendarModel.h CalendarModel.cpp

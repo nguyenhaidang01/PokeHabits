@@ -2,24 +2,21 @@
 
 #include <QAbstractListModel>
 
-Q_MOC_INCLUDE("PokemonList.h")
+Q_MOC_INCLUDE("DailyReportList.h")
 
-class PokemonList;
+class DailyReportList;
 
-class PokemonModel : public QAbstractListModel
+class DailyReportModel : public QAbstractListModel
 {
 	Q_OBJECT
 	Q_PROPERTY(int count READ count NOTIFY countChanged FINAL)
 
 public:
-	explicit PokemonModel(QObject *parent = nullptr);
-	explicit PokemonModel(std::shared_ptr<PokemonList> pkmList, QObject *parent = nullptr);
+	explicit DailyReportModel(QObject *parent = nullptr);
+	explicit DailyReportModel(std::shared_ptr<DailyReportList> dailyReportList, QObject *parent = nullptr);
 
 	enum {
-		sIndexRole = Qt::UserRole,
-		eIndexRole,
-		cIndexRole,
-		NameRole,
+		HabitNameRole = Qt::UserRole,
 		ImageRole,
 		ExpRole,
 		DoneRole
@@ -33,8 +30,8 @@ public:
 
 	virtual QHash<int, QByteArray> roleNames() const override;
 
-	std::shared_ptr<PokemonList> pokemonList() const;
-	void setPokemonList(std::shared_ptr<PokemonList> list);
+	std::shared_ptr<DailyReportList> dailyReportList() const;
+	void setDailyReportList(std::shared_ptr<DailyReportList> list);
 
 	int count();
 
@@ -42,5 +39,5 @@ signals:
 	void countChanged();
 
 private:
-	std::shared_ptr<PokemonList> m_pkmList;
+	std::shared_ptr<DailyReportList> m_dailyReportList;
 };

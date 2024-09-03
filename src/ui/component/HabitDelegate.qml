@@ -40,7 +40,7 @@ ColumnLayout {
 				pixelSize: 18
 				family: "Roboto"
 			}
-			text: name
+			text: habitName
 			color: UiStyle.etherealWhite
 		}
 	}
@@ -60,7 +60,7 @@ ColumnLayout {
 			implicitHeight: 142
 
 			pokemonImg: image
-			pokemonName: name
+			pokemonName: habitName
 		}
 
 		Rectangle {

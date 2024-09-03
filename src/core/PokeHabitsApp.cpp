@@ -1,5 +1,5 @@
 #include "PokeHabitsApp.h"
-#include "PokemonList.h"
+#include "DailyReportList.h"
 #include "Pokemon.h"
 
 static PokeHabitsApp* instance = nullptr;
@@ -15,12 +15,12 @@ PokeHabitsApp* PokeHabitsApp::getInstance()
 PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	: QObject(parent)
 	, m_allCalendarModel{ std::make_shared<QMap<int, CalendarModel*>>() }
-	, m_allPkmModels{ std::make_shared<QMap<QDate, PokemonModel*>>() }
+    , m_allDailyReportModel{ std::make_shared<QMap<QDate, DailyReportModel*>>() }
 	, m_currentDate{ QDate::currentDate() }
 	, m_selectedDate { m_currentDate }
 {
 	createCurrentYearCalendarList();
-	createAllPokemonModel();
+    createAllDailyReportModel();
 
     QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, [&]() {
 		if (!m_allCalendarModel->contains(m_selectedDate.year())) {
@@ -30,12 +30,12 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	});
 }
 
-PokemonModel* PokeHabitsApp::pokemonModel()
+DailyReportModel* PokeHabitsApp::dailyReportModel()
 {
-	if (!m_allPkmModels->contains(m_selectedDate)) {
+    if (!m_allDailyReportModel->contains(m_selectedDate)) {
 		return nullptr;
 	}
-	return m_allPkmModels->value(m_selectedDate);
+    return m_allDailyReportModel->value(m_selectedDate);
 }
 
 CalendarModel* PokeHabitsApp::getCalendarModel(int year)
@@ -77,37 +77,37 @@ void PokeHabitsApp::createCurrentYearCalendarList()
 	m_allCalendarModel->insert(m_currentDate.year(), calendarModel);
 }
 
-void PokeHabitsApp::createAllPokemonModel()
+void PokeHabitsApp::createAllDailyReportModel()
 {
-	if (!m_allPkmModels) {
+    if (!m_allDailyReportModel) {
 		return;
 	}
 	
-	std::shared_ptr<Pokemon> pkmItem1 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem2 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem3 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem4 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem5 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem6 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem7 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem8 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
-	std::shared_ptr<Pokemon> pkmItem9 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
+	std::shared_ptr<PokeHabit> pkmItem1 = std::make_shared<PokeHabit>("Scythe", 69, false, "qrc:/ui/assets/Scythe.png");
+	std::shared_ptr<PokeHabit> pkmItem2 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
+	std::shared_ptr<PokeHabit> pkmItem3 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
+	std::shared_ptr<PokeHabit> pkmItem4 = std::make_shared<PokeHabit>("Scythe", 69, false, "qrc:/ui/assets/Scythe.png");
+	std::shared_ptr<PokeHabit> pkmItem5 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
+	std::shared_ptr<PokeHabit> pkmItem6 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
+	std::shared_ptr<PokeHabit> pkmItem7 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
+	std::shared_ptr<PokeHabit> pkmItem8 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
+	std::shared_ptr<PokeHabit> pkmItem9 = std::make_shared<PokeHabit>("Leafeon", 69, false, "qrc:/ui/assets/Leafeon.png");
 	
-	std::shared_ptr<PokemonList> pkmList = std::make_shared<PokemonList>();
-	pkmList->appendPokemonItem(pkmItem1);
-	pkmList->appendPokemonItem(pkmItem2);
-	pkmList->appendPokemonItem(pkmItem3);
-	pkmList->appendPokemonItem(pkmItem4);
-	pkmList->appendPokemonItem(pkmItem5);
-	pkmList->appendPokemonItem(pkmItem6);
-	pkmList->appendPokemonItem(pkmItem7);
-	pkmList->appendPokemonItem(pkmItem8);
-	pkmList->appendPokemonItem(pkmItem9);
+    std::shared_ptr<DailyReportList> pkmList = std::make_shared<DailyReportList>();
+    pkmList->appendDailyReportItem(pkmItem1);
+    pkmList->appendDailyReportItem(pkmItem2);
+    pkmList->appendDailyReportItem(pkmItem3);
+    pkmList->appendDailyReportItem(pkmItem4);
+    pkmList->appendDailyReportItem(pkmItem5);
+    pkmList->appendDailyReportItem(pkmItem6);
+    pkmList->appendDailyReportItem(pkmItem7);
+    pkmList->appendDailyReportItem(pkmItem8);
+    pkmList->appendDailyReportItem(pkmItem9);
 	
-	PokemonModel* pkmModel = new PokemonModel();
-	pkmModel->setPokemonList(pkmList);
+    DailyReportModel* pkmModel = new DailyReportModel();
+    pkmModel->setDailyReportList(pkmList);
 		
-	m_allPkmModels->insert(m_currentDate, pkmModel);
+    m_allDailyReportModel->insert(m_currentDate, pkmModel);
 }
 
 void PokeHabitsApp::setSelectedDate(int day, int month, int year)

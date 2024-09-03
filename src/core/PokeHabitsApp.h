@@ -3,11 +3,11 @@
 #include <QMap>
 #include <QDate>
 #include "CalendarModel.h"
-#include "PokemonModel.h"
+#include "DailyReportModel.h"
 
-class PokemonList;
+class DailyReportList;
 
-using QMapDatePokemonModelPtr = std::shared_ptr<QMap<QDate, PokemonModel*>>;
+using QMapDateDailyReportModelPtr = std::shared_ptr<QMap<QDate, DailyReportModel*>>;
 using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
 
 const int cDefaultDate = 0;
@@ -15,11 +15,11 @@ const int cDefaultDate = 0;
 class PokeHabitsApp : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(PokemonModel* pokemonModel READ pokemonModel NOTIFY selectedDateChanged FINAL)
+	Q_PROPERTY(DailyReportModel* dailyReportModel READ dailyReportModel NOTIFY selectedDateChanged FINAL)
 
 public:
 	static PokeHabitsApp* getInstance();
-	PokemonModel* pokemonModel();
+	DailyReportModel* dailyReportModel();
 
 public slots:
 	CalendarModel* getCalendarModel(int year = cDefaultDate);
@@ -33,10 +33,10 @@ private:
 	explicit PokeHabitsApp(QObject *parent = nullptr);
 
 	void createCurrentYearCalendarList();
-	void createAllPokemonModel();
+	void createAllDailyReportModel();
 
 	QMapYearCalendarModelPtr m_allCalendarModel;
-	QMapDatePokemonModelPtr m_allPkmModels;
+	QMapDateDailyReportModelPtr m_allDailyReportModel;
 
 	QDate m_currentDate;
 	QDate m_selectedDate;
