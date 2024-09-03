@@ -31,6 +31,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/DayDelegate.qml
         component/AddHabitPopup.qml
         component/PokemonFrame.qml
+        component/ChoosePokemonPopup.qml
     RESOURCES
         component/qmldir
         assets/Jungle.png
@@ -45,6 +46,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets/Camera.png
         assets/MaxRevive.png
         assets/ScrollDown.svg
+        assets/Search.svg
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

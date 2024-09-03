@@ -45,15 +45,7 @@ ApplicationWindow  {
 			Layout.topMargin: 24
 			Layout.leftMargin: 62
 
-			model: !addHabitPopup.opened? internal.pokemonModel : null
-
-			AddHabitPopup {
-				id: addHabitPopup
-
-				width: 383
-				height: 236
-				anchors.centerIn: parent
-			}
+			model: internal.pokemonModel
 		}
 
 		Item {
@@ -83,7 +75,9 @@ ApplicationWindow  {
 			Layout.alignment: Qt.AlignHCenter
 			Layout.bottomMargin: -50
 
-			onAddHabit: addHabitPopup.open()
+			onAddHabit: function() {
+				habitBoard.openAddHabitPopup();
+			}
 		}
 	}
 
@@ -93,6 +87,6 @@ ApplicationWindow  {
 		property QtObject controller: pkmController
 		property QtObject pokemonModel: pkmController.pokemonModel
 		property QtObject calendarModel: pkmController.getCalendarModel()
-		property bool scrolldownVisible: pkmController.pokemonModel && pkmController.pokemonModel.count > 4
+		property bool scrolldownVisible: habitBoard.state == "idle" && pkmController.pokemonModel && pkmController.pokemonModel.count > 4
 	}
 }

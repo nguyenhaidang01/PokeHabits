@@ -13,6 +13,8 @@ import Qt5Compat.GraphicalEffects
 Popup {
 	id: root
 
+	signal openChoosePokemonPopup()
+
 	width: 383
 	height: 236
 
@@ -100,6 +102,11 @@ Popup {
 
 				pokemonImg: internal.examplePokemon
 				pokemonName: internal.pokemonName
+
+				MouseArea {
+					anchors.fill: parent
+					onClicked: openChoosePokemonPopup()
+				}
 			}
 		}
 	}

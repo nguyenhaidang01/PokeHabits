@@ -87,12 +87,22 @@ void PokemonController::createAllPokemonModel()
 	std::shared_ptr<Pokemon> pkmItem2 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
 	std::shared_ptr<Pokemon> pkmItem3 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
 	std::shared_ptr<Pokemon> pkmItem4 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem5 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem6 = std::make_shared<Pokemon>(3, 6, 3, "Scythe", "qrc:/ui/assets/Scythe.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem7 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem8 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
+	std::shared_ptr<Pokemon> pkmItem9 = std::make_shared<Pokemon>(6, 9, 6, "Leafeon", "qrc:/ui/assets/Leafeon.png", 0, false);
 	
 	std::shared_ptr<PokemonList> pkmList = std::make_shared<PokemonList>();
 	pkmList->appendPokemonItem(pkmItem1);
 	pkmList->appendPokemonItem(pkmItem2);
 	pkmList->appendPokemonItem(pkmItem3);
 	pkmList->appendPokemonItem(pkmItem4);
+	pkmList->appendPokemonItem(pkmItem5);
+	pkmList->appendPokemonItem(pkmItem6);
+	pkmList->appendPokemonItem(pkmItem7);
+	pkmList->appendPokemonItem(pkmItem8);
+	pkmList->appendPokemonItem(pkmItem9);
 	
 	PokemonModel* pkmModel = new PokemonModel();
 	pkmModel->setPokemonList(pkmList);

@@ -15,19 +15,74 @@ Item {
 	implicitHeight: 374
 
 	property QtObject model: null
+	property alias state: habitList.state
+
+	signal openAddHabitPopup()
 
 	GridView {
 		id: habitList
 
 		anchors.fill: parent
 
-		model: root.model
-		delegate: gridDelegate
-
 		cellWidth: internal.gridCellWidth
 		cellHeight: internal.gridCellHeight
 
 		clip: true
+		delegate: gridDelegate
+
+		AddHabitPopup {
+			id: addHabitPopup
+
+			width: 383
+			height: 236
+			anchors.centerIn: parent
+
+			onOpenChoosePokemonPopup: function() {
+				choosePokemonPopup.open();
+				habitList.state = "choosePopupOpening";
+			}
+
+			onClosed: function() {
+				habitList.state = "idle";
+			}
+		}
+
+		ChoosePokemonPopup {
+			id: choosePokemonPopup
+
+			width: 464
+			height: 423
+
+			leftMargin : 275
+
+			model: root.model
+
+			onClosed: function() {
+				habitList.state = "addHabitPopupOpening";
+			}
+		}
+
+		states: [
+			State {
+				name: "idle"
+				PropertyChanges { target: habitList; model: root.model }
+				PropertyChanges { target: addHabitPopup; visible: false }
+				PropertyChanges { target: choosePokemonPopup; visible: false }
+			},
+			State {
+				name: "addHabitPopupOpening"
+				PropertyChanges { target: habitList; model: null }
+				PropertyChanges { target: addHabitPopup; visible: true }
+				PropertyChanges { target: choosePokemonPopup; visible: false }
+			},
+			State {
+				name: "choosePopupOpening"
+				PropertyChanges { target: habitList; model: null }
+				PropertyChanges { target: addHabitPopup; visible: false }
+				PropertyChanges { target: choosePokemonPopup; visible: true }
+			}
+		]
+		state: "idle"
 	}
 
 	Component {
@@ -36,6 +91,11 @@ Item {
 		HabitDelegate {
 			id: habitDelegate
 		}
+	}
+
+	onOpenAddHabitPopup: function() {
+		habitList.state = "addHabitPopupOpening";
+		addHabitPopup.open();
 	}
 
 	QtObject {
