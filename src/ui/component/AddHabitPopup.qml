@@ -14,10 +14,11 @@ Popup {
 	id: root
 
 	property QtObject model: null
+	property QtObject controller: null
 	signal openChoosePokemonPopup()
 
 	width: 383
-	height: 236
+	height: 256
 
 	dim: false
 	focus: true
@@ -41,9 +42,10 @@ Popup {
 		}
 	}
 
-	Item {
+	ColumnLayout {
 		width: 260
-		height: 174
+		height: 204
+
 		anchors.centerIn: parent
 
 		RowLayout {
@@ -71,13 +73,30 @@ Popup {
 				implicitHeight: 32
 				radius: 6
 				color: UiStyle.mysticOcean
+
+				TextField {
+					id: habitNameField
+
+					anchors.fill: parent
+
+					font {
+						bold: true
+						pixelSize: 18
+						family: "Roboto"
+					}
+					color: UiStyle.etherealWhite
+					verticalAlignment: Text.AlignVCenter
+
+					background: Rectangle {
+						color: UiStyle.transparent
+					}
+				}
 			}
 		}
 
 		RowLayout {
 			width: 260
 			height: 142
-			anchors.bottom: parent.bottom
 
 			Text {
 				font {
@@ -107,6 +126,38 @@ Popup {
 				MouseArea {
 					anchors.fill: parent
 					onClicked: openChoosePokemonPopup()
+				}
+			}
+		}
+
+		Rectangle {
+			implicitWidth: 80
+			implicitHeight: 30
+
+			Layout.alignment: Qt.AlignHCenter
+
+			radius: 6
+			color: UiStyle.etherealWhite_11
+
+			Text {
+				anchors.fill: parent
+
+				verticalAlignment: Text.AlignVCenter
+				horizontalAlignment: Text.AlignHCenter
+
+				font {
+					bold: true
+					pixelSize: 12
+					family: "Roboto"
+				}
+				color: UiStyle.etherealWhite
+				text: "Add Habit"
+			}
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: function() {
+					root.close();
 				}
 			}
 		}

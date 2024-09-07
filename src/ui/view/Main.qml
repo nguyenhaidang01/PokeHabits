@@ -47,6 +47,7 @@ ApplicationWindow  {
 
 			habitModel: internal.dailyReportModel
 			pokemonModel: internal.pokemonModel
+			controller: internal.controller
 		}
 
 		Item {

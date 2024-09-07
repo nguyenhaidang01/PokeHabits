@@ -16,6 +16,7 @@ Item {
 
 	property QtObject habitModel: null
 	property QtObject pokemonModel: null
+	property QtObject controller: null
 	property alias state: habitList.state
 
 	signal openAddHabitPopup()
@@ -35,10 +36,11 @@ Item {
 			id: addHabitPopup
 
 			width: 383
-			height: 236
+			height: 256
 			anchors.centerIn: parent
 
 			model: root.pokemonModel
+			controller: root.controller
 
 			onOpenChoosePokemonPopup: function() {
 				choosePokemonPopup.open();
