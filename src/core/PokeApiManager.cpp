@@ -163,7 +163,6 @@ Pokemon PokeApiManager::parsePokeApiJsonFile(int id) {
 	pokemon.imageSvg = pkmObject["sprites"].toObject()["other"].toObject()["dream_world"].toObject()["front_default"].toString();
 	pokemon.imagePng = pkmObject["sprites"].toObject()["other"].toObject()["official-artwork"].toObject()["front_default"].toString();
 
-	printPokemonInfo(pokemon);
 	return pokemon;
 }
 

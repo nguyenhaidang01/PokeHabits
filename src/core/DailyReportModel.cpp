@@ -4,8 +4,10 @@
 
 DailyReportModel::DailyReportModel(QObject *parent)
     : QAbstractListModel{parent}
-    , m_dailyReportList{nullptr}
+    , m_dailyReportList{ std::make_shared<DailyReportList>() }
 {
+	QObject::connect(m_dailyReportList.get(), &DailyReportList::preDailyReportItemAppended, this, &DailyReportModel::countChanged);
+	QObject::connect(m_dailyReportList.get(), &DailyReportList::postDailyReportItemAppended, this, &DailyReportModel::countChanged);
 }
 
 DailyReportModel::DailyReportModel(std::shared_ptr<DailyReportList> dailyReportList, QObject *parent)

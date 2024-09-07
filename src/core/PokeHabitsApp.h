@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QDate>
 #include "CalendarModel.h"
+#include "DailyReportList.h"
 #include "DailyReportModel.h"
 #include "PokeApiManager.h"
 
@@ -22,6 +23,13 @@ public:
 	static PokeHabitsApp* getInstance();
 	DailyReportModel* dailyReportModel();
 
+	void prepareDatabase();
+	bool createDatabase(const QString& dbName);
+	bool createTables();
+
+	std::shared_ptr<QMap<QDate, ListDailyReportPtr>> readDatabase(QString username, QString password);
+	bool writeDatabase(QString username, QString password, QDate date, const ListDailyReportPtr& pokeHabitList);
+
 public slots:
 	CalendarModel* getCalendarModel(int year = cDefaultDate);
 	PokemonModel* pokemonModel();
@@ -36,7 +44,7 @@ private:
 	explicit PokeHabitsApp(QObject *parent = nullptr);
 
 	void createCurrentYearCalendarList();
-	void createAllDailyReportModel();
+	void createDailyReportModelsFromDatabase();
 
 	QMapYearCalendarModelPtr m_allCalendarModel;
 	QMapDateDailyReportModelPtr m_allDailyReportModel;
@@ -45,4 +53,6 @@ private:
 	QDate m_selectedDate;
 
 	PokeApiManager* m_pokeApiManager;
+
+	QString m_databaseFolder;
 };
