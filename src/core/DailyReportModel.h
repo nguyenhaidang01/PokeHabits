@@ -17,9 +17,19 @@ public:
 
 	enum {
 		HabitNameRole = Qt::UserRole,
-		ImageRole,
 		ExpRole,
-		DoneRole
+		DoneRole,
+		PokemonIdRole,
+		PokemonNameRole,
+		PokemonBaseExpRole,
+		PokemonHpStatRole,
+		PokemonAttackRole,
+		PokemonDefenseRole,
+		PokemonSAttackRole,
+		PokemonSDefenseRole,
+		PokemonSpeedRole,
+		PokemonImageSvgRole,
+		PokemonImagePngRole
 	};
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;

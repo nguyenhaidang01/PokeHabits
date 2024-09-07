@@ -27,6 +27,7 @@ public slots:
 	PokemonModel* pokemonModel();
 
 	void setSelectedDate(int day, int month, int year);
+	void addPokeHabit(QString habitName);
 
 signals:
 	void selectedDateChanged();

@@ -33,12 +33,34 @@ QVariant DailyReportModel::data(const QModelIndex &index, int role) const
 	switch (role) {
 	case HabitNameRole:
 		return QVariant(item->habitName);
-	case ImageRole:
-		return QVariant(item->image);
 	case ExpRole:
 		return QVariant(item->exp);
 	case DoneRole:
 		return QVariant(item->done);
+	case PokemonIdRole:
+		return QVariant(item->pokemon.id);
+	case PokemonNameRole:
+		return QVariant(item->pokemon.name);
+	case PokemonBaseExpRole:
+		return QVariant(item->pokemon.baseExp);
+	case PokemonHpStatRole:
+		return QVariant(item->pokemon.stats.hp);
+	case PokemonAttackRole:
+		return QVariant(item->pokemon.stats.attack);
+	case PokemonDefenseRole:
+		return QVariant(item->pokemon.stats.defense);
+	case PokemonSAttackRole:
+		return QVariant(item->pokemon.stats.sAttack);
+	case PokemonSDefenseRole:
+		return QVariant(item->pokemon.stats.sDefense);
+	case PokemonSpeedRole:
+		return QVariant(item->pokemon.stats.speed);
+	case PokemonImageSvgRole:
+		return QVariant(item->pokemon.imageSvg);
+	case PokemonImagePngRole:
+		return QVariant(item->pokemon.imagePng);
+	default:
+		qDebug() << "Invalid RoleName";
 	}
 
 	return QVariant();
@@ -50,18 +72,49 @@ bool DailyReportModel::setData(const QModelIndex &index, const QVariant &value, 
 		return false;
 
 	std::shared_ptr<PokeHabit> item = m_dailyReportList->items()->at(index.row());
+
 	switch (role) {
 	case HabitNameRole:
 		item->habitName = value.toString();
-		break;
-	case ImageRole:
-		item->image = value.toString();
 		break;
 	case ExpRole:
 		item->exp = value.toInt();
 		break;
 	case DoneRole:
 		item->done = value.toBool();
+		break;
+	case PokemonIdRole:
+		item->pokemon.id = value.toInt();
+		break;
+	case PokemonNameRole:
+		item->pokemon.name = value.toString();
+		break;
+	case PokemonBaseExpRole:
+		item->pokemon.baseExp = value.toInt();
+		break;
+	case PokemonHpStatRole:
+		item->pokemon.stats.hp = value.toInt();
+		break;
+	case PokemonAttackRole:
+		item->pokemon.stats.attack = value.toInt();
+		break;
+	case PokemonDefenseRole:
+		item->pokemon.stats.defense = value.toInt();
+		break;
+	case PokemonSAttackRole:
+		item->pokemon.stats.sAttack = value.toInt();
+		break;
+	case PokemonSDefenseRole:
+		item->pokemon.stats.sDefense = value.toInt();
+		break;
+	case PokemonSpeedRole:
+		item->pokemon.stats.speed = value.toInt();
+		break;
+	case PokemonImageSvgRole:
+		item->pokemon.imageSvg = value.toString();
+		break;
+	case PokemonImagePngRole:
+		item->pokemon.imagePng = value.toString();
 		break;
 	}
 
@@ -84,9 +137,19 @@ QHash<int, QByteArray> DailyReportModel::roleNames() const
 {
 	QHash<int, QByteArray> names;
 	names[HabitNameRole] = "habitName";
-	names[ImageRole] = "image";
 	names[ExpRole] = "exp";
 	names[DoneRole] = "done";
+	names[PokemonIdRole] = "pkmId";
+	names[PokemonNameRole] = "pkmName";
+	names[PokemonBaseExpRole] = "pkmBaseExp";
+	names[PokemonHpStatRole] = "pkmHpStat";
+	names[PokemonAttackRole] = "pkmAttack";
+	names[PokemonDefenseRole] = "pkmDefense";
+	names[PokemonSAttackRole] =	"pkmSAttack";
+	names[PokemonSDefenseRole] = "pkmSDefense";
+	names[PokemonSpeedRole] = "pkmSpeed";
+	names[PokemonImageSvgRole] = "pkmImageSvg";
+	names[PokemonImagePngRole] = "pkmImagePng";
 
 	return names;
 }

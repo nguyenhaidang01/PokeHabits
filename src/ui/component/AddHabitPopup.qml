@@ -157,6 +157,7 @@ Popup {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
+					root.controller.addPokeHabit(habitNameField.text);
 					root.close();
 				}
 			}

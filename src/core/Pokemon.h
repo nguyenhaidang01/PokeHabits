@@ -26,6 +26,5 @@ struct PokeHabit
 	QString habitName;
 	int exp;
 	bool done;
-	QString image;
 	Pokemon pokemon;
 };

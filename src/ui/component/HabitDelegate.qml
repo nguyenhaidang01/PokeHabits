@@ -59,8 +59,8 @@ ColumnLayout {
 			implicitWidth: 120
 			implicitHeight: 142
 
-			pokemonImg: image
-			pokemonName: habitName
+			pokemonImg: internal.examplePokemon
+			pokemonName: pkmName
 		}
 
 		Rectangle {
@@ -79,5 +79,6 @@ ColumnLayout {
 		readonly property int gridCellWidth: 476
 		readonly property int gridCellHeight: 187
 		readonly property int radius: 6
+		readonly property url examplePokemon: "qrc:/ui/assets/Leafeon.png"
 	}
 }
