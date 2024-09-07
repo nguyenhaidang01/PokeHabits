@@ -106,6 +106,7 @@ Popup {
 
 		model: root.model
 		delegate: pokeElement
+		currentIndex: model.currentIndex
 	}
 
 	Component {
@@ -119,7 +120,15 @@ Popup {
 				anchors.centerIn: parent
 
 				pokemonImg: internal.examplePokemon
-				pokemonName: internal.pokemonName
+				pokemonName: name
+
+				MouseArea {
+					anchors.fill: parent
+					onClicked: function() {
+						root.model.currentIndex = index
+						root.close()
+					}
+				}
 			}
 		}
 	}
@@ -134,6 +143,5 @@ Popup {
 		id: internal
 
 		readonly property url examplePokemon: "qrc:/ui/assets/Leafeon.png"
-		readonly property string pokemonName: "Leafeon"
 	}
 }

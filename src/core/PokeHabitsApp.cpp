@@ -16,6 +16,7 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	: QObject(parent)
 	, m_allCalendarModel{ std::make_shared<QMap<int, CalendarModel*>>() }
     , m_allDailyReportModel{ std::make_shared<QMap<QDate, DailyReportModel*>>() }
+	, m_pokeApiManager{ new PokeApiManager() }
 	, m_currentDate{ QDate::currentDate() }
 	, m_selectedDate { m_currentDate }
 {
@@ -28,6 +29,8 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 		}
 		m_allCalendarModel->value(m_selectedDate.year())->setSelectedDate(m_selectedDate);
 	});
+
+	m_pokeApiManager->initPokemonModel();
 }
 
 DailyReportModel* PokeHabitsApp::dailyReportModel()
@@ -48,6 +51,11 @@ CalendarModel* PokeHabitsApp::getCalendarModel(int year)
 		return nullptr;
 	}
 	return m_allCalendarModel->value(year);
+}
+
+PokemonModel* PokeHabitsApp::pokemonModel()
+{
+	return m_pokeApiManager->pokemonModel();
 }
 
 void PokeHabitsApp::createCurrentYearCalendarList()

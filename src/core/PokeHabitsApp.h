@@ -4,6 +4,7 @@
 #include <QDate>
 #include "CalendarModel.h"
 #include "DailyReportModel.h"
+#include "PokeApiManager.h"
 
 class DailyReportList;
 
@@ -23,6 +24,7 @@ public:
 
 public slots:
 	CalendarModel* getCalendarModel(int year = cDefaultDate);
+	PokemonModel* pokemonModel();
 
 	void setSelectedDate(int day, int month, int year);
 
@@ -40,4 +42,6 @@ private:
 
 	QDate m_currentDate;
 	QDate m_selectedDate;
+
+	PokeApiManager* m_pokeApiManager;
 };

@@ -14,7 +14,8 @@ Item {
 	implicitWidth: 952
 	implicitHeight: 374
 
-	property QtObject model: null
+	property QtObject habitModel: null
+	property QtObject pokemonModel: null
 	property alias state: habitList.state
 
 	signal openAddHabitPopup()
@@ -37,6 +38,8 @@ Item {
 			height: 236
 			anchors.centerIn: parent
 
+			model: root.pokemonModel
+
 			onOpenChoosePokemonPopup: function() {
 				choosePokemonPopup.open();
 				habitList.state = "choosePopupOpening";
@@ -55,7 +58,7 @@ Item {
 
 			leftMargin : 275
 
-			model: root.model
+			model: root.pokemonModel
 
 			onClosed: function() {
 				habitList.state = "addHabitPopupOpening";
@@ -65,7 +68,7 @@ Item {
 		states: [
 			State {
 				name: "idle"
-				PropertyChanges { target: habitList; model: root.model }
+				PropertyChanges { target: habitList; model: root.habitModel }
 				PropertyChanges { target: addHabitPopup; visible: false }
 				PropertyChanges { target: choosePokemonPopup; visible: false }
 			},

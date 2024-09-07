@@ -17,6 +17,8 @@ struct Pokemon {
 	QString name;
 	int baseExp;
 	Stats stats;
+	QString imageSvg;
+	QString imagePng;
 };
 
 struct PokeHabit

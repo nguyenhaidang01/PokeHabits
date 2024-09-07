@@ -45,7 +45,8 @@ ApplicationWindow  {
 			Layout.topMargin: 24
 			Layout.leftMargin: 62
 
-			model: internal.dailyReportModel
+			habitModel: internal.dailyReportModel
+			pokemonModel: internal.pokemonModel
 		}
 
 		Item {
@@ -87,6 +88,7 @@ ApplicationWindow  {
 		property QtObject controller: pokeHabitsApp
 		property QtObject dailyReportModel: pokeHabitsApp.dailyReportModel
 		property QtObject calendarModel: pokeHabitsApp.getCalendarModel()
+		property QtObject pokemonModel: pokeHabitsApp.pokemonModel()
 		property bool scrolldownVisible: habitBoard.state == "idle" && pokeHabitsApp.dailyReportModel && pokeHabitsApp.dailyReportModel.count > 4
 	}
 }
