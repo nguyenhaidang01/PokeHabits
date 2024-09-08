@@ -2,7 +2,7 @@
 
 PokemonList::PokemonList(QObject *parent)
 	: QObject(parent)
-	, m_Items{ std::make_shared<QVector<std::shared_ptr<Pokemon>>>() }
+    , m_Items{ std::make_shared<QVector<PokemonPtr>>() }
 {
 }
 

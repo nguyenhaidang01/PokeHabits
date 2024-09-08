@@ -1,37 +1,36 @@
 #include "Pokemon.h"
-#include "DailyReportList.h"
 #include "DailyReportModel.h"
 
 DailyReportModel::DailyReportModel(QObject *parent)
-    : QAbstractListModel{parent}
-    , m_dailyReportList{ std::make_shared<DailyReportList>() }
+	: QAbstractListModel(parent)
+	, m_List{ std::make_shared<DailyReportList>() }
 {
-	QObject::connect(m_dailyReportList.get(), &DailyReportList::preDailyReportItemAppended, this, &DailyReportModel::countChanged);
-	QObject::connect(m_dailyReportList.get(), &DailyReportList::postDailyReportItemAppended, this, &DailyReportModel::countChanged);
+	QObject::connect(m_List.get(), &DailyReportList::preItemAppended, this, &DailyReportModel::countChanged);
+	QObject::connect(m_List.get(), &DailyReportList::postItemAppended, this, &DailyReportModel::countChanged);
 }
 
-DailyReportModel::DailyReportModel(std::shared_ptr<DailyReportList> dailyReportList, QObject *parent)
-    : QAbstractListModel{parent}
-    , m_dailyReportList{dailyReportList}
+DailyReportModel::DailyReportModel(DailyReportListPtr dailyReportList, QObject *parent)
+	: QAbstractListModel{parent}
+	, m_List{dailyReportList}
 {
-	QObject::connect(m_dailyReportList.get(), &DailyReportList::preDailyReportItemAppended, this, &DailyReportModel::countChanged);
-	QObject::connect(m_dailyReportList.get(), &DailyReportList::postDailyReportItemAppended, this, &DailyReportModel::countChanged);
+	QObject::connect(m_List.get(), &DailyReportList::preItemAppended, this, &DailyReportModel::countChanged);
+	QObject::connect(m_List.get(), &DailyReportList::postItemAppended, this, &DailyReportModel::countChanged);
 }
 
 int DailyReportModel::rowCount(const QModelIndex &parent) const
 {
-	if (parent.isValid() || !m_dailyReportList)
+	if (parent.isValid() || !m_List)
 		return 0;
 
-	return m_dailyReportList->items()->size();
+	return m_List->items()->size();
 }
 
 QVariant DailyReportModel::data(const QModelIndex &index, int role) const
 {
-	if (!index.isValid() || !m_dailyReportList)
+	if (!index.isValid() || !m_List)
 		return QVariant();
 
-	const std::shared_ptr<PokeHabit> item = m_dailyReportList->items()->at(index.row());
+	const DailyReportPtr item = m_List->items()->at(index.row());
 	switch (role) {
 	case HabitNameRole:
 		return QVariant(item->habitName);
@@ -70,10 +69,10 @@ QVariant DailyReportModel::data(const QModelIndex &index, int role) const
 
 bool DailyReportModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-	if (!m_dailyReportList)
+	if (!m_List)
 		return false;
 
-	std::shared_ptr<PokeHabit> item = m_dailyReportList->items()->at(index.row());
+	DailyReportPtr item = m_List->items()->at(index.row());
 
 	switch (role) {
 	case HabitNameRole:
@@ -120,7 +119,7 @@ bool DailyReportModel::setData(const QModelIndex &index, const QVariant &value, 
 		break;
 	}
 
-	if (m_dailyReportList->setDailyReporItemAt(index.row(), item)) {
+	if (m_List->setItemAt(index.row(), item)) {
 		emit dataChanged(index, index, QVector<int>() << role);
 		return true;
 	}
@@ -156,34 +155,34 @@ QHash<int, QByteArray> DailyReportModel::roleNames() const
 	return names;
 }
 
-std::shared_ptr<DailyReportList> DailyReportModel::dailyReportList() const
+DailyReportListPtr DailyReportModel::list() const
 {
-	return m_dailyReportList;
+	return m_List;
 }
 
-void DailyReportModel::setDailyReportList(std::shared_ptr<DailyReportList> list)
+void DailyReportModel::setList(DailyReportListPtr list)
 {
 	beginResetModel();
 
-	if (m_dailyReportList) {
-		m_dailyReportList->disconnect(this);
+	if (m_List) {
+		m_List->disconnect(this);
 	}
 
-	m_dailyReportList = list;
+	m_List = list;
 
-	if (m_dailyReportList) {
-		connect(m_dailyReportList.get(), &DailyReportList::preDailyReportItemAppended, this, [=]() {
-			const int index = m_dailyReportList->items()->size();
+	if (m_List) {
+		connect(m_List.get(), &DailyReportList::preItemAppended, this, [=]() {
+			const int index = m_List->items()->size();
 			beginInsertRows(QModelIndex(), index, index);
 		});
-		connect(m_dailyReportList.get(), &DailyReportList::postDailyReportItemAppended, this, [=]() {
+		connect(m_List.get(), &DailyReportList::postItemAppended, this, [=]() {
 			endInsertRows();
 		});
 
-		connect(m_dailyReportList.get(), &DailyReportList::preDailyReportItemRemoved, this, [=](int index) {
+		connect(m_List.get(), &DailyReportList::preItemRemoved, this, [=](int index) {
 			beginRemoveRows(QModelIndex(), index, index);
 		});
-		connect(m_dailyReportList.get(), &DailyReportList::postDailyReportItemRemoved, this, [=]() {
+		connect(m_List.get(), &DailyReportList::postItemRemoved, this, [=]() {
 			endRemoveRows();
 		});
 	}
@@ -193,5 +192,5 @@ void DailyReportModel::setDailyReportList(std::shared_ptr<DailyReportList> list)
 
 int DailyReportModel::count()
 {
-	return m_dailyReportList->items()->size();
+	return m_List->items()->size();
 }

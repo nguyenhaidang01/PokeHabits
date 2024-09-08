@@ -26,7 +26,7 @@ PokeHabitsApp* PokeHabitsApp::getInstance()
 PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	: QObject(parent)
 	, m_allCalendarModel{ std::make_shared<QMap<int, CalendarModel*>>() }
-    , m_allDailyReportModel{ std::make_shared<QMap<QDate, DailyReportModel*>>() }
+	, m_allDailyReportModel{ std::make_shared<QMap<QDate, DailyReportModel*>>() }
 	, m_pokeApiManager{ new PokeApiManager() }
 	, m_currentDate{ QDate::currentDate() }
 	, m_selectedDate { m_currentDate }
@@ -36,7 +36,7 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	createCurrentYearCalendarList();
 	createDailyReportModelsFromDatabase();
 
-    QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, [&]() {
+	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, [&]() {
 		if (!m_allCalendarModel->contains(m_selectedDate.year())) {
 			return;
 		}
@@ -48,10 +48,10 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 
 DailyReportModel* PokeHabitsApp::dailyReportModel()
 {
-    if (!m_allDailyReportModel->contains(m_selectedDate)) {
+	if (!m_allDailyReportModel->contains(m_selectedDate)) {
 		return nullptr;
 	}
-    return m_allDailyReportModel->value(m_selectedDate);
+	return m_allDailyReportModel->value(m_selectedDate);
 }
 
 CalendarModel* PokeHabitsApp::getCalendarModel(int year)
@@ -59,7 +59,7 @@ CalendarModel* PokeHabitsApp::getCalendarModel(int year)
 	if (year == cDefaultDate) {
 		year = m_currentDate.year();
 	}
-	
+
 	if (!m_allCalendarModel->contains(year)) {
 		return nullptr;
 	}
@@ -76,20 +76,20 @@ void PokeHabitsApp::createCurrentYearCalendarList()
 	if (!m_allCalendarModel) {
 		return;
 	}
-	
+
 	if (m_allCalendarModel->contains(m_currentDate.year())) {
 		return;
 	}
-	
+
 	QDate startDate(m_currentDate.year(), 1, 1);
 	QDate endDate(m_currentDate.year(), 12, 31);
 	
 	QDate currentDate = startDate;
 	
-	std::shared_ptr<CalendarList> calendarList = std::make_shared<CalendarList>();
+	CalendarListPtr calendarList = std::make_shared<CalendarList>();
 	
 	while (currentDate <= endDate) {
-		calendarList->appendDateItem(currentDate);
+		calendarList->appendItem(currentDate);
 		currentDate = currentDate.addDays(1);
 	}
 	
@@ -104,16 +104,16 @@ void PokeHabitsApp::createDailyReportModelsFromDatabase()
 		return;
 	}
 
-	std::shared_ptr<QMap<QDate, ListDailyReportPtr>> dateReportMap = readDatabase(USERNAME, PASSWORD);
+	QMapDateVectorDailyReportPtr dateReportMap = readDatabase(USERNAME, PASSWORD);
 	if (!dateReportMap) {
 		return;
 	}
-	
+
 	for (auto it = dateReportMap->begin(); it != dateReportMap->end(); ++it) {
 		QDate date = it.key();
-		ListDailyReportPtr habitList = it.value();
+		QVectorDailyReportPtr habitList = it.value();
 
-		std::shared_ptr<DailyReportList> dailyReportList = std::make_shared<DailyReportList>(habitList);
+		DailyReportListPtr dailyReportList = std::make_shared<DailyReportList>(habitList);
 
 		DailyReportModel* pkmModel = new DailyReportModel(dailyReportList);
 
@@ -144,10 +144,10 @@ void PokeHabitsApp::addPokeHabit(QString habitName)
 
 	Pokemon pokemon = *(pokemonModel()->list()->items()->at(pokemonModel()->currentIndex()));
 
-	std::shared_ptr<PokeHabit> pokeHabit = std::make_shared<PokeHabit>(habitName, 0, false, pokemon);
+	DailyReportPtr pokeHabit = std::make_shared<PokeHabit>(habitName, 0, false, pokemon);
 
-	dailyReportModel->dailyReportList()->appendDailyReportItem(pokeHabit);
-	writeDatabase(USERNAME, PASSWORD, m_selectedDate, dailyReportModel->dailyReportList()->items());
+	dailyReportModel->list()->appendItem(pokeHabit);
+	writeDatabase(USERNAME, PASSWORD, m_selectedDate, dailyReportModel->list()->items());
 
 	emit selectedDateChanged();
 }
@@ -244,7 +244,7 @@ void PokeHabitsApp::prepareDatabase() {
 	}
 }
 
-bool PokeHabitsApp::writeDatabase(QString username, QString password, QDate date, const std::shared_ptr<QList<std::shared_ptr<PokeHabit>>>& pokeHabitList) {
+bool PokeHabitsApp::writeDatabase(QString username, QString password, QDate date, const QVectorDailyReportPtr& pokeHabitList) {
 	QSqlQuery query;
 
 	// Find or create account
@@ -341,8 +341,8 @@ bool PokeHabitsApp::writeDatabase(QString username, QString password, QDate date
 }
 
 
-std::shared_ptr<QMap<QDate, ListDailyReportPtr>> PokeHabitsApp::readDatabase(QString username, QString password) {
-	auto habitsMap = std::make_shared<QMap<QDate, ListDailyReportPtr>>();
+QMapDateVectorDailyReportPtr PokeHabitsApp::readDatabase(QString username, QString password) {
+	auto habitsMap = std::make_shared<QMap<QDate, QVectorDailyReportPtr>>();
 
 	QSqlQuery query;
 
@@ -369,8 +369,8 @@ std::shared_ptr<QMap<QDate, ListDailyReportPtr>> PokeHabitsApp::readDatabase(QSt
 		int dateId = query.value(0).toInt();
 		QDate habitDate = QDate::fromString(query.value(1).toString(), "yyyy-MM-dd");
 
-		// Create a new ListDailyReportPtr for the date
-		ListDailyReportPtr dailyReport = std::make_shared<QList<std::shared_ptr<PokeHabit>>>();
+		// Create a new QVectorDailyReportPtr for the date
+		QVectorDailyReportPtr qVectorDailyReportPtr = std::make_shared<QList<DailyReportPtr>>();
 
 		// Fetch all PokeHabits for the given date_id
 		QSqlQuery habitQuery;
@@ -382,10 +382,10 @@ std::shared_ptr<QMap<QDate, ListDailyReportPtr>> PokeHabitsApp::readDatabase(QSt
 		}
 
 		while (habitQuery.next()) {
-			std::shared_ptr<PokeHabit> pokeHabit = std::make_shared<PokeHabit>();
-			pokeHabit->habitName = habitQuery.value("habit_name").toString();
-			pokeHabit->exp = habitQuery.value("exp").toInt();
-			pokeHabit->done = habitQuery.value("done").toBool();
+			DailyReportPtr dailyReportPtr = std::make_shared<PokeHabit>();
+			dailyReportPtr->habitName = habitQuery.value("habit_name").toString();
+			dailyReportPtr->exp = habitQuery.value("exp").toInt();
+			dailyReportPtr->done = habitQuery.value("done").toBool();
 
 			int pokemonId = habitQuery.value("pokemon_id").toInt();
 			QSqlQuery pokemonQuery;
@@ -406,14 +406,14 @@ std::shared_ptr<QMap<QDate, ListDailyReportPtr>> PokeHabitsApp::readDatabase(QSt
 				pokemon.imageSvg = pokemonQuery.value("image_svg").toString();
 				pokemon.imagePng = pokemonQuery.value("image_png").toString();
 
-				pokeHabit->pokemon = pokemon;
+				dailyReportPtr->pokemon = pokemon;
 			}
 
-			dailyReport->append(pokeHabit);
+			qVectorDailyReportPtr->append(dailyReportPtr);
 		}
 
 		// Add the habits for this date to the map
-		habitsMap->insert(habitDate, dailyReport);
+		habitsMap->insert(habitDate, qVectorDailyReportPtr);
 	}
 
 	return habitsMap;

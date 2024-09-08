@@ -1,9 +1,9 @@
 #pragma once
 
-#include "CalendarList.h"
 #include <QAbstractListModel>
+#include "CalendarList.h"
 
-Q_MOC_INCLUDE("CalendarList.h")
+using CalendarListPtr = std::shared_ptr<CalendarList>;
 
 class CalendarModel : public QAbstractListModel
 {
@@ -13,7 +13,7 @@ class CalendarModel : public QAbstractListModel
 	Q_PROPERTY(int selectedYear READ selectedYear NOTIFY selectedDateChanged FINAL)
 
 public:
-	explicit CalendarModel(std::shared_ptr<CalendarList> calendarList, QDate currentDate, QObject *parent = nullptr);
+	explicit CalendarModel(CalendarListPtr calendarList, QDate currentDate, QObject *parent = nullptr);
 
 	enum {
 		DayOfWeekRole = Qt::UserRole,
@@ -30,8 +30,8 @@ public:
 	Qt::ItemFlags flags(const QModelIndex& index) const override;
 	virtual QHash<int, QByteArray> roleNames() const override;
 
-	std::shared_ptr<CalendarList> calendarList() const;
-	void setCalendarList(std::shared_ptr<CalendarList> list);
+	CalendarListPtr list() const;
+	void setList(CalendarListPtr list);
 
 	int currentDateIndex();
 
@@ -45,7 +45,8 @@ signals:
 	void selectedDateChanged();
 
 private:
-	std::shared_ptr<CalendarList> m_calendarList;
+	CalendarListPtr m_List;
+
 	QDate m_currentDate;
 	QDate m_selectedDate;
 };

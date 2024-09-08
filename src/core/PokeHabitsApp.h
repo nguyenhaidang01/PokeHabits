@@ -10,6 +10,7 @@
 class DailyReportList;
 
 using QMapDateDailyReportModelPtr = std::shared_ptr<QMap<QDate, DailyReportModel*>>;
+using QMapDateVectorDailyReportPtr = std::shared_ptr<QMap<QDate, QVectorDailyReportPtr>>;
 using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
 
 const int cDefaultDate = 0;
@@ -27,8 +28,8 @@ public:
 	bool createDatabase(const QString& dbName);
 	bool createTables();
 
-	std::shared_ptr<QMap<QDate, ListDailyReportPtr>> readDatabase(QString username, QString password);
-	bool writeDatabase(QString username, QString password, QDate date, const ListDailyReportPtr& pokeHabitList);
+	QMapDateVectorDailyReportPtr readDatabase(QString username, QString password);
+	bool writeDatabase(QString username, QString password, QDate date, const QVectorDailyReportPtr& pokeHabitList);
 
 public slots:
 	CalendarModel* getCalendarModel(int year = cDefaultDate);

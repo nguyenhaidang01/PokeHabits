@@ -1,10 +1,9 @@
 #pragma once
 
 #include <QAbstractListModel>
+#include "DailyReportList.h"
 
-Q_MOC_INCLUDE("DailyReportList.h")
-
-class DailyReportList;
+using DailyReportListPtr = std::shared_ptr<DailyReportList>;
 
 class DailyReportModel : public QAbstractListModel
 {
@@ -13,7 +12,7 @@ class DailyReportModel : public QAbstractListModel
 
 public:
 	explicit DailyReportModel(QObject *parent = nullptr);
-	explicit DailyReportModel(std::shared_ptr<DailyReportList> dailyReportList, QObject *parent = nullptr);
+	explicit DailyReportModel(DailyReportListPtr dailyReportList, QObject *parent = nullptr);
 
 	enum {
 		HabitNameRole = Qt::UserRole,
@@ -40,8 +39,9 @@ public:
 
 	virtual QHash<int, QByteArray> roleNames() const override;
 
-	std::shared_ptr<DailyReportList> dailyReportList() const;
-	void setDailyReportList(std::shared_ptr<DailyReportList> list);
+	DailyReportListPtr list() const;
+
+	void setList(DailyReportListPtr list);
 
 	int count();
 
@@ -49,5 +49,5 @@ signals:
 	void countChanged();
 
 private:
-	std::shared_ptr<DailyReportList> m_dailyReportList;
+	DailyReportListPtr m_List;
 };

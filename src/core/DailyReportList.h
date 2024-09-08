@@ -1,33 +1,34 @@
 #pragma once
 
 #include <QObject>
-#include <QList>
+#include <QVector>
 
 struct PokeHabit;
 
-using ListDailyReportPtr = std::shared_ptr<QList<std::shared_ptr<PokeHabit>>>;
+using DailyReportPtr = std::shared_ptr<PokeHabit>;
+using QVectorDailyReportPtr = std::shared_ptr<QVector<DailyReportPtr>>;
 
 class DailyReportList : public QObject
 {
 	Q_OBJECT
 public:
 	explicit DailyReportList(QObject *parent = nullptr);
-	explicit DailyReportList(ListDailyReportPtr list, QObject *parent = nullptr);
+	explicit DailyReportList(QVectorDailyReportPtr list, QObject *parent = nullptr);
 
-	ListDailyReportPtr items() const;
+	QVectorDailyReportPtr items() const;
 
-	bool setDailyReporItemAt(int index, std::shared_ptr<PokeHabit> item);
+	bool setItemAt(int index, DailyReportPtr item);
 
 signals:
-	void preDailyReportItemAppended();
-	void postDailyReportItemAppended();
+	void preItemAppended();
+	void postItemAppended();
 
-	void preDailyReportItemRemoved(int index);
-	void postDailyReportItemRemoved();
+	void preItemRemoved(int index);
+	void postItemRemoved();
 
 public slots:
-	void appendDailyReportItem(std::shared_ptr<PokeHabit> item);
+	void appendItem(DailyReportPtr item);
 
 private:
-	ListDailyReportPtr m_list;
+	QVectorDailyReportPtr m_Items;
 };

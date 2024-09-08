@@ -3,41 +3,41 @@
 
 DailyReportList::DailyReportList(QObject *parent)
 	: QObject(parent)
-    , m_list{std::make_shared<QList<std::shared_ptr<PokeHabit>>>()}
+	, m_Items{ std::make_shared<QList<DailyReportPtr>>() }
 {
 }
 
-DailyReportList::DailyReportList(ListDailyReportPtr list, QObject *parent)
+DailyReportList::DailyReportList(QVectorDailyReportPtr list, QObject *parent)
 	: QObject(parent)
-	, m_list{list}
+	, m_Items{ list }
 {
 }
 
-ListDailyReportPtr DailyReportList::items() const
+QVectorDailyReportPtr DailyReportList::items() const
 {
-	return m_list;
+	return m_Items;
 }
 
-bool DailyReportList::setDailyReporItemAt(int index, std::shared_ptr<PokeHabit> item)
+bool DailyReportList::setItemAt(int index, DailyReportPtr item)
 {
-	if (!m_list) {
+	if (!m_Items) {
 		return false;
 	}
 
-	if (index < 0 || index >= m_list->size())
+	if (index < 0 || index >= m_Items->size())
 		return false;
 
-	m_list->replace(index, item);
+	m_Items->replace(index, item);
 	return true;
 }
 
-void DailyReportList::appendDailyReportItem(std::shared_ptr<PokeHabit> item)
+void DailyReportList::appendItem(DailyReportPtr item)
 {
-	if (!m_list) {
+	if (!m_Items) {
 		return;
 	}
-	
-    emit preDailyReportItemAppended();
-	m_list->append(item);
-    emit postDailyReportItemAppended();
+
+	emit preItemAppended();
+	m_Items->append(item);
+	emit postItemAppended();
 }

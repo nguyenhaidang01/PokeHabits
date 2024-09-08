@@ -1,28 +1,27 @@
 #include "CalendarModel.h"
-#include "CalendarList.h"
 
-CalendarModel::CalendarModel(std::shared_ptr<CalendarList> calendarList, QDate currentDate, QObject *parent)
-	: QAbstractListModel{parent}
-	, m_calendarList{calendarList}
-	, m_currentDate{currentDate}
-	, m_selectedDate{currentDate}
+CalendarModel::CalendarModel(CalendarListPtr calendarList, QDate currentDate, QObject *parent)
+	: QAbstractListModel(parent)
+	, m_List{ calendarList }
+	, m_currentDate{ currentDate }
+	, m_selectedDate{ currentDate }
 {
 }
 
 int CalendarModel::rowCount(const QModelIndex &parent) const
 {
-	if (parent.isValid() || !m_calendarList)
+	if (parent.isValid() || !m_List)
 		return 0;
 
-	return m_calendarList->items()->size();
+	return m_List->items()->size();
 }
 
 QVariant CalendarModel::data(const QModelIndex &index, int role) const
 {
-	if (!index.isValid() || !m_calendarList)
+	if (!index.isValid() || !m_List)
 		return QVariant();
 
-	const QDate item = m_calendarList->items()->at(index.row());
+	const QDate item = m_List->items()->at(index.row());
 	switch (role) {
 	case DayOfWeekRole:
 		return QVariant(item.toString("ddd").toUpper());
@@ -65,34 +64,34 @@ QHash<int, QByteArray> CalendarModel::roleNames() const
 	return names;
 }
 
-std::shared_ptr<CalendarList> CalendarModel::calendarList() const
+CalendarListPtr CalendarModel::list() const
 {
-	return m_calendarList;
+	return m_List;
 }
 
-void CalendarModel::setCalendarList(std::shared_ptr<CalendarList> list)
+void CalendarModel::setList(CalendarListPtr list)
 {
 	beginResetModel();
 
-	if (m_calendarList) {
-		m_calendarList->disconnect(this);
+	if (m_List) {
+		m_List->disconnect(this);
 	}
 
-	m_calendarList = list;
+	m_List = list;
 
-	if (m_calendarList) {
-		connect(m_calendarList.get(), &CalendarList::preDateItemAppended, this, [=]() {
-			const int index = m_calendarList->items()->size();
+	if (m_List) {
+		connect(m_List.get(), &CalendarList::preItemAppended, this, [=]() {
+			const int index = m_List->items()->size();
 			beginInsertRows(QModelIndex(), index, index);
 		});
-		connect(m_calendarList.get(), &CalendarList::postDateItemAppended, this, [=]() {
+		connect(m_List.get(), &CalendarList::postItemAppended, this, [=]() {
 			endInsertRows();
 		});
 
-		connect(m_calendarList.get(), &CalendarList::preDateItemRemoved, this, [=](int index) {
+		connect(m_List.get(), &CalendarList::preItemRemoved, this, [=](int index) {
 			beginRemoveRows(QModelIndex(), index, index);
 		});
-		connect(m_calendarList.get(), &CalendarList::postDateItemRemoved, this, [=]() {
+		connect(m_List.get(), &CalendarList::postItemRemoved, this, [=]() {
 			endRemoveRows();
 		});
 	}
@@ -102,7 +101,7 @@ void CalendarModel::setCalendarList(std::shared_ptr<CalendarList> list)
 
 int CalendarModel::currentDateIndex()
 {
-	return m_calendarList->items()->indexOf(m_currentDate);
+	return m_List->items()->indexOf(m_currentDate);
 }
 
 QDate CalendarModel::selectedDate()

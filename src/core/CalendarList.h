@@ -4,29 +4,29 @@
 #include <QList>
 #include <QDate>
 
-using QListDatePtr = std::shared_ptr<QList<QDate>>;
+using QVectorDatePtr = std::shared_ptr<QVector<QDate>>;
 
 class CalendarList : public QObject
 {
 	Q_OBJECT
 public:
 	explicit CalendarList(QObject *parent = nullptr);
-	explicit CalendarList(QListDatePtr list, QObject *parent = nullptr);
+	explicit CalendarList(QVectorDatePtr list, QObject *parent = nullptr);
 
-	QListDatePtr items() const;
+	QVectorDatePtr items() const;
 
-	bool setDateItemAt(int index, QDate &item);
+	bool setItemAt(int index, QDate &item);
 
 signals:
-	void preDateItemAppended();
-	void postDateItemAppended();
+	void preItemAppended();
+	void postItemAppended();
 
-	void preDateItemRemoved(int index);
-	void postDateItemRemoved();
+	void preItemRemoved(int index);
+	void postItemRemoved();
 
 public slots:
-	void appendDateItem(QDate &item);
+	void appendItem(QDate &item);
 
 private:
-	QListDatePtr m_list;
+	QVectorDatePtr m_Items;
 };
