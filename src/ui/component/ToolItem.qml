@@ -30,7 +30,10 @@ Item {
 	Image {
 		id: toolImg
 
+		width: 50
+		height: 50
 		anchors.centerIn: circleBackground
+
 		source: root.toolImg
 	}
 

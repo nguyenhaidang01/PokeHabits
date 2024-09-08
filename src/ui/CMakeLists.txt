@@ -34,19 +34,22 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/ChoosePokemonPopup.qml
     RESOURCES
         component/qmldir
-        assets/Jungle.png
-        assets/mPikachu.png
-        assets/fPikachu.png
-        assets/PokemonFest.png
-        assets/NoteIcon.png
-        assets/Leafeon.png
-        assets/Scythe.png
-        assets/Lures.png
-        assets/EggDistance.png
-        assets/Camera.png
-        assets/MaxRevive.png
-        assets/ScrollDown.svg
-        assets/Search.svg
+        assets/jungle.png
+        assets/mpikachu.png
+        assets/fpikachu.png
+        assets/fest.png
+        assets/note.png
+        assets/leafeon.png
+        assets/search.svg
+        assets/lures.png
+        assets/incubator.png
+        assets/camera.png
+        assets/maxrevive.png
+        assets/scrolldown.svg
+        assets/egg.png
+        assets/incense.png
+        assets/twinkle.png
+        assets/binoculars.png
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

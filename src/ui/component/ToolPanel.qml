@@ -38,14 +38,14 @@ Item {
 				id: tool1
 
 				toolName: "Tool 1"
-				toolImg: "qrc:/ui/assets/Lures.png"
+				toolImg: "qrc:/ui/assets/lures.png"
 			}
 
 			ToolItem {
 				id: tool2
 
 				toolName: "Add Habit"
-				toolImg: "qrc:/ui/assets/EggDistance.png"
+				toolImg: "qrc:/ui/assets/incubator.png"
 
 				MouseArea {
 					anchors.fill: parent
@@ -57,7 +57,7 @@ Item {
 				id: tool3
 
 				toolName: "Tool 3"
-				toolImg: "qrc:/ui/assets/Camera.png"
+				toolImg: "qrc:/ui/assets/camera.png"
 			}
 		}
 	}

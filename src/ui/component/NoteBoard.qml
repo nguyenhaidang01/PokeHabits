@@ -26,7 +26,7 @@ Item {
 		height: 520
 
 		opacity: 0.4
-		source: "qrc:/ui/assets/Jungle.png"
+		source: "qrc:/ui/assets/jungle.png"
 	}
 
 	RowLayout {
@@ -53,7 +53,7 @@ Item {
 				width: 138
 				height: 136
 
-				source: "qrc:/ui/assets/PokemonFest.png"
+				source: "qrc:/ui/assets/fest.png"
 			}
 
 			Rectangle {
@@ -89,7 +89,7 @@ Item {
 				height: 106
 				anchors.right: parent.right
 
-				source: "qrc:/ui/assets/fPikachu.png"
+				source: "qrc:/ui/assets/fpikachu.png"
 			}
 
 			Image {
@@ -99,7 +99,7 @@ Item {
 				height: 104
 				anchors.right: fPikachu.left
 
-				source: "qrc:/ui/assets/mPikachu.png"
+				source: "qrc:/ui/assets/mpikachu.png"
 			}
 		}
 
@@ -142,7 +142,7 @@ Item {
 				width: 56
 				height: 56
 
-				source: "qrc:/ui/assets/NoteIcon.png"
+				source: "qrc:/ui/assets/note.png"
 			}
 		}
 	}

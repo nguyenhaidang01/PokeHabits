@@ -62,7 +62,7 @@ ApplicationWindow  {
 				width: 95
 				height: 24
 				anchors.right: parent.right
-				source: "qrc:/ui/assets/ScrollDown.svg"
+				source: "qrc:/ui/assets/scrolldown.svg"
 			}
 		}
 
