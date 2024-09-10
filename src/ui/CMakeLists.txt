@@ -32,6 +32,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/AddHabitPopup.qml
         component/PokemonFrame.qml
         component/ChoosePokemonPopup.qml
+        component/StatBar.qml
     RESOURCES
         component/qmldir
         assets/jungle.png

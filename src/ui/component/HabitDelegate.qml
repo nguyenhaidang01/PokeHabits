@@ -63,16 +63,45 @@ ColumnLayout {
 			pokemonName: pkmName
 		}
 
-		Rectangle {
+		Item {
 			id: pkmInfo
 
 			implicitWidth: 259
 			implicitHeight: 145
 
-			radius: internal.radius
-			color: UiStyle.obsidian_10
+			ColumnLayout {
+				anchors.fill: parent
+
+				spacing: 0
+
+				StatBar {
+					statName: "Hp"
+					statValue: pkmHpStat
+				}
+				StatBar {
+					statName: "Attack"
+					statValue: pkmAttack
+				}
+				StatBar {
+					statName: "Defense"
+					statValue: pkmDefense
+				}
+				StatBar {
+					statName: "Sp.Atk"
+					statValue: pkmSAttack
+				}
+				StatBar {
+					statName: "Sp.Def"
+					statValue: pkmSDefense
+				}
+				StatBar {
+					statName: "Speed"
+					statValue: pkmSpeed
+				}
+			}
 		}
 	}
+
 	QtObject {
 		id: internal
 

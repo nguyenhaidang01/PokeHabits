@@ -10,3 +10,4 @@ DayDelegate 1.0 DayDelegate.qml
 AddHabitPopup 1.0 AddHabitPopup.qml
 PokemonFrame 1.0 PokemonFrame.qml
 ChoosePokemonPopup 1.0 ChoosePokemonPopup.qml
+StatBar 1.0 StatBar.qml

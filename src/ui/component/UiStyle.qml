@@ -20,6 +20,7 @@ QtObject {
 	readonly property color goldenYellow: "#ebc221"
 	readonly property color mysticOcean: "#465d5b"
 	readonly property color mistyAqua: "#c1c9c9"
+	readonly property color mintGreen: "#48D0B0"
 
 	// rgba color
 	readonly property color obsidian_10: Qt.rgba(obsidian.r, obsidian.g, obsidian.b, 0.1)
