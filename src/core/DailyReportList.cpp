@@ -3,7 +3,7 @@
 
 DailyReportList::DailyReportList(QObject *parent)
 	: QObject(parent)
-	, m_Items{ std::make_shared<QList<DailyReportPtr>>() }
+	, m_Items{ std::make_shared<QVector<DailyReportPtr>>() }
 {
 }
 

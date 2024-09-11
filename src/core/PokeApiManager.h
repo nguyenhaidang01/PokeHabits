@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QList>
 #include <QFutureWatcher>
 #include "Pokemon.h"
 #include "PokemonModel.h"

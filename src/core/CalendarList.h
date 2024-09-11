@@ -1,7 +1,6 @@
 #pragma once
 
 #include <QObject>
-#include <QList>
 #include <QDate>
 
 using QVectorDatePtr = std::shared_ptr<QVector<QDate>>;

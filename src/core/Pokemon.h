@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QList>
 #include <QDate>
 
 struct Stats {

@@ -370,7 +370,7 @@ QMapDateVectorDailyReportPtr PokeHabitsApp::readDatabase(QString username, QStri
 		QDate habitDate = QDate::fromString(query.value(1).toString(), "yyyy-MM-dd");
 
 		// Create a new QVectorDailyReportPtr for the date
-		QVectorDailyReportPtr qVectorDailyReportPtr = std::make_shared<QList<DailyReportPtr>>();
+		QVectorDailyReportPtr qVectorDailyReportPtr = std::make_shared<QVector<DailyReportPtr>>();
 
 		// Fetch all PokeHabits for the given date_id
 		QSqlQuery habitQuery;

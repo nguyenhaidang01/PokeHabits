@@ -2,7 +2,7 @@
 
 CalendarList::CalendarList(QObject *parent)
 	: QObject(parent)
-	, m_Items{ std::make_shared<QList<QDate>>() }
+	, m_Items{ std::make_shared<QVector<QDate>>() }
 {
 }
 
