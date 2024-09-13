@@ -5,13 +5,24 @@ DailyReportModel::DailyReportModel(QObject *parent)
 	: QAbstractListModel(parent)
 	, m_List{ std::make_shared<DailyReportList>() }
 {
-	QObject::connect(m_List.get(), &DailyReportList::preItemAppended, this, &DailyReportModel::countChanged);
-	QObject::connect(m_List.get(), &DailyReportList::postItemAppended, this, &DailyReportModel::countChanged);
+	setupConnections();
+}
+
+DailyReportModel::DailyReportModel(QVector<PokeHabit> items, QObject *parent)
+	: QAbstractListModel(parent)
+	, m_List{ std::make_shared<DailyReportList>(items) }
+{
+	setupConnections();
 }
 
 DailyReportModel::DailyReportModel(DailyReportListPtr dailyReportList, QObject *parent)
 	: QAbstractListModel{parent}
 	, m_List{dailyReportList}
+{
+	setupConnections();
+}
+
+void DailyReportModel::setupConnections()
 {
 	QObject::connect(m_List.get(), &DailyReportList::preItemAppended, this, &DailyReportModel::countChanged);
 	QObject::connect(m_List.get(), &DailyReportList::postItemAppended, this, &DailyReportModel::countChanged);

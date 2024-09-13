@@ -119,6 +119,34 @@ void PokeHabitsApp::createDailyReportModelsFromDatabase()
 
 		m_allDailyReportModel->insert(date, pkmModel);
 	}
+
+	createCurrentDateReport();
+}
+
+void PokeHabitsApp::createCurrentDateReport()
+{
+	if (m_allDailyReportModel->count() == 0) {
+		return;
+	}
+
+	if (m_allDailyReportModel->contains(m_currentDate)) {
+		return;
+	}
+
+	QMap<QDate, DailyReportModel*>::const_iterator it = m_allDailyReportModel->constEnd();
+	--it;
+
+	QVector<PokeHabit> remainingPokeHabits = it.value()->list()->itemsClone();
+
+	for (QDate date = it.key().addDays(1); date <= m_currentDate; date = date.addDays(1)) {
+		DailyReportModel* dailyReportModel = new DailyReportModel(remainingPokeHabits);
+		dailyReportModel->list()->setUndoneAllItems();
+
+		m_allDailyReportModel->insert(date, dailyReportModel);
+		writeDatabase(USERNAME, PASSWORD, date, dailyReportModel->list()->items());
+
+		qDebug() << "Create DailyReportModel of " << date.toString("yyyy-MM-dd");
+	}
 }
 
 void PokeHabitsApp::setSelectedDate(int day, int month, int year)
@@ -339,7 +367,6 @@ bool PokeHabitsApp::writeDatabase(QString username, QString password, QDate date
 	}
 	return true;
 }
-
 
 QMapDateVectorDailyReportPtr PokeHabitsApp::readDatabase(QString username, QString password) {
 	auto habitsMap = std::make_shared<QMap<QDate, QVectorDailyReportPtr>>();

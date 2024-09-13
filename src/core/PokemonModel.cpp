@@ -3,7 +3,7 @@
 PokemonModel::PokemonModel(QObject *parent)
 	: QAbstractListModel(parent)
 	, m_List{ std::make_shared<PokemonList>() }
-    , m_currentIndex{ 0 }
+	, m_currentIndex{ 0 }
 {
 }
 

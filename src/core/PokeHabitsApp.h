@@ -46,6 +46,7 @@ private:
 
 	void createCurrentYearCalendarList();
 	void createDailyReportModelsFromDatabase();
+	void createCurrentDateReport();
 
 	QMapYearCalendarModelPtr m_allCalendarModel;
 	QMapDateDailyReportModelPtr m_allDailyReportModel;

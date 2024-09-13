@@ -12,6 +12,7 @@ class DailyReportModel : public QAbstractListModel
 
 public:
 	explicit DailyReportModel(QObject *parent = nullptr);
+	explicit DailyReportModel(QVector<PokeHabit> items, QObject *parent = nullptr);
 	explicit DailyReportModel(DailyReportListPtr dailyReportList, QObject *parent = nullptr);
 
 	enum {
@@ -42,6 +43,8 @@ public:
 	DailyReportListPtr list() const;
 
 	void setList(DailyReportListPtr list);
+
+	void setupConnections();
 
 	int count();
 
