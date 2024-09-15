@@ -119,7 +119,7 @@ Popup {
 			PokemonFrame {
 				anchors.centerIn: parent
 
-				pokemonImg: internal.examplePokemon
+				pokemonImg: imageSvg
 				pokemonName: name
 
 				MouseArea {

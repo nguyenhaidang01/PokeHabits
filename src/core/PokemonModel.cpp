@@ -186,3 +186,7 @@ void PokemonModel::setCurrentIndex(int nCurrentIndex) {
 QString PokemonModel::currentItemName() {
 	return m_List->items()->at(m_currentIndex)->name;
 }
+
+QString PokemonModel::currentItemImg() {
+	return m_List->items()->at(m_currentIndex)->imageSvg;
+}

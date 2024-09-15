@@ -10,6 +10,7 @@ class PokemonModel : public QAbstractListModel
 	Q_OBJECT
 	Q_PROPERTY(int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged FINAL)
 	Q_PROPERTY(QString currentItemName READ currentItemName NOTIFY currentIndexChanged FINAL)
+	Q_PROPERTY(QString currentItemImg READ currentItemImg NOTIFY currentIndexChanged FINAL)
 
 public:
 	explicit PokemonModel(QObject *parent = nullptr);
@@ -51,6 +52,8 @@ public:
 	void setCurrentIndex(int nCurrentIndex);
 
 	QString currentItemName();
+
+	QString currentItemImg();
 
 signals:
 	void currentIndexChanged();

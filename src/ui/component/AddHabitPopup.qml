@@ -120,7 +120,7 @@ Popup {
 				implicitWidth: 120
 				implicitHeight: 142
 
-				pokemonImg: internal.examplePokemon
+				pokemonImg: root.model.currentItemImg
 				pokemonName: root.model.currentItemName
 
 				MouseArea {

@@ -52,11 +52,9 @@ Item {
 	Image {
 		id: pkmImage
 
-		anchors {
-			horizontalCenter: parent.horizontalCenter
-			verticalCenter: parent.verticalCenter
-			verticalCenterOffset: -10
-		}
+		anchors.centerIn: parent
+
+		scale: internal.imageScale
 		source: root.pokemonImg
 	}
 
@@ -81,5 +79,6 @@ Item {
 		id: internal
 
 		readonly property int radius: 6
+		readonly property real imageScale: 0.35
 	}
 }
