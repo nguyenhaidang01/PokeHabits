@@ -88,7 +88,7 @@ ApplicationWindow  {
 
 		property QtObject controller: pokeHabitsApp
 		property QtObject dailyReportModel: pokeHabitsApp.dailyReportModel
-		property QtObject calendarModel: pokeHabitsApp.getCalendarModel()
+		property QtObject calendarModel: pokeHabitsApp.calendarModel
 		property QtObject pokemonModel: pokeHabitsApp.pokemonModel()
 		property bool scrolldownVisible: habitBoard.state == "idle" && pokeHabitsApp.dailyReportModel && pokeHabitsApp.dailyReportModel.count > 4
 	}

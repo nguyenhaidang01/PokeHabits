@@ -23,15 +23,18 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	, m_currentDate{ QDate::currentDate() }
 	, m_selectedDate { m_currentDate }
 {
-	createCurrentYearCalendarList();
-	createDailyReportModelsFromDatabase();
-
 	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, [&]() {
 		if (!m_allCalendarModel->contains(m_selectedDate.year())) {
 			return;
 		}
 		m_allCalendarModel->value(m_selectedDate.year())->setSelectedDate(m_selectedDate);
 	});
+
+	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, &PokeHabitsApp::dailyReportModelChanged);
+	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, &PokeHabitsApp::calendarModelChanged);
+
+	m_allCalendarModel->insert(m_currentDate.year(), createCalendarModel(m_currentDate));
+	createDailyReportModelsFromDatabase();
 
 	m_pokeApiManager->initPokemonModel();
 }
@@ -44,16 +47,12 @@ DailyReportModel* PokeHabitsApp::dailyReportModel()
 	return m_allDailyReportModel->value(m_selectedDate);
 }
 
-CalendarModel* PokeHabitsApp::getCalendarModel(int year)
+CalendarModel* PokeHabitsApp::calendarModel()
 {
-	if (year == cDefaultDate) {
-		year = m_currentDate.year();
+	if (!m_allCalendarModel->contains(m_selectedDate.year())) {
+		m_allCalendarModel->insert(m_selectedDate.year(), createCalendarModel(m_selectedDate));
 	}
-
-	if (!m_allCalendarModel->contains(year)) {
-		return nullptr;
-	}
-	return m_allCalendarModel->value(year);
+	return m_allCalendarModel->value(m_selectedDate.year());
 }
 
 PokemonModel* PokeHabitsApp::pokemonModel()
@@ -61,31 +60,31 @@ PokemonModel* PokeHabitsApp::pokemonModel()
 	return m_pokeApiManager->pokemonModel();
 }
 
-void PokeHabitsApp::createCurrentYearCalendarList()
+CalendarModel* PokeHabitsApp::createCalendarModel(QDate date)
 {
 	if (!m_allCalendarModel) {
-		return;
+		return nullptr;
 	}
 
-	if (m_allCalendarModel->contains(m_currentDate.year())) {
-		return;
+	if (m_allCalendarModel->contains(date.year())) {
+		return m_allCalendarModel->value(date.year());
 	}
 
-	QDate startDate(m_currentDate.year(), 1, 1);
-	QDate endDate(m_currentDate.year(), 12, 31);
+	QDate startDate(date.year(), 1, 1);
+	QDate endDate(date.year(), 12, 31);
 	
 	QDate currentDate = startDate;
-	
+
 	CalendarListPtr calendarList = std::make_shared<CalendarList>();
-	
+
 	while (currentDate <= endDate) {
 		calendarList->appendItem(currentDate);
 		currentDate = currentDate.addDays(1);
 	}
-	
+
 	CalendarModel* calendarModel = new CalendarModel(calendarList, m_currentDate);
 
-	m_allCalendarModel->insert(m_currentDate.year(), calendarModel);
+	return calendarModel;
 }
 
 void PokeHabitsApp::createDailyReportModelsFromDatabase()

@@ -8,24 +8,22 @@
 #include "PokeApiManager.h"
 #include "DatabaseManager.h"
 
-class DailyReportList;
-
 using QMapDateDailyReportModelPtr = std::shared_ptr<QMap<QDate, DailyReportModel*>>;
 using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
-
-const int cDefaultDate = 0;
 
 class PokeHabitsApp : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(DailyReportModel* dailyReportModel READ dailyReportModel NOTIFY selectedDateChanged FINAL)
+	Q_PROPERTY(DailyReportModel* dailyReportModel READ dailyReportModel NOTIFY dailyReportModelChanged FINAL)
+	Q_PROPERTY(CalendarModel* calendarModel READ calendarModel NOTIFY calendarModelChanged FINAL)
 
 public:
 	static PokeHabitsApp* getInstance();
+
 	DailyReportModel* dailyReportModel();
+	CalendarModel* calendarModel();
 
 public slots:
-	CalendarModel* getCalendarModel(int year = cDefaultDate);
 	PokemonModel* pokemonModel();
 
 	void setSelectedDate(int day, int month, int year);
@@ -33,11 +31,13 @@ public slots:
 
 signals:
 	void selectedDateChanged();
+	void dailyReportModelChanged();
+	void calendarModelChanged();
 
 private:
 	explicit PokeHabitsApp(QObject *parent = nullptr);
 
-	void createCurrentYearCalendarList();
+	CalendarModel* createCalendarModel(QDate date);
 	void createDailyReportModelsFromDatabase();
 	void createCurrentDateReport();
 
