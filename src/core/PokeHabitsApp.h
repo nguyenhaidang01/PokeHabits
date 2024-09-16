@@ -2,15 +2,15 @@
 
 #include <QMap>
 #include <QDate>
+
 #include "CalendarModel.h"
-#include "DailyReportList.h"
 #include "DailyReportModel.h"
 #include "PokeApiManager.h"
+#include "DatabaseManager.h"
 
 class DailyReportList;
 
 using QMapDateDailyReportModelPtr = std::shared_ptr<QMap<QDate, DailyReportModel*>>;
-using QMapDateVectorDailyReportPtr = std::shared_ptr<QMap<QDate, QVectorDailyReportPtr>>;
 using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
 
 const int cDefaultDate = 0;
@@ -23,13 +23,6 @@ class PokeHabitsApp : public QObject
 public:
 	static PokeHabitsApp* getInstance();
 	DailyReportModel* dailyReportModel();
-
-	void prepareDatabase();
-	bool createDatabase(const QString& dbName);
-	bool createTables();
-
-	QMapDateVectorDailyReportPtr readDatabase(QString username, QString password);
-	bool writeDatabase(QString username, QString password, QDate date, const QVectorDailyReportPtr& pokeHabitList);
 
 public slots:
 	CalendarModel* getCalendarModel(int year = cDefaultDate);
@@ -51,10 +44,9 @@ private:
 	QMapYearCalendarModelPtr m_allCalendarModel;
 	QMapDateDailyReportModelPtr m_allDailyReportModel;
 
+	PokeApiManager* m_pokeApiManager;
+	DatabaseManager* m_databaseManager;
+
 	QDate m_currentDate;
 	QDate m_selectedDate;
-
-	PokeApiManager* m_pokeApiManager;
-
-	QString m_databaseFolder;
 };

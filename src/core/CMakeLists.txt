@@ -4,12 +4,13 @@ set(SOURCES
     Pokemon.h
     PokemonList.h PokemonList.cpp
     PokemonModel.h PokemonModel.cpp
-    PokeApiManager.h PokeApiManager.cpp
     DailyReportList.h DailyReportList.cpp
     DailyReportModel.h DailyReportModel.cpp
-    PokeHabitsApp.h PokeHabitsApp.cpp
     CalendarList.h CalendarList.cpp
     CalendarModel.h CalendarModel.cpp
+    PokeApiManager.h PokeApiManager.cpp
+    DatabaseManager.h DatabaseManager.cpp
+    PokeHabitsApp.h PokeHabitsApp.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
