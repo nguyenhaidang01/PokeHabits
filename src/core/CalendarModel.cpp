@@ -111,7 +111,11 @@ QDate CalendarModel::selectedDate()
 
 void CalendarModel::setSelectedDate(QDate date)
 {
+	if (date == m_selectedDate) {
+		return;
+	}
 	m_selectedDate = date;
+
 	emit selectedDateChanged();
 }
 

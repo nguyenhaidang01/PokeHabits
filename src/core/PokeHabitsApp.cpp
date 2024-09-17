@@ -23,13 +23,6 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	, m_currentDate{ QDate::currentDate() }
 	, m_selectedDate { m_currentDate }
 {
-	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, [&]() {
-		if (!m_allCalendarModel->contains(m_selectedDate.year())) {
-			return;
-		}
-		m_allCalendarModel->value(m_selectedDate.year())->setSelectedDate(m_selectedDate);
-	});
-
 	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, &PokeHabitsApp::dailyReportModelChanged);
 	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, &PokeHabitsApp::calendarModelChanged);
 
@@ -145,6 +138,11 @@ void PokeHabitsApp::setSelectedDate(int day, int month, int year)
 		return;
 	}
 	m_selectedDate = newSelectedDate;
+
+	if (m_allCalendarModel->contains(year)) {
+		m_allCalendarModel->value(year)->setSelectedDate(newSelectedDate);
+	}
+
 	emit selectedDateChanged();
 }
 
