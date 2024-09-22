@@ -80,6 +80,7 @@ Popup {
 
 					anchors.fill: parent
 
+					focus: true
 					font {
 						bold: true
 						pixelSize: 18
@@ -157,7 +158,11 @@ Popup {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
+					if (habitNameField.text == UiStyle.nullString) {
+						return;
+					}
 					root.controller.addPokeHabit(habitNameField.text);
+					habitNameField.clear();
 					root.close();
 				}
 			}
