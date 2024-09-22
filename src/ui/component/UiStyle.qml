@@ -11,8 +11,9 @@ import QtQuick
 QtObject {
 	id: root
 
-	// string
+	// null value
 	readonly property string nullString: ""
+	readonly property int nullInt: 0
 
 	// color
 	readonly property color transparent: "transparent"

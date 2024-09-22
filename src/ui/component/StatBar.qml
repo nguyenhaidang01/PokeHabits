@@ -89,7 +89,7 @@ RowLayout {
 	QtObject {
 		id: internal
 
-		readonly property bool isDefaultValueMax: !root.statValueMax
+		readonly property bool isDefaultValueMax: root.statValueMax == UiStyle.nullInt
 		readonly property int valueMax: internal.isDefaultValueMax? 100 : root.statValueMax
 		readonly property string valueText: internal.isDefaultValueMax? root.statValue : (root.statValue + "/" + root.statValueMax)
 
