@@ -18,31 +18,17 @@ ColumnLayout {
 
 	spacing: 4
 
-	Rectangle {
+	HabitTitle {
 		id: habitTitle
 
 		Layout.preferredWidth: parent.width
 		Layout.preferredHeight: 32
 
-		color: UiStyle.obsidian_10
-		Label {
-			id: nameLabel
+		title: habitName
+		isDone: done
 
-			anchors {
-				verticalCenter: parent.verticalCenter
-				left: parent.left
-				leftMargin: 26
-			}
-
-			font {
-				bold: true
-				italic: true
-				pixelSize: 18
-				family: "Roboto"
-				strikeout: done
-			}
-			text: habitName
-			color: done? UiStyle.mintGreen : UiStyle.etherealWhite
+		onSwitchClicked: function() {
+			internal.expTableEnabled = !internal.expTableEnabled;
 		}
 	}
 
@@ -62,6 +48,7 @@ ColumnLayout {
 
 			onClicked: function() {
 				done = !done;
+				exp += done? 1 : -1;
 				internal.feedboxOpened = !internal.feedboxOpened;
 			}
 
@@ -93,48 +80,29 @@ ColumnLayout {
 			}
 		}
 
-		Item {
+		InfoTable {
 			id: pkmInfo
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: 145
 
-			ColumnLayout {
-				anchors.fill: parent
+			hp: pkmHp
+			attack: pkmAttack
+			defense: pkmDefense
+			sAtk: pkmSAttack
+			sDef: pkmSDefense
+			speed: pkmSpeed
+			baseExp: pkmBaseExp
+			currentExp: exp
 
-				spacing: 0
-
-				StatBar {
-					statName: "Hp"
-					statValue: pkmHpStat
-				}
-				StatBar {
-					statName: "Attack"
-					statValue: pkmAttack
-				}
-				StatBar {
-					statName: "Defense"
-					statValue: pkmDefense
-				}
-				StatBar {
-					statName: "Sp.Atk"
-					statValue: pkmSAttack
-				}
-				StatBar {
-					statName: "Sp.Def"
-					statValue: pkmSDefense
-				}
-				StatBar {
-					statName: "Speed"
-					statValue: pkmSpeed
-				}
-			}
+			expTableEnabled: internal.expTableEnabled
 		}
 	}
 
 	QtObject {
 		id: internal
 
+		property bool expTableEnabled: false
 		property bool feedboxOpened: false
 		readonly property int gridCellWidth: 476
 		readonly property int gridCellHeight: 187

@@ -154,7 +154,7 @@ QHash<int, QByteArray> DailyReportModel::roleNames() const
 	names[PokemonIdRole] = "pkmId";
 	names[PokemonNameRole] = "pkmName";
 	names[PokemonBaseExpRole] = "pkmBaseExp";
-	names[PokemonHpStatRole] = "pkmHpStat";
+	names[PokemonHpStatRole] = "pkmHp";
 	names[PokemonAttackRole] = "pkmAttack";
 	names[PokemonDefenseRole] = "pkmDefense";
 	names[PokemonSAttackRole] =	"pkmSAttack";

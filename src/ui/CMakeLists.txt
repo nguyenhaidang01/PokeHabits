@@ -34,20 +34,23 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/ChoosePokemonPopup.qml
         component/StatBar.qml
         component/GradientFrame.qml
+        component/HabitTitle.qml
+        component/InfoTable.qml
     RESOURCES
         component/qmldir
+        assets/search.svg
+        assets/scrolldown.svg
+        assets/switch.svg
         assets/jungle.png
         assets/mpikachu.png
         assets/fpikachu.png
         assets/fest.png
         assets/note.png
         assets/leafeon.png
-        assets/search.svg
         assets/lures.png
         assets/incubator.png
         assets/camera.png
         assets/maxrevive.png
-        assets/scrolldown.svg
         assets/egg.png
         assets/incense.png
         assets/twinkle.png

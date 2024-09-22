@@ -13,7 +13,8 @@ RowLayout {
 	id: root
 
 	property string statName
-	property string statValue
+	property int statValue
+	property int statValueMax
 
 	implicitWidth: 259
 	implicitHeight: 24
@@ -57,7 +58,7 @@ RowLayout {
 			horizontalAlignment: Text.AlignRight
 			verticalAlignment: Text.AlignVCenter
 
-			text: root.statValue
+			text: internal.valueText
 		}
 	}
 
@@ -88,8 +89,11 @@ RowLayout {
 	QtObject {
 		id: internal
 
-		readonly property int progressBarWidth: Math.min(backgroundBar.width * root.statValue / 100, backgroundBar.width)
+		readonly property bool isDefaultValueMax: !root.statValueMax
+		readonly property int valueMax: internal.isDefaultValueMax? 100 : root.statValueMax
+		readonly property string valueText: internal.isDefaultValueMax? root.statValue : (root.statValue + "/" + root.statValueMax)
 
+		readonly property int progressBarWidth: Math.min(backgroundBar.width * root.statValue / internal.valueMax, backgroundBar.width)
 		readonly property color backgroundBarColor: UiStyle.obsidian_40
 		readonly property color progressBarColor: UiStyle.mintGreen
 	}
