@@ -123,9 +123,8 @@ Popup {
 				pokemonImg: root.model.currentItemImg
 				pokemonName: root.model.currentItemName
 
-				MouseArea {
-					anchors.fill: parent
-					onClicked: openChoosePokemonPopup()
+				onClicked: function() {
+					openChoosePokemonPopup();
 				}
 			}
 		}

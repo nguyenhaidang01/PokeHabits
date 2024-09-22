@@ -9,16 +9,17 @@ import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
-Item {
+MouseArea {
 	id: root
+
+	property url pokemonImg
+	property string pokemonName
+	property alias twinkle: twinkle.visible
 
 	implicitWidth: 120
 	implicitHeight: 142
 
-	property url pokemonImg
-	property string pokemonName
-
-	Rectangle {
+	GradientFrame {
 		id: pkmFrame
 
 		implicitWidth: 120
@@ -26,26 +27,6 @@ Item {
 		anchors {
 			bottom: parent.bottom
 			bottomMargin: 30
-		}
-
-		radius: internal.radius
-		color: UiStyle.transparent
-		border.color: UiStyle.obsidian_10
-
-		RadialGradient {
-			anchors.fill: parent
-
-			gradient: Gradient {
-				GradientStop { position: 0.34; color: UiStyle.ghostWhite_0 }
-				GradientStop { position: 1; color: UiStyle.etherealWhite_12 }
-			}
-
-			source: Rectangle {
-				implicitWidth: 120
-				implicitHeight: 90
-				radius: internal.radius
-				border.color: UiStyle.obsidian_10
-			}
 		}
 	}
 
@@ -56,6 +37,24 @@ Item {
 
 		scale: internal.imageScale
 		source: root.pokemonImg
+	}
+
+	Image {
+		id: twinkle
+
+		visible: false
+
+		width: 15
+		height: 15
+
+		anchors {
+			top: parent.top
+			right: parent.right
+			rightMargin: 8
+			topMargin: 30
+		}
+
+		source: internal.twinkleImg
 	}
 
 	Text {
@@ -80,5 +79,6 @@ Item {
 
 		readonly property int radius: 6
 		readonly property real imageScale: 0.35
+		readonly property url twinkleImg: "qrc:/ui/assets/twinkle.png"
 	}
 }

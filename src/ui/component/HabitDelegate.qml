@@ -21,8 +21,8 @@ ColumnLayout {
 	Rectangle {
 		id: habitTitle
 
-		implicitWidth: 414
-		implicitHeight: 32
+		Layout.preferredWidth: parent.width
+		Layout.preferredHeight: 32
 
 		color: UiStyle.obsidian_10
 		Label {
@@ -39,35 +39,65 @@ ColumnLayout {
 				italic: true
 				pixelSize: 18
 				family: "Roboto"
+				strikeout: done
 			}
 			text: habitName
-			color: UiStyle.etherealWhite
+			color: done? UiStyle.mintGreen : UiStyle.etherealWhite
 		}
 	}
 
 	RowLayout {
 		id: habitItem
 
-		implicitWidth: 390
-		implicitHeight: 145
+		Layout.fillWidth: true
+		Layout.preferredHeight: 145
 
-		Layout.alignment: Qt.AlignRight
+		GradientFrame {
+			id: feedbox
+
+			visible: internal.feedboxOpened
+
+			Layout.preferredWidth: 40
+			Layout.preferredHeight: 40
+
+			onClicked: function() {
+				done = !done;
+				internal.feedboxOpened = !internal.feedboxOpened;
+			}
+
+			Image {
+				anchors.fill: parent
+				source: done? internal.incompleteFruit : internal.doneFruit
+			}
+		}
+
+		Item {
+			visible: !internal.feedboxOpened
+
+			Layout.preferredWidth: 25
+			Layout.fillHeight: true
+		}
 
 		PokemonFrame {
 			id: habitRepresent
 
-			implicitWidth: 120
-			implicitHeight: 142
+			Layout.preferredWidth: 120
+			Layout.preferredHeight: 142
 
 			pokemonImg: pkmImageSvg
 			pokemonName: pkmName
+			twinkle: done
+
+			onClicked: function() {
+				internal.feedboxOpened = !internal.feedboxOpened;
+			}
 		}
 
 		Item {
 			id: pkmInfo
 
-			implicitWidth: 259
-			implicitHeight: 145
+			Layout.fillWidth: true
+			Layout.preferredHeight: 145
 
 			ColumnLayout {
 				anchors.fill: parent
@@ -105,9 +135,12 @@ ColumnLayout {
 	QtObject {
 		id: internal
 
+		property bool feedboxOpened: false
 		readonly property int gridCellWidth: 476
 		readonly property int gridCellHeight: 187
 		readonly property int radius: 6
 		readonly property url examplePokemon: "qrc:/ui/assets/leafeon.png"
+		readonly property url doneFruit: "qrc:/ui/assets/goldenrazzberry.png"
+		readonly property url incompleteFruit: "qrc:/ui/assets/silverpinapberry.png"
 	}
 }

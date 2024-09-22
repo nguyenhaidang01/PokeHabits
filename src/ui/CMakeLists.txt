@@ -33,6 +33,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/PokemonFrame.qml
         component/ChoosePokemonPopup.qml
         component/StatBar.qml
+        component/GradientFrame.qml
     RESOURCES
         component/qmldir
         assets/jungle.png
@@ -51,6 +52,11 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets/incense.png
         assets/twinkle.png
         assets/binoculars.png
+        assets/razzberry.png
+        assets/goldenrazzberry.png
+        assets/pinapberry.png
+        assets/silverpinapberry.png
+        assets/nanabberry.png
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

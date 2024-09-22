@@ -122,12 +122,9 @@ Popup {
 				pokemonImg: imageSvg
 				pokemonName: name
 
-				MouseArea {
-					anchors.fill: parent
-					onClicked: function() {
-						root.model.currentIndex = index
-						root.close()
-					}
+				onClicked: function() {
+					root.model.currentIndex = index;
+					root.close();
 				}
 			}
 		}
