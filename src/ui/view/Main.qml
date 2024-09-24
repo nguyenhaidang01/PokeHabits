@@ -11,6 +11,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import "component"
 
+// Trash commit
 ApplicationWindow  {
 	id: root
 
