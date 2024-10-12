@@ -73,6 +73,6 @@ Rectangle {
 	QtObject {
 		id: internal
 
-		readonly property url switchImg: "qrc:/ui/assets/switch.svg"
+		readonly property url switchImg: "qrc:/ui/assets_v1/switch.svg"
 	}
 }

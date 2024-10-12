@@ -1,4 +1,4 @@
-module ui.component
+module ui.component_v1
 UiStyle 1.0 UiStyle.qml
 CalendarHeader 1.0 CalendarHeader.qml
 NoteBoard 1.0 NoteBoard.qml

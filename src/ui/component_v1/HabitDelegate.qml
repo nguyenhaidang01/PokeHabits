@@ -107,8 +107,8 @@ ColumnLayout {
 		readonly property int gridCellWidth: 476
 		readonly property int gridCellHeight: 187
 		readonly property int radius: 6
-		readonly property url examplePokemon: "qrc:/ui/assets/leafeon.png"
-		readonly property url doneFruit: "qrc:/ui/assets/goldenrazzberry.png"
-		readonly property url incompleteFruit: "qrc:/ui/assets/silverpinapberry.png"
+		readonly property url examplePokemon: "qrc:/ui/assets_v1/leafeon.png"
+		readonly property url doneFruit: "qrc:/ui/assets_v1/goldenrazzberry.png"
+		readonly property url incompleteFruit: "qrc:/ui/assets_v1/silverpinapberry.png"
 	}
 }

@@ -32,7 +32,7 @@ Popup {
 			horizontalCenter: parent.right
 			horizontalCenterOffset: 5
 		}
-		source: "qrc:/ui/assets/maxrevive.png"
+		source: "qrc:/ui/assets_v1/maxrevive.png"
 
 		MouseArea {
 			anchors.fill: parent
@@ -82,7 +82,7 @@ Popup {
 				right: parent.right
 				rightMargin: 8
 			}
-			source: "qrc:/ui/assets/search.svg"
+			source: "qrc:/ui/assets_v1/search.svg"
 		}
 	}
 
@@ -139,6 +139,6 @@ Popup {
 	QtObject {
 		id: internal
 
-		readonly property url examplePokemon: "qrc:/ui/assets/leafeon.png"
+		readonly property url examplePokemon: "qrc:/ui/assets_v1/leafeon.png"
 	}
 }

@@ -79,6 +79,6 @@ MouseArea {
 
 		readonly property int radius: 6
 		readonly property real imageScale: 0.35
-		readonly property url twinkleImg: "qrc:/ui/assets/twinkle.png"
+		readonly property url twinkleImg: "qrc:/ui/assets_v1/twinkle.png"
 	}
 }

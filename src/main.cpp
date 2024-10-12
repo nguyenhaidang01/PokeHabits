@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty(QStringLiteral("pokeHabitsApp"), pokeHabitsApp);
 
-	qmlRegisterSingletonType(QUrl("qrc:/ui/component/UiStyle.qml"), "UiStyle", 1, 0, "UiStyle");
+	qmlRegisterSingletonType(QUrl("qrc:/ui/component_v1/UiStyle.qml"), "UiStyle", 1, 0, "UiStyle");
 	const QUrl url(u"qrc:/ui/Main.qml"_qs);
 	QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
 	                 &app, []() { QCoreApplication::exit(-1); },

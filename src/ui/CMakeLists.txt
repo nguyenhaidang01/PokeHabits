@@ -21,45 +21,46 @@ qt6_add_qml_module(${PROJECT_NAME}
     NO_GENERATE_QMLTYPES
     QML_FILES
         view/Main.qml
-        component/UiStyle.qml
-        component/CalendarHeader.qml
-        component/NoteBoard.qml
-        component/HabitBoard.qml
-        component/HabitDelegate.qml
-        component/ToolItem.qml
-        component/ToolPanel.qml
-        component/DayDelegate.qml
-        component/AddHabitPopup.qml
-        component/PokemonFrame.qml
-        component/ChoosePokemonPopup.qml
-        component/StatBar.qml
-        component/GradientFrame.qml
-        component/HabitTitle.qml
-        component/InfoTable.qml
+        view/ViewV1.qml
+        component_v1/UiStyle.qml
+        component_v1/CalendarHeader.qml
+        component_v1/NoteBoard.qml
+        component_v1/HabitBoard.qml
+        component_v1/HabitDelegate.qml
+        component_v1/ToolItem.qml
+        component_v1/ToolPanel.qml
+        component_v1/DayDelegate.qml
+        component_v1/AddHabitPopup.qml
+        component_v1/PokemonFrame.qml
+        component_v1/ChoosePokemonPopup.qml
+        component_v1/StatBar.qml
+        component_v1/GradientFrame.qml
+        component_v1/HabitTitle.qml
+        component_v1/InfoTable.qml
     RESOURCES
-        component/qmldir
-        assets/search.svg
-        assets/scrolldown.svg
-        assets/switch.svg
-        assets/jungle.png
-        assets/mpikachu.png
-        assets/fpikachu.png
-        assets/fest.png
-        assets/note.png
-        assets/leafeon.png
-        assets/lures.png
-        assets/incubator.png
-        assets/camera.png
-        assets/maxrevive.png
-        assets/egg.png
-        assets/incense.png
-        assets/twinkle.png
-        assets/binoculars.png
-        assets/razzberry.png
-        assets/goldenrazzberry.png
-        assets/pinapberry.png
-        assets/silverpinapberry.png
-        assets/nanabberry.png
+        component_v1/qmldir
+        assets_v1/search.svg
+        assets_v1/scrolldown.svg
+        assets_v1/switch.svg
+        assets_v1/jungle.png
+        assets_v1/mpikachu.png
+        assets_v1/fpikachu.png
+        assets_v1/fest.png
+        assets_v1/note.png
+        assets_v1/leafeon.png
+        assets_v1/lures.png
+        assets_v1/incubator.png
+        assets_v1/camera.png
+        assets_v1/maxrevive.png
+        assets_v1/egg.png
+        assets_v1/incense.png
+        assets_v1/twinkle.png
+        assets_v1/binoculars.png
+        assets_v1/razzberry.png
+        assets_v1/goldenrazzberry.png
+        assets_v1/pinapberry.png
+        assets_v1/silverpinapberry.png
+        assets_v1/nanabberry.png
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
