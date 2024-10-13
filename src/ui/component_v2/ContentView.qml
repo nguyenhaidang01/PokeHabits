@@ -6,7 +6,6 @@
 ******************************************************************************/
 
 import QtQuick
-import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import "../component_v2"
@@ -20,7 +19,16 @@ Rectangle {
 		id: contentLayout
 
 		anchors.fill: parent
+		anchors.margins: internal.contentMargin
+
 		spacing: 0
+
+		ContentHeader {
+			id: contentHeader
+
+			Layout.fillWidth: true
+			Layout.preferredHeight: 60
+		}
 
 		RowLayout {
 			id: listContentFrame
@@ -32,7 +40,6 @@ Rectangle {
 				Layout.fillWidth: true
 				Layout.fillHeight: true
 
-				Layout.margins: internal.contentMargin
 				color: "blue"
 			}
 		}
