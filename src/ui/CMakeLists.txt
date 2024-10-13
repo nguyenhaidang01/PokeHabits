@@ -33,6 +33,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/ElementFrame.qml
         component_v2/HabitInfo.qml
         component_v2/HabitDelegate.qml
+        component_v2/ProfileToolFrame.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml
@@ -56,6 +57,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets_v2/rightdirection.svg
         assets_v2/option.svg
         assets_v2/favorite.svg
+        assets_v2/search.svg
         assets_v2/pokeball.svg
         assets_v2/bulbasaur.svg
         assets_v2/normal.svg

@@ -21,12 +21,11 @@ Rectangle {
 		anchors.fill: parent
 		spacing: 0
 
-		Rectangle {
+		ProfileToolFrame {
 			id: profileToolFrame
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: internal.profileToolFrameHeight
-			color: "red"
 		}
 
 		Rectangle {

@@ -9,3 +9,4 @@ ElementIcon 1.0 ElementIcon.qml
 ElementFrame 1.0 ElementFrame.qml
 HabitInfo 1.0 HabitInfo.qml
 HabitDelegate 1.0 HabitDelegate.qml
+ProfileToolFrame 1.0 ProfileToolFrame.qml
