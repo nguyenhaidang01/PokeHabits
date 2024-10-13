@@ -4,3 +4,8 @@ SidebarView 1.0 SidebarView.qml
 ContentView 1.0 ContentView.qml
 DateFrame 1.0 DateFrame.qml
 ContentFooter 1.0 ContentFooter.qml
+PokemonFrame 1.0 PokemonFrame.qml
+ElementIcon 1.0 ElementIcon.qml
+ElementFrame 1.0 ElementFrame.qml
+HabitInfo 1.0 HabitInfo.qml
+HabitDelegate 1.0 HabitDelegate.qml

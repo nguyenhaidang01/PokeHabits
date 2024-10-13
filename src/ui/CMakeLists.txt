@@ -28,6 +28,11 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/DateFrame.qml
         component_v2/ContentHeader.qml
         component_v2/ContentFooter.qml
+        component_v2/PokemonFrame.qml
+        component_v2/ElementIcon.qml
+        component_v2/ElementFrame.qml
+        component_v2/HabitInfo.qml
+        component_v2/HabitDelegate.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml
@@ -50,7 +55,45 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets_v2/leftdirection.svg
         assets_v2/rightdirection.svg
         assets_v2/option.svg
+        assets_v2/favorite.svg
         assets_v2/pokeball.svg
+        assets_v2/bulbasaur.svg
+        assets_v2/normal.svg
+        assets_v2/fire.svg
+        assets_v2/water.svg
+        assets_v2/electric.svg
+        assets_v2/grass.svg
+        assets_v2/ice.svg
+        assets_v2/fighting.svg
+        assets_v2/poison.svg
+        assets_v2/ground.svg
+        assets_v2/flying.svg
+        assets_v2/psychic.svg
+        assets_v2/bug.svg
+        assets_v2/rock.svg
+        assets_v2/ghost.svg
+        assets_v2/dragon.svg
+        assets_v2/dark.svg
+        assets_v2/steel.svg
+        assets_v2/fairy.svg
+        assets_v2/normalColor.svg
+        assets_v2/fireColor.svg
+        assets_v2/waterColor.svg
+        assets_v2/electricColor.svg
+        assets_v2/grassColor.svg
+        assets_v2/iceColor.svg
+        assets_v2/fightingColor.svg
+        assets_v2/poisonColor.svg
+        assets_v2/groundColor.svg
+        assets_v2/flyingColor.svg
+        assets_v2/psychicColor.svg
+        assets_v2/bugColor.svg
+        assets_v2/rockColor.svg
+        assets_v2/ghostColor.svg
+        assets_v2/dragonColor.svg
+        assets_v2/darkColor.svg
+        assets_v2/steelColor.svg
+        assets_v2/fairyColor.svg
 
         component_v1/qmldir
         assets_v1/search.svg

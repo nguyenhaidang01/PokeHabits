@@ -30,17 +30,23 @@ Rectangle {
 			Layout.preferredHeight: 60
 		}
 
-		RowLayout {
-			id: listContentFrame
+		Item {
+			Layout.fillWidth: true
+			Layout.preferredHeight: 20
+		}
 
+		ListView {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
-			Rectangle {
-				Layout.fillWidth: true
-				Layout.fillHeight: true
+			clip: true
 
-				color: "blue"
+			spacing:24
+			model: 10
+
+			delegate: HabitDelegate {
+				implicitWidth: internal.habitDelegateWidth
+				implicitHeight: 145
 			}
 		}
 
@@ -56,6 +62,7 @@ Rectangle {
 		id: internal
 
 		readonly property int contentMargin: 60
+		readonly property int habitDelegateWidth: root.width - 2 * contentMargin
 		readonly property color backgroundColor: UiConstant.pureWhite
 	}
 }
