@@ -27,6 +27,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/ContentView.qml
         component_v2/DateFrame.qml
         component_v2/ContentHeader.qml
+        component_v2/ContentFooter.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml
@@ -49,6 +50,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets_v2/leftdirection.svg
         assets_v2/rightdirection.svg
         assets_v2/option.svg
+        assets_v2/pokeball.svg
 
         component_v1/qmldir
         assets_v1/search.svg

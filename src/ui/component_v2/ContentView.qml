@@ -43,6 +43,13 @@ Rectangle {
 				color: "blue"
 			}
 		}
+
+		ContentFooter {
+			id: contentFooter
+
+			Layout.fillWidth: true
+			Layout.preferredHeight: 112
+		}
 	}
 
 	QtObject {

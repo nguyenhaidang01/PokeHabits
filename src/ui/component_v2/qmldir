@@ -3,3 +3,4 @@ UiConstant 1.0 UiConstant.qml
 SidebarView 1.0 SidebarView.qml
 ContentView 1.0 ContentView.qml
 DateFrame 1.0 DateFrame.qml
+ContentFooter 1.0 ContentFooter.qml
