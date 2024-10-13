@@ -1,0 +1,4 @@
+module ui.component_v2
+UiConstant 1.0 UiConstant.qml
+SidebarView 1.0 SidebarView.qml
+ContentView 1.0 ContentView.qml

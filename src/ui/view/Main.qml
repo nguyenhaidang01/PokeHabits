@@ -7,6 +7,11 @@
 
 import QtQuick
 
-ViewV1 {
-	id: viewV1
+ViewV2 {
+	id: viewV2
+
 }
+
+//ViewV1 {
+//	id: viewV1
+//}

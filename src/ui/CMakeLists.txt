@@ -22,6 +22,7 @@ qt6_add_qml_module(${PROJECT_NAME}
     QML_FILES
         view/Main.qml
         view/ViewV1.qml
+        view/ViewV2.qml
         component_v1/UiStyle.qml
         component_v1/CalendarHeader.qml
         component_v1/NoteBoard.qml
@@ -37,8 +38,13 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v1/GradientFrame.qml
         component_v1/HabitTitle.qml
         component_v1/InfoTable.qml
+
+        component_v2/UiConstant.qml
+        component_v2/SidebarView.qml
+        component_v2/ContentView.qml
     RESOURCES
         component_v1/qmldir
+        component_v2/qmldir
         assets_v1/search.svg
         assets_v1/scrolldown.svg
         assets_v1/switch.svg
