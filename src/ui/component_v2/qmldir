@@ -10,3 +10,5 @@ ElementFrame 1.0 ElementFrame.qml
 HabitInfo 1.0 HabitInfo.qml
 HabitDelegate 1.0 HabitDelegate.qml
 ProfileToolFrame 1.0 ProfileToolFrame.qml
+TitleFrame 1.0 TitleFrame.qml
+TitleList 1.0 TitleList.qml

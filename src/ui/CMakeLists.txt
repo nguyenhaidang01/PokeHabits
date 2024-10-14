@@ -34,6 +34,8 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/HabitInfo.qml
         component_v2/HabitDelegate.qml
         component_v2/ProfileToolFrame.qml
+        component_v2/TitleFrame.qml
+        component_v2/TitleList.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml

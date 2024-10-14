@@ -28,13 +28,12 @@ Rectangle {
 			Layout.preferredHeight: internal.profileToolFrameHeight
 		}
 
-		Rectangle {
-			id: listTitleFrame
+		TitleList {
+			id: titleList
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: internal.listTitleHeight
 			Layout.maximumHeight: internal.listTitleHeight
-			color: "green"
 		}
 
 		Rectangle {
