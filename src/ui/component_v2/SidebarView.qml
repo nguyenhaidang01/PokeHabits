@@ -36,12 +36,11 @@ Rectangle {
 			Layout.maximumHeight: internal.listTitleHeight
 		}
 
-		Rectangle {
+		CreateListFrame {
 			id: createListFrame
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
-			color: "pink"
 		}
 	}
 
