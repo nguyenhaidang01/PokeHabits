@@ -12,3 +12,13 @@ HabitDelegate 1.0 HabitDelegate.qml
 ProfileToolFrame 1.0 ProfileToolFrame.qml
 TitleFrame 1.0 TitleFrame.qml
 TitleList 1.0 TitleList.qml
+HabitEditorView 1.0 HabitEditorView.qml
+HeaderElement 1.0 HeaderElement.qml
+TextWithPokeball 1.0 TextWithPokeball.qml
+HabitEditorContent 1.0 HabitEditorContent.qml
+PokeballDateDelegate 1.0 PokeballDateDelegate.qml
+FrequencyDataField 1.0 FrequencyDataField.qml
+SaveDischargeSelector 1.0 SaveDischargeSelector.qml
+HabitNameDataField 1.0 HabitNameDataField.qml
+TargetPokeDataField 1.0 TargetPokeDataField.qml
+TimeDataField 1.0 TimeDataField.qml

@@ -37,6 +37,16 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/TitleFrame.qml
         component_v2/TitleList.qml
         component_v2/CreateListFrame.qml
+        component_v2/HabitEditorView.qml
+        component_v2/HeaderElement.qml
+        component_v2/TextWithPokeball.qml
+        component_v2/HabitEditorContent.qml
+        component_v2/PokeballDateDelegate.qml
+        component_v2/FrequencyDataField.qml
+        component_v2/SaveDischargeSelector.qml
+        component_v2/HabitNameDataField.qml
+        component_v2/TargetPokeDataField.qml
+        component_v2/TimeDataField.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml
@@ -63,7 +73,16 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets_v2/search.svg
         assets_v2/add.svg
         assets_v2/squareAdd.svg
+        assets_v2/leftarrow.svg
+        assets_v2/blackleftarrow.svg
+        assets_v2/blackrightarrow.svg
+        assets_v2/lightfavorite.svg
+        assets_v2/pen.svg
+        assets_v2/nochange.svg
+        assets_v2/save.svg
+        assets_v2/discharge.svg
         assets_v2/pokeball.svg
+        assets_v2/nocolorpokeball.svg
         assets_v2/bulbasaur.svg
         assets_v2/normal.svg
         assets_v2/fire.svg

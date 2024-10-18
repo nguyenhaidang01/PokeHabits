@@ -33,8 +33,15 @@ ApplicationWindow  {
 			Layout.fillHeight: true
 		}
 
-		ContentView {
-			id: contentView
+//		ContentView {
+//			id: contentView
+
+//			Layout.fillWidth: true
+//			Layout.fillHeight: true
+//		}
+
+		HabitEditorView {
+			id: addHabitView
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
