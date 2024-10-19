@@ -31,14 +31,30 @@ Rectangle {
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+
+			pokedexPopup: pokedexPopup
 		}
 	}
+
+	PokedexPopup {
+		id: pokedexPopup
+
+		width: internal.pokedexPopupWidth
+		height: internal.pokedexPopupHeight
+
+		anchors.centerIn: parent
+	}
+
+
 
 	QtObject {
 		id: internal
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222
+
+		readonly property int pokedexPopupWidth: 840
+		readonly property int pokedexPopupHeight: 922
 
 		readonly property color backgroundColor: UiConstant.pureWhite
 	}

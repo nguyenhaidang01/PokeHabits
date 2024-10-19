@@ -22,3 +22,4 @@ SaveDischargeSelector 1.0 SaveDischargeSelector.qml
 HabitNameDataField 1.0 HabitNameDataField.qml
 TargetPokeDataField 1.0 TargetPokeDataField.qml
 TimeDataField 1.0 TimeDataField.qml
+PokedexDelegate 1.0 PokedexDelegate.qml

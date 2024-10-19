@@ -13,6 +13,8 @@ import "../component_v2"
 Item {
 	id: root
 
+	property Popup pokedexPopup: null
+
 	Item {
 		implicitWidth: internal.contentWidth
 		implicitHeight: internal.contentHeight
@@ -29,6 +31,8 @@ Item {
 				Layout.maximumWidth: 517
 				Layout.preferredWidth: 517
 				Layout.preferredHeight: 200
+
+				pokedexPopup: root.pokedexPopup
 			}
 
 			HabitNameDataField {

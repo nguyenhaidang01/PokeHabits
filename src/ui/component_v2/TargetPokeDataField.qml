@@ -14,6 +14,7 @@ RowLayout {
 	id: root
 
 	property string pokemonUrl: internal.defaultPokemonUrl
+	property Popup pokedexPopup: null
 
 	Layout.alignment: Qt.AlignLeft
 	spacing: 0
@@ -53,6 +54,14 @@ RowLayout {
 			}
 
 			source: internal.editUrl
+
+			MouseArea {
+				anchors.fill: parent
+				propagateComposedEvents: true
+				onClicked: function() {
+					pokedexPopup.open();
+				}
+			}
 		}
 	}
 
