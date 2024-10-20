@@ -24,6 +24,10 @@ Rectangle {
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: internal.headerHeight
+
+			onExitView: function() {
+				internal.mainLoader.state = UiConstant.displayHabitsState;
+			}
 		}
 
 		HabitEditorContent {
@@ -45,10 +49,10 @@ Rectangle {
 		anchors.centerIn: parent
 	}
 
-
-
 	QtObject {
 		id: internal
+
+		readonly property QtObject mainLoader: root.parent
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222

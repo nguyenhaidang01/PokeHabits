@@ -55,11 +55,20 @@ Rectangle {
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: 112
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: function() {
+					internal.mainLoader.state = UiConstant.addHabitState;
+				}
+			}
 		}
 	}
 
 	QtObject {
 		id: internal
+
+		readonly property QtObject mainLoader: root.parent
 
 		readonly property int contentMargin: 60
 		readonly property int habitDelegateWidth: root.width - 2 * contentMargin

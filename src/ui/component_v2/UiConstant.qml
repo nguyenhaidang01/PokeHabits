@@ -58,4 +58,8 @@ QtObject {
 
 	// rgba color
 	readonly property color pureBlack_7: Qt.rgba(pureBlack.r, pureBlack.g, pureBlack.b, 0.07)
+
+	// string
+	readonly property string displayHabitsState: "displayHabits"
+	readonly property string addHabitState: "addHabit"
 }

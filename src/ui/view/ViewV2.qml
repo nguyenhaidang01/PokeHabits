@@ -33,18 +33,35 @@ ApplicationWindow  {
 			Layout.fillHeight: true
 		}
 
-//		ContentView {
-//			id: contentView
-
-//			Layout.fillWidth: true
-//			Layout.fillHeight: true
-//		}
-
-		HabitEditorView {
-			id: addHabitView
+		Loader {
+			id: viewLoader
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+
+			states: [
+				State {
+					name: UiConstant.displayHabitsState
+					PropertyChanges { target: viewLoader; sourceComponent: contentView }
+				},
+				State {
+					name: UiConstant.addHabitState
+					PropertyChanges { target: viewLoader; sourceComponent: addHabitView }
+				}
+			]
+			state: UiConstant.displayHabitsState
+		}
+
+		Component {
+			id: contentView
+
+			ContentView {}
+		}
+
+		Component {
+			id: addHabitView
+
+			HabitEditorView {}
 		}
 	}
 

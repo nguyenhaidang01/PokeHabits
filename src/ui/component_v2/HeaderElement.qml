@@ -14,6 +14,8 @@ import "../component_v2"
 Item {
 	id: root
 
+	signal exitView()
+
 	clip: true
 
 	Item {
@@ -71,6 +73,13 @@ Item {
 			}
 
 			source: internal.backUrl
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: function() {
+					exitView();
+				}
+			}
 		}
 
 		Image {
