@@ -47,6 +47,13 @@ Rectangle {
 			delegate: HabitDelegate {
 				implicitWidth: internal.habitDelegateWidth
 				implicitHeight: 145
+
+				MouseArea {
+					anchors.fill: parent
+					onClicked: function() {
+						internal.mainLoader.state = UiConstant.habitDetailState;
+					}
+				}
 			}
 		}
 

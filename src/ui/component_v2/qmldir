@@ -23,3 +23,5 @@ HabitNameDataField 1.0 HabitNameDataField.qml
 TargetPokeDataField 1.0 TargetPokeDataField.qml
 TimeDataField 1.0 TimeDataField.qml
 PokedexDelegate 1.0 PokedexDelegate.qml
+HabitDetailView 1.0 HabitDetailView.qml
+HabitNameWithPoke 1.0 HabitNameWithPoke.qml

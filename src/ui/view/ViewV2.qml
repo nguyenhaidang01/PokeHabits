@@ -47,6 +47,10 @@ ApplicationWindow  {
 				State {
 					name: UiConstant.addHabitState
 					PropertyChanges { target: viewLoader; sourceComponent: addHabitView }
+				},
+				State {
+					name: UiConstant.habitDetailState
+					PropertyChanges { target: viewLoader; sourceComponent: habitDetailView }
 				}
 			]
 			state: UiConstant.displayHabitsState
@@ -62,6 +66,12 @@ ApplicationWindow  {
 			id: addHabitView
 
 			HabitEditorView {}
+		}
+
+		Component {
+			id: habitDetailView
+
+			HabitDetailView {}
 		}
 	}
 
