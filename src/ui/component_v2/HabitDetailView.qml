@@ -34,6 +34,49 @@ Rectangle {
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+
+			Item {
+				implicitWidth: 844
+				implicitHeight: 678
+
+				anchors.centerIn: parent
+
+				ColumnLayout {
+					anchors.fill: parent
+
+					PokemonInfo {
+						id: pokemonInfo
+
+						Layout.preferredWidth: 256
+						Layout.preferredHeight: 126
+
+						Layout.alignment: Qt.AlignTop
+					}
+
+					HabitStatsBoard {
+						id: habitStatsBoard
+
+						Layout.fillWidth: true
+						Layout.preferredHeight: 194
+
+						strentch: 100
+						currentExp: 100
+						currentLvl: 15
+						unit: 1
+						startDate: "10/10/2024"
+						frequency: "everyday"
+					}
+
+					Item {
+						id: evolChainBoard
+
+						Layout.fillWidth: true
+						Layout.preferredHeight: 260
+
+						Layout.alignment: Qt.AlignBottom
+					}
+				}
+			}
 		}
 	}
 

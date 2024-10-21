@@ -51,6 +51,9 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/PokedexPopup.qml
         component_v2/HabitDetailView.qml
         component_v2/HabitNameWithPoke.qml
+        component_v2/PokemonInfo.qml
+        component_v2/HabitStat.qml
+        component_v2/HabitStatsBoard.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml
