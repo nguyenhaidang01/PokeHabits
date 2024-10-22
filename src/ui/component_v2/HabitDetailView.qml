@@ -67,7 +67,7 @@ Rectangle {
 						frequency: "everyday"
 					}
 
-					Item {
+					EvolChainBoard {
 						id: evolChainBoard
 
 						Layout.fillWidth: true

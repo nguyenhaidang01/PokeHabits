@@ -54,6 +54,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/PokemonInfo.qml
         component_v2/HabitStat.qml
         component_v2/HabitStatsBoard.qml
+        component_v2/EvolChainBoard.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml
@@ -84,6 +85,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets_v2/leftarrow.svg
         assets_v2/blackleftarrow.svg
         assets_v2/blackrightarrow.svg
+        assets_v2/bluerightarrow.svg
         assets_v2/lightfavorite.svg
         assets_v2/pen.svg
         assets_v2/nochange.svg
