@@ -61,6 +61,6 @@ QtObject {
 
 	// string
 	readonly property string displayHabitsState: "displayHabits"
-	readonly property string addHabitState: "addHabit"
+	readonly property string editorHabitState: "editorHabit"
 	readonly property string habitDetailState: "habitDetail"
 }

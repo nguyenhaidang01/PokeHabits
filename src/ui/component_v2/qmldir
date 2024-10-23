@@ -29,3 +29,4 @@ PokemonInfo 1.0 PokemonInfo.qml
 HabitStat 1.0 HabitStat.qml
 HabitStatsBoard 1.0 HabitStatsBoard.qml
 EvolChainBoard 1.0 EvolChainBoard.qml
+MainViewLoader 1.0 MainViewLoader.qml

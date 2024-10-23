@@ -26,7 +26,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				internal.mainLoader.state = UiConstant.displayHabitsState;
+				internal.mainLoader.changeToPreviousView();
 			}
 		}
 

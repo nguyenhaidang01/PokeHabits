@@ -25,7 +25,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				internal.mainLoader.state = UiConstant.displayHabitsState;
+				internal.mainLoader.changeToContentView();
 			}
 		}
 
@@ -92,6 +92,10 @@ Rectangle {
 
 		habitName: internal.defaultHabitName
 		pokemonUrl: internal.defaultPokemonUrl
+
+		onOpenEditorView: function() {
+			internal.mainLoader.changeToHabitEditorView();
+		}
 	}
 
 	QtObject {

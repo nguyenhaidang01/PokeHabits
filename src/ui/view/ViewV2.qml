@@ -33,27 +33,15 @@ ApplicationWindow  {
 			Layout.fillHeight: true
 		}
 
-		Loader {
-			id: viewLoader
+		MainViewLoader {
+			id: mainViewLoader
 
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
-			states: [
-				State {
-					name: UiConstant.displayHabitsState
-					PropertyChanges { target: viewLoader; sourceComponent: contentView }
-				},
-				State {
-					name: UiConstant.addHabitState
-					PropertyChanges { target: viewLoader; sourceComponent: addHabitView }
-				},
-				State {
-					name: UiConstant.habitDetailState
-					PropertyChanges { target: viewLoader; sourceComponent: habitDetailView }
-				}
-			]
-			state: UiConstant.displayHabitsState
+			contentViewSource: contentView
+			habitEditorViewSource: habitEditorView
+			habitDetailViewSource: habitDetailView
 		}
 
 		Component {
@@ -63,7 +51,7 @@ ApplicationWindow  {
 		}
 
 		Component {
-			id: addHabitView
+			id: habitEditorView
 
 			HabitEditorView {}
 		}

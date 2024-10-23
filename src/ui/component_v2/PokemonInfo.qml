@@ -72,7 +72,6 @@ Item {
 		readonly property int elementFrameWidth: 114
 		readonly property int elementFrameHeight: 36
 
-
 		property string defaultPokemonName: "Bulbasour"
 		property string defaultPokemonId: "001"
 	}

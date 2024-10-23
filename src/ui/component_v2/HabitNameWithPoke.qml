@@ -16,6 +16,8 @@ Item {
 	property string habitName
 	property string pokemonUrl
 
+	signal openEditorView()
+
 	implicitHeight: internal.defaultHeight
 
 	ColumnLayout {
@@ -74,6 +76,13 @@ Item {
 					height: internal.editSize
 
 					source: internal.editUrl
+
+					MouseArea {
+						anchors.fill: parent
+						onClicked: function() {
+							root.openEditorView();
+						}
+					}
 				}
 
 				Item {

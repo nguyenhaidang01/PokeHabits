@@ -51,7 +51,7 @@ Rectangle {
 				MouseArea {
 					anchors.fill: parent
 					onClicked: function() {
-						internal.mainLoader.state = UiConstant.habitDetailState;
+						internal.mainLoader.changeToHabitDetailView();
 					}
 				}
 			}
@@ -66,7 +66,7 @@ Rectangle {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
-					internal.mainLoader.state = UiConstant.addHabitState;
+					internal.mainLoader.changeToHabitEditorView();
 				}
 			}
 		}
