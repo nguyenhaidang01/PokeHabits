@@ -13,6 +13,8 @@ import "../component_v2"
 Item {
 	id: root
 
+	signal openCalendarPopup()
+
 	RowLayout {
 		anchors.fill: parent
 
@@ -39,6 +41,13 @@ Item {
 			Layout.preferredWidth: 460
 			Layout.fillHeight: true
 			Layout.alignment: Qt.AlignHCenter
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: function() {
+					openCalendarPopup();
+				}
+			}
 		}
 
 		Rectangle {

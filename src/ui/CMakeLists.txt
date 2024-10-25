@@ -56,6 +56,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         component_v2/HabitStatsBoard.qml
         component_v2/EvolChainBoard.qml
         component_v2/MainViewLoader.qml
+        component_v2/CalendarPopup.qml
 
         view/ViewV1.qml
         component_v1/UiStyle.qml

@@ -28,6 +28,10 @@ Rectangle {
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: 60
+
+			onOpenCalendarPopup: function() {
+				calendarPopup.open();
+			}
 		}
 
 		Item {
@@ -72,6 +76,13 @@ Rectangle {
 		}
 	}
 
+	CalendarPopup {
+		id: calendarPopup
+
+		topMargin: internal.calendarPopupTopMargin
+		leftMargin: internal.calendarPopupLeftMargin
+	}
+
 	QtObject {
 		id: internal
 
@@ -79,6 +90,15 @@ Rectangle {
 
 		readonly property int contentMargin: 60
 		readonly property int habitDelegateWidth: root.width - 2 * contentMargin
+
+		readonly property int calendarPopupWidth: 518
+		readonly property int calendarPopupHeight: 535
+
+		readonly property int sidebarWidth: 350
+
+		readonly property int calendarPopupTopMargin: 60
+		readonly property int calendarPopupLeftMargin: (root.width - calendarPopupWidth)/2 + sidebarWidth
+
 		readonly property color backgroundColor: UiConstant.pureWhite
 	}
 }
