@@ -13,6 +13,8 @@ import "../component_v2"
 Rectangle {
 	id: root
 
+	property QtObject viewController: null
+
 	color: internal.backgroundColor
 
 	ColumnLayout {
@@ -25,7 +27,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				internal.mainLoader.changeToContentView();
+				root.viewController.changeToContentView();
 			}
 		}
 
@@ -94,14 +96,12 @@ Rectangle {
 		pokemonUrl: internal.defaultPokemonUrl
 
 		onOpenEditorView: function() {
-			internal.mainLoader.changeToHabitEditorView();
+			root.viewController.changeToHabitEditorView();
 		}
 	}
 
 	QtObject {
 		id: internal
-
-		readonly property QtObject mainLoader: root.parent
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222

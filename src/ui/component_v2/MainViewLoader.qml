@@ -16,28 +16,6 @@ Loader {
 	property Component habitEditorViewSource
 	property Component habitDetailViewSource
 
-	function changeToContentView() {
-		internal.previousView = state;
-		state = UiConstant.displayHabitsState;
-	}
-
-	function changeToHabitEditorView() {
-		internal.previousView = state;
-		state = UiConstant.editorHabitState;
-	}
-
-	function changeToHabitDetailView() {
-		internal.previousView = state;
-		state = UiConstant.habitDetailState;
-	}
-
-	function changeToPreviousView() {
-		var previousView = internal.previousView;
-
-		internal.previousView = state;
-		state = previousView;
-	}
-
 	states: [
 		State {
 			name: UiConstant.displayHabitsState
@@ -54,10 +32,4 @@ Loader {
 	]
 
 	state: UiConstant.displayHabitsState
-
-	QtObject {
-		id: internal
-
-		property string previousView: UiConstant.displayHabitsState
-	}
 }

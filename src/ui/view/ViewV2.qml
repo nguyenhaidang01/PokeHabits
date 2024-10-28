@@ -42,24 +42,32 @@ ApplicationWindow  {
 			contentViewSource: contentView
 			habitEditorViewSource: habitEditorView
 			habitDetailViewSource: habitDetailView
-		}
 
-		Component {
-			id: contentView
+			Connections {
+				target: internal.viewController
 
-			ContentView {}
-		}
+				function onViewStateChanged(viewState) {
+					mainViewLoader.state = viewState;
+				}
+			}
 
-		Component {
-			id: habitEditorView
+			Component {
+				id: contentView
 
-			HabitEditorView {}
-		}
+				ContentView { viewController: internal.viewController }
+			}
 
-		Component {
-			id: habitDetailView
+			Component {
+				id: habitEditorView
 
-			HabitDetailView {}
+				HabitEditorView { viewController: internal.viewController }
+			}
+
+			Component {
+				id: habitDetailView
+
+				HabitDetailView { viewController: internal.viewController }
+			}
 		}
 	}
 
@@ -70,5 +78,7 @@ ApplicationWindow  {
 		readonly property int windowHeight: 960
 
 		readonly property int sidebarWidth: 350
+
+		property QtObject viewController: pokeHabitsApp.viewController
 	}
 }

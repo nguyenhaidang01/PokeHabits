@@ -13,6 +13,8 @@ import "../component_v2"
 Rectangle {
 	id: root
 
+	property QtObject viewController: null
+
 	color: internal.backgroundColor
 
 	ColumnLayout {
@@ -55,7 +57,7 @@ Rectangle {
 				MouseArea {
 					anchors.fill: parent
 					onClicked: function() {
-						internal.mainLoader.changeToHabitDetailView();
+						root.viewController.changeToHabitDetailView();
 					}
 				}
 			}
@@ -70,7 +72,7 @@ Rectangle {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
-					internal.mainLoader.changeToHabitEditorView();
+					root.viewController.changeToHabitEditorView();
 				}
 			}
 		}
@@ -85,8 +87,6 @@ Rectangle {
 
 	QtObject {
 		id: internal
-
-		readonly property QtObject mainLoader: root.parent
 
 		readonly property int contentMargin: 60
 		readonly property int habitDelegateWidth: root.width - 2 * contentMargin

@@ -10,6 +10,7 @@ set(SOURCES
     CalendarModel.h CalendarModel.cpp
     PokeApiManager.h PokeApiManager.cpp
     DatabaseManager.h DatabaseManager.cpp
+    ViewController.h ViewController.cpp
     PokeHabitsApp.h PokeHabitsApp.cpp
 )
 

@@ -7,6 +7,7 @@
 #include "DailyReportModel.h"
 #include "PokeApiManager.h"
 #include "DatabaseManager.h"
+#include "ViewController.h"
 
 using QMapDateDailyReportModelPtr = std::shared_ptr<QMap<QDate, DailyReportModel*>>;
 using QMapYearCalendarModelPtr = std::shared_ptr<QMap<int, CalendarModel*>>;
@@ -16,12 +17,14 @@ class PokeHabitsApp : public QObject
 	Q_OBJECT
 	Q_PROPERTY(DailyReportModel* dailyReportModel READ dailyReportModel NOTIFY dailyReportModelChanged FINAL)
 	Q_PROPERTY(CalendarModel* calendarModel READ calendarModel NOTIFY calendarModelChanged FINAL)
+	Q_PROPERTY(ViewController* viewController READ viewController CONSTANT)
 
 public:
 	static PokeHabitsApp* getInstance();
 
 	DailyReportModel* dailyReportModel();
 	CalendarModel* calendarModel();
+	ViewController* viewController();
 
 public slots:
 	PokemonModel* pokemonModel();
@@ -46,6 +49,7 @@ private:
 
 	PokeApiManager* m_pokeApiManager;
 	DatabaseManager* m_databaseManager;
+	ViewController* m_viewController;
 
 	QDate m_currentDate;
 	QDate m_selectedDate;

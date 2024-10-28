@@ -22,6 +22,7 @@ PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	, m_databaseManager{ new DatabaseManager() }
 	, m_currentDate{ QDate::currentDate() }
 	, m_selectedDate { m_currentDate }
+	, m_viewController{ new ViewController() }
 {
 	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, &PokeHabitsApp::dailyReportModelChanged);
 	QObject::connect(this, &PokeHabitsApp::selectedDateChanged, this, &PokeHabitsApp::calendarModelChanged);
@@ -51,6 +52,11 @@ CalendarModel* PokeHabitsApp::calendarModel()
 PokemonModel* PokeHabitsApp::pokemonModel()
 {
 	return m_pokeApiManager->pokemonModel();
+}
+
+ViewController* PokeHabitsApp::viewController()
+{
+	return m_viewController;
 }
 
 CalendarModel* PokeHabitsApp::createCalendarModel(QDate date)

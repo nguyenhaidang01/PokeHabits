@@ -14,6 +14,8 @@ import "../component_v2"
 Rectangle {
 	id: root
 
+	property QtObject viewController: null
+
 	color: internal.backgroundColor
 
 	ColumnLayout {
@@ -26,7 +28,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				internal.mainLoader.changeToPreviousView();
+				root.viewController.changeToPreviousView();
 			}
 		}
 
@@ -51,8 +53,6 @@ Rectangle {
 
 	QtObject {
 		id: internal
-
-		readonly property QtObject mainLoader: root.parent
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222
