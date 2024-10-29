@@ -9,6 +9,7 @@ class CalendarModel : public QAbstractListModel
 {
 	Q_OBJECT
 	Q_PROPERTY(int currentDateIndex READ currentDateIndex CONSTANT)
+	Q_PROPERTY(QString selectedDateStr READ selectedDateStr NOTIFY selectedDateChanged FINAL)
 	Q_PROPERTY(QString selectedMonth READ selectedMonth NOTIFY selectedDateChanged FINAL)
 	Q_PROPERTY(int selectedYear READ selectedYear NOTIFY selectedDateChanged FINAL)
 
@@ -22,7 +23,8 @@ public:
 		NumericMonthRole,
 		YearRole,
 		IsSundayRole,
-		IsCurrentDateRole
+		IsCurrentDateRole,
+		IsDateInCurrentMonthRole
 	};
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -38,6 +40,7 @@ public:
 	QDate selectedDate();
 	void setSelectedDate(QDate date);
 
+	QString selectedDateStr();
 	QString selectedMonth();
 	int selectedYear();
 

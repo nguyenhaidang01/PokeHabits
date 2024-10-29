@@ -54,7 +54,7 @@ ApplicationWindow  {
 			Component {
 				id: contentView
 
-				ContentView { viewController: internal.viewController }
+				ContentView { controller: internal.controller }
 			}
 
 			Component {
@@ -79,6 +79,8 @@ ApplicationWindow  {
 
 		readonly property int sidebarWidth: 350
 
+		property QtObject controller: pokeHabitsApp
+		property QtObject calendarModel: pokeHabitsApp.calendarModel
 		property QtObject viewController: pokeHabitsApp.viewController
 	}
 }

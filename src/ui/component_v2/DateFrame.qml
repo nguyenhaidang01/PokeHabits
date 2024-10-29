@@ -13,6 +13,8 @@ import "../component_v2"
 Item {
 	id: root
 
+	property QtObject calendarModel: null
+
 	RowLayout {
 		anchors.fill: parent
 
@@ -37,7 +39,7 @@ Item {
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
 
-			text: internal.date
+			text: calendarModel.selectedDateStr
 		}
 
 		Image {
@@ -53,6 +55,5 @@ Item {
 		id: internal
 
 		readonly property int iconSize: 60
-		readonly property string date: "October 10, 2024"
 	}
 }

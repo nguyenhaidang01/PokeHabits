@@ -13,6 +13,8 @@ import "../component_v2"
 Popup {
 	id: root
 
+	property QtObject controller: null
+
 	implicitWidth: internal.defaultWidth
 	implicitHeight: internal.defaultHeight
 
@@ -31,6 +33,8 @@ Popup {
 			Layout.preferredHeight: 60
 
 			Layout.alignment: Qt.AlignHCenter
+
+			calendarModel: internal.calendarModel
 		}
 
 		ColumnLayout {
@@ -69,49 +73,13 @@ Popup {
 				cellHeight: internal.dateDelegateHeight
 
 				clip: true
-				model: 42
+				highlightMoveDuration: 0
+
+				model: internal.calendarModel
+				currentIndex: model.currentDateIndex
 
 				delegate: dateDelegate
 				highlight: dateHighlight
-			}
-		}
-	}
-
-	ListModel {
-		id: dayOfWeekModel
-
-		ListElement { day: "Sun" }
-		ListElement { day: "Mon" }
-		ListElement { day: "Tue" }
-		ListElement { day: "Wed" }
-		ListElement { day: "Thur" }
-		ListElement { day: "Fri" }
-		ListElement { day: "Sat" }
-	}
-
-	Component {
-		id: dayOfWeekDelegate
-
-		Item {
-			implicitWidth: internal.delegateWidth
-			implicitHeight: internal.dowDelegateHeight
-
-			Text {
-				id: listTitle
-
-				anchors.fill: parent
-
-				font {
-					pixelSize: 21
-					weight: Font.DemiBold
-					family: "Inter"
-				}
-
-				verticalAlignment: Text.AlignVCenter
-				horizontalAlignment: Text.AlignHCenter
-
-				color: internal.dowTextColor
-				text: day
 			}
 		}
 	}
@@ -123,28 +91,36 @@ Popup {
 			implicitWidth: internal.delegateWidth
 			implicitHeight: internal.dateDelegateHeight
 
-			Text {
+			Rectangle {
 				width: internal.delegateWidth
 				height: internal.dateDelegateHeight - internal.gridViewSpacing
 
 				anchors.bottom: parent.bottom
 
-				font {
-					pixelSize: 24
-					weight: Font.Medium
-					family: "Inter"
+				radius: 15
+				color: isCurrentDate && index !== dateList.currentIndex ? internal.highlightColor_50 : UiConstant.transparent
+
+				Text {
+					anchors.fill: parent
+
+					font {
+						pixelSize: 24
+						weight: Font.Medium
+						family: "Inter"
+					}
+
+					verticalAlignment: Text.AlignVCenter
+					horizontalAlignment: Text.AlignHCenter
+
+					color: !isDateInCurrentMonth ? UiConstant.silverGray : index === dateList.currentIndex ? UiConstant.pureWhite : UiConstant.pureBlack
+					text: day
 				}
-
-				verticalAlignment: Text.AlignVCenter
-				horizontalAlignment: Text.AlignHCenter
-
-				color: (dateList.currentIndex == index) ? UiConstant.pureWhite : UiConstant.pureBlack
-				text: "31"
 
 				MouseArea {
 					anchors.fill: parent
 					onClicked: function() {
 						dateList.currentIndex = index;
+						root.controller.setSelectedDate(day, numericMonth, year);
 					}
 				}
 			}
@@ -170,6 +146,45 @@ Popup {
 		}
 	}
 
+	ListModel {
+		id: dayOfWeekModel
+
+		ListElement { dow: "Sun" }
+		ListElement { dow: "Mon" }
+		ListElement { dow: "Tue" }
+		ListElement { dow: "Wed" }
+		ListElement { dow: "Thur" }
+		ListElement { dow: "Fri" }
+		ListElement { dow: "Sat" }
+	}
+
+	Component {
+		id: dayOfWeekDelegate
+
+		Item {
+			implicitWidth: internal.delegateWidth
+			implicitHeight: internal.dowDelegateHeight
+
+			Text {
+				id: listTitle
+
+				anchors.fill: parent
+
+				font {
+					pixelSize: 21
+					weight: Font.DemiBold
+					family: "Inter"
+				}
+
+				verticalAlignment: Text.AlignVCenter
+				horizontalAlignment: Text.AlignHCenter
+
+				color: internal.dowTextColor
+				text: dow
+			}
+		}
+	}
+
 	QtObject {
 		id: internal
 
@@ -184,6 +199,10 @@ Popup {
 
 		readonly property color dowTextColor: "#ABABAB"
 		readonly property color highlightColor: "#2280EF"
+		readonly property color highlightColor_50: Qt.rgba(highlightColor.r, highlightColor.g, highlightColor.b, 0.5)
+
 		readonly property color backgroundColor: UiConstant.pureWhite
+
+		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
 	}
 }

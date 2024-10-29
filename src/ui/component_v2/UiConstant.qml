@@ -17,6 +17,7 @@ QtObject {
 	readonly property color pureWhite: "#FFFFFF"
 
 	readonly property color lightGray: "#F2F2F2"
+	readonly property color silverGray: "#DBDBDB"
 
 	readonly property color normalColor: "#919AA2"
 	readonly property color fireColor: "#FF9D55"

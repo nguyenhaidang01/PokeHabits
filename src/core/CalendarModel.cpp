@@ -37,6 +37,8 @@ QVariant CalendarModel::data(const QModelIndex &index, int role) const
 		return QVariant(item.dayOfWeek() == 7);
 	case IsCurrentDateRole:
 		return QVariant(item == m_currentDate);
+	case IsDateInCurrentMonthRole:
+		return QVariant(item.month() == m_currentDate.month());
 	}
 
 	return QVariant();
@@ -60,6 +62,7 @@ QHash<int, QByteArray> CalendarModel::roleNames() const
 	names[YearRole] = "year";
 	names[IsSundayRole] = "isSunday";
 	names[IsCurrentDateRole] = "isCurrentDate";
+	names[IsDateInCurrentMonthRole] = "isDateInCurrentMonth";
 
 	return names;
 }
@@ -117,6 +120,11 @@ void CalendarModel::setSelectedDate(QDate date)
 	m_selectedDate = date;
 
 	emit selectedDateChanged();
+}
+
+QString CalendarModel::selectedDateStr()
+{
+	return m_selectedDate.toString("MMMM d, yyyy");
 }
 
 QString CalendarModel::selectedMonth()

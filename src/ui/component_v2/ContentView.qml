@@ -13,7 +13,7 @@ import "../component_v2"
 Rectangle {
 	id: root
 
-	property QtObject viewController: null
+	property QtObject controller: null
 
 	color: internal.backgroundColor
 
@@ -30,6 +30,8 @@ Rectangle {
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: 60
+
+			calendarModel: internal.calendarModel
 
 			onOpenCalendarPopup: function() {
 				calendarPopup.open();
@@ -57,7 +59,7 @@ Rectangle {
 				MouseArea {
 					anchors.fill: parent
 					onClicked: function() {
-						root.viewController.changeToHabitDetailView();
+						internal.viewController.changeToHabitDetailView();
 					}
 				}
 			}
@@ -72,7 +74,7 @@ Rectangle {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
-					root.viewController.changeToHabitEditorView();
+					internal.viewController.changeToHabitEditorView();
 				}
 			}
 		}
@@ -83,6 +85,8 @@ Rectangle {
 
 		topMargin: internal.calendarPopupTopMargin
 		leftMargin: internal.calendarPopupLeftMargin
+
+		controller: root.controller
 	}
 
 	QtObject {
@@ -100,5 +104,8 @@ Rectangle {
 		readonly property int calendarPopupLeftMargin: (root.width - calendarPopupWidth)/2 + sidebarWidth
 
 		readonly property color backgroundColor: UiConstant.pureWhite
+
+		property QtObject viewController: root.controller ? root.controller.viewController : null
+		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
 	}
 }

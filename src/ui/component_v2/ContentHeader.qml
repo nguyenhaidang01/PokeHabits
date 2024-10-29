@@ -13,6 +13,8 @@ import "../component_v2"
 Item {
 	id: root
 
+	property QtObject calendarModel: null
+
 	signal openCalendarPopup()
 
 	RowLayout {
@@ -41,6 +43,8 @@ Item {
 			Layout.preferredWidth: 460
 			Layout.fillHeight: true
 			Layout.alignment: Qt.AlignHCenter
+
+			calendarModel: root.calendarModel
 
 			MouseArea {
 				anchors.fill: parent
