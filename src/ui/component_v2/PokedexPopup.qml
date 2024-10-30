@@ -13,6 +13,8 @@ import "../component_v2"
 Popup {
 	id: root
 
+	property QtObject pokemonModel: null
+
 	width: internal.defaultPopupWidth
 	height: internal.defaultPopupHeight
 
@@ -83,9 +85,12 @@ Popup {
 			cellHeight: internal.pokedexEntrySize
 
 			clip: true
-			model: 9
+			model: root.pokemonModel
 
-			delegate: PokedexDelegate {}
+			delegate: PokedexDelegate {
+				pokemonName: name
+				pokemonUrl: imageSvg
+			}
 		}
 	}
 

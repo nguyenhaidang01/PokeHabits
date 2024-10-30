@@ -13,8 +13,8 @@ import "../component_v2"
 Item {
 	id: root
 
-	property string pokemonUrl: internal.defaultPokemonUrl
 	property string pokemonName: internal.defaultPokemonName
+	property string pokemonUrl: internal.defaultPokemonUrl
 
 	implicitWidth: internal.defaultDelegateSize
 	implicitHeight: internal.defaultDelegateSize

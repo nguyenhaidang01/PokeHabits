@@ -15,6 +15,7 @@ Rectangle {
 	id: root
 
 	property QtObject viewController: null
+	property QtObject pokemonModel: null
 
 	color: internal.backgroundColor
 
@@ -49,6 +50,8 @@ Rectangle {
 		height: internal.pokedexPopupHeight
 
 		anchors.centerIn: parent
+
+		pokemonModel: root.pokemonModel
 	}
 
 	QtObject {
