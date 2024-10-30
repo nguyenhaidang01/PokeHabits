@@ -51,6 +51,9 @@ Item {
 
 					PokemonFrame {
 						Layout.alignment: Qt.AlignLeft
+
+						elementUrl: internal.defaultElementUrl
+						pokemonUrl: internal.defaultPokemonUrl
 					}
 
 					Item {
@@ -86,6 +89,9 @@ Item {
 
 					PokemonFrame {
 						Layout.alignment: Qt.AlignHCenter
+
+						elementUrl: internal.defaultElementUrl
+						pokemonUrl: internal.defaultPokemonUrl
 					}
 
 					Item {
@@ -121,6 +127,9 @@ Item {
 
 					PokemonFrame {
 						Layout.alignment: Qt.AlignRight
+
+						elementUrl: internal.defaultElementUrl
+						pokemonUrl: internal.defaultPokemonUrl
 					}
 				}
 			}
@@ -142,5 +151,7 @@ Item {
 		readonly property int arrowWidth: 24
 		readonly property int arrowHeight: 37
 		readonly property string arrowUrl: "qrc:/ui/assets_v2/bluerightarrow.svg"
+		readonly property string defaultElementUrl: "qrc:/ui/assets_v2/grass.svg"
+		readonly property string defaultPokemonUrl: "qrc:/ui/assets_v2/bulbasaur.svg"
 	}
 }

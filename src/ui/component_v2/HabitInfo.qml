@@ -13,8 +13,8 @@ import "../component_v2"
 Item {
 	id: root
 
-	property string habitName: internal.defaultHabitName
-	property string pokemonName: internal.defaultPokemonName
+	property string habitName
+	property string pokemonName
 
 	implicitWidth: 275
 	implicitHeight: 115
@@ -109,12 +109,5 @@ Item {
 			model: 2
 			delegate: ElementFrame {}
 		}
-	}
-
-	QtObject {
-		id: internal
-
-		readonly property string defaultPokemonName: "Bulbasaur"
-		readonly property string defaultHabitName: "Go Gym"
 	}
 }

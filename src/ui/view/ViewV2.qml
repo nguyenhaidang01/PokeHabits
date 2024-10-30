@@ -54,7 +54,10 @@ ApplicationWindow  {
 			Component {
 				id: contentView
 
-				ContentView { controller: internal.controller }
+				ContentView {
+					controller: internal.controller
+					dailyReportModel: internal.dailyReportModel
+				}
 			}
 
 			Component {
@@ -85,6 +88,7 @@ ApplicationWindow  {
 		property QtObject controller: pokeHabitsApp
 		property QtObject viewController: pokeHabitsApp.viewController
 		property QtObject calendarModel: pokeHabitsApp.calendarModel
+		property QtObject dailyReportModel: pokeHabitsApp.dailyReportModel
 		property QtObject pokemonModel: pokeHabitsApp.pokemonModel()
 	}
 }

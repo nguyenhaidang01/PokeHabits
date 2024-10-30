@@ -12,6 +12,9 @@ import "../component_v2"
 Rectangle {
 	id: root
 
+	property string elementUrl
+	property string pokemonUrl
+
 	implicitWidth: internal.frameSize
 	implicitHeight: internal.frameSize
 
@@ -25,7 +28,7 @@ Rectangle {
 		height: internal.elementSize
 		anchors.centerIn: parent
 
-		source: internal.elementUrl
+		source: root.elementUrl
 	}
 
 	Image {
@@ -35,7 +38,7 @@ Rectangle {
 		height: 86
 		anchors.centerIn: parent
 
-		source: internal.pokemonUrl
+		source: root.pokemonUrl
 	}
 
 	QtObject {
@@ -45,7 +48,5 @@ Rectangle {
 		readonly property int frameRadius: 15
 
 		readonly property int elementSize: 120
-		readonly property string elementUrl: "qrc:/ui/assets_v2/grass.svg"
-		readonly property string pokemonUrl: "qrc:/ui/assets_v2/bulbasaur.svg"
 	}
 }

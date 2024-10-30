@@ -13,6 +13,11 @@ import "../component_v2"
 Rectangle {
 	id: root
 
+	property string habitName: internal.defaultHabitName
+	property string pokemonName: internal.defaultPokemonName
+	property string elementUrl: internal.defaultElementUrl
+	property string pokemonUrl: internal.defaultPokemonUrl
+
 	radius: internal.radius
 	color: internal.defaultElementColor
 
@@ -31,6 +36,9 @@ Rectangle {
 
 		PokemonFrame {
 			Layout.leftMargin: 20
+
+			elementUrl: root.elementUrl
+			pokemonUrl: root.pokemonUrl
 		}
 
 		HabitInfo {
@@ -40,6 +48,9 @@ Rectangle {
 			Layout.preferredHeight: 115
 
 			Layout.leftMargin: 25
+
+			habitName: root.habitName
+			pokemonName: root.pokemonName
 		}
 
 		Item {
@@ -67,5 +78,10 @@ Rectangle {
 		readonly property int checkboxSize: 50
 		readonly property int favoriteSize: 50
 		readonly property color defaultElementColor: UiConstant.lightGrassColor
+
+		readonly property string defaultHabitName: "Go Gym"
+		readonly property string defaultPokemonName: "Bulbasaur"
+		readonly property string defaultPokemonUrl: "qrc:/ui/assets_v2/bulbasaur.svg"
+		readonly property string defaultElementUrl: "qrc:/ui/assets_v2/grass.svg"
 	}
 }
