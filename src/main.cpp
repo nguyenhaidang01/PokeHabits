@@ -3,9 +3,6 @@
 #include <QQmlContext>
 
 #include "core/PokeHabitsApp.h"
-#include "core/Pokemon.h"
-#include "core/DailyReportList.h"
-#include "core/DailyReportModel.h"
 
 int main(int argc, char *argv[])
 {
