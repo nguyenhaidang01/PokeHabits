@@ -14,8 +14,7 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty(QStringLiteral("pokeHabitsController"), pokeHabitsController);
 
-	qmlRegisterSingletonType(QUrl("qrc:/ui/component_v1/UiStyle.qml"), "UiStyle", 1, 0, "UiStyle");
-	qmlRegisterSingletonType(QUrl("qrc:/ui/component_v2/UiConstant.qml"), "UiConstant", 1, 0, "UiConstant");
+	qmlRegisterSingletonType(QUrl("qrc:/ui/component/UiConstant.qml"), "UiConstant", 1, 0, "UiConstant");
 
 	const QUrl url(u"qrc:/ui/Main.qml"_qs);
 	QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
