@@ -85,10 +85,10 @@ ApplicationWindow  {
 
 		readonly property int sidebarWidth: 350
 
-		property QtObject controller: pokeHabitsApp
-		property QtObject uiController: pokeHabitsApp.uiController
-		property QtObject calendarModel: pokeHabitsApp.calendarModel
-		property QtObject dailyReportModel: pokeHabitsApp.dailyReportModel
-		property QtObject pokemonModel: pokeHabitsApp.pokemonModel()
+		property QtObject controller: pokeHabitsController
+		property QtObject uiController: pokeHabitsController.uiController
+		property QtObject calendarModel: pokeHabitsController.calendarModel
+		property QtObject dailyReportModel: pokeHabitsController.dailyReportModel
+		property QtObject pokemonModel: pokeHabitsController.pokemonModel()
 	}
 }

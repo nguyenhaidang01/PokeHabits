@@ -5,13 +5,13 @@
 
 #include "UiController.h"
 
-class PokeHabitsApp : public QObject
+class PokeHabitsController : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(UiController* uiController READ uiController CONSTANT)
 
 public:
-	static PokeHabitsApp* getInstance();
+	static PokeHabitsController* getInstance();
 
 	UiController* uiController();
 public slots:
@@ -19,7 +19,7 @@ public slots:
 signals:
 
 private:
-	explicit PokeHabitsApp(QObject *parent = nullptr);
+	explicit PokeHabitsController(QObject *parent = nullptr);
 
 	UiController* m_uiController;
 };

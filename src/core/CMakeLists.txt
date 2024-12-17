@@ -2,7 +2,7 @@ project(core)
 
 set(SOURCES 
     UiController.h UiController.cpp
-    PokeHabitsApp.h PokeHabitsApp.cpp
+    PokeHabitsController.h PokeHabitsController.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})

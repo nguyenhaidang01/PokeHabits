@@ -86,10 +86,10 @@ ApplicationWindow  {
 	QtObject {
 		id: internal
 
-		property QtObject controller: pokeHabitsApp
-		property QtObject dailyReportModel: pokeHabitsApp.dailyReportModel
-		property QtObject calendarModel: pokeHabitsApp.calendarModel
-		property QtObject pokemonModel: pokeHabitsApp.pokemonModel()
-		property bool scrolldownVisible: habitBoard.state == "idle" && pokeHabitsApp.dailyReportModel && pokeHabitsApp.dailyReportModel.count > 4
+		property QtObject controller: pokeHabitsController
+		property QtObject dailyReportModel: pokeHabitsController.dailyReportModel
+		property QtObject calendarModel: pokeHabitsController.calendarModel
+		property QtObject pokemonModel: pokeHabitsController.pokemonModel()
+		property bool scrolldownVisible: habitBoard.state == "idle" && pokeHabitsController.dailyReportModel && pokeHabitsController.dailyReportModel.count > 4
 	}
 }
