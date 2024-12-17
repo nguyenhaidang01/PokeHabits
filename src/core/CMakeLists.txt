@@ -1,7 +1,7 @@
 project(core)
 
 set(SOURCES 
-    ViewController.h ViewController.cpp
+    UiController.h UiController.cpp
     PokeHabitsApp.h PokeHabitsApp.cpp
 )
 

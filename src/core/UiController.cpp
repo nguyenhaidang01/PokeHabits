@@ -1,44 +1,46 @@
-#include "ViewController.h"
+#include "UiController.h"
 
 namespace {
+
 const QString cContentStateName("displayHabits");
 const QString cEditorStateName("editorHabit");
 const QString cDetailStateName("habitDetail");
+
 }
 
-ViewController::ViewController(QObject *parent)
+UiController::UiController(QObject *parent)
     : QObject(parent)
     , m_currentState(cContentStateName)
 {
 }
 
-void ViewController::changeToContentView()
+void UiController::changeToContentView()
 {
 	m_previouState = m_currentState;
 	m_currentState = cContentStateName;
 
-	emit viewStateChanged(m_currentState);
+	emit uiStateChanged(m_currentState);
 }
 
-void ViewController::changeToHabitEditorView()
+void UiController::changeToHabitEditorView()
 {
 	m_previouState = m_currentState;
 	m_currentState = cEditorStateName;
 
-	emit viewStateChanged(m_currentState);
+	emit uiStateChanged(m_currentState);
 }
 
-void ViewController::changeToHabitDetailView()
+void UiController::changeToHabitDetailView()
 {
 	m_previouState = m_currentState;
 	m_currentState = cDetailStateName;
 
-	emit viewStateChanged(m_currentState);
+	emit uiStateChanged(m_currentState);
 }
 
-void ViewController::changeToPreviousView()
+void UiController::changeToPreviousView()
 {
-	emit viewStateChanged(m_previouState);
+	emit uiStateChanged(m_previouState);
 
 	std::swap(m_currentState, m_previouState);
 }

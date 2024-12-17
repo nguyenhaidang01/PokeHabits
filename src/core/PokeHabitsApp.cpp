@@ -15,11 +15,11 @@ PokeHabitsApp* PokeHabitsApp::getInstance()
 
 PokeHabitsApp::PokeHabitsApp(QObject *parent)
 	: QObject(parent)
-	, m_viewController{ new ViewController() }
+    , m_uiController{ new UiController() }
 {
 }
 
-ViewController* PokeHabitsApp::viewController()
+UiController* PokeHabitsApp::uiController()
 {
-	return m_viewController;
+	return m_uiController;
 }

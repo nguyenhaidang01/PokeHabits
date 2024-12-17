@@ -44,10 +44,10 @@ ApplicationWindow  {
 			habitDetailViewSource: habitDetailView
 
 			Connections {
-				target: internal.viewController
+				target: internal.uiController
 
-				function onViewStateChanged(viewState) {
-					mainViewLoader.state = viewState;
+				function onUiStateChanged(uiState) {
+					mainViewLoader.state = uiState;
 				}
 			}
 
@@ -64,7 +64,7 @@ ApplicationWindow  {
 				id: habitEditorView
 
 				HabitEditorView {
-					viewController: internal.viewController
+					uiController: internal.uiController
 					pokemonModel: internal.pokemonModel
 				}
 			}
@@ -72,7 +72,7 @@ ApplicationWindow  {
 			Component {
 				id: habitDetailView
 
-				HabitDetailView { viewController: internal.viewController }
+				HabitDetailView { uiController: internal.uiController }
 			}
 		}
 	}
@@ -86,7 +86,7 @@ ApplicationWindow  {
 		readonly property int sidebarWidth: 350
 
 		property QtObject controller: pokeHabitsApp
-		property QtObject viewController: pokeHabitsApp.viewController
+		property QtObject uiController: pokeHabitsApp.uiController
 		property QtObject calendarModel: pokeHabitsApp.calendarModel
 		property QtObject dailyReportModel: pokeHabitsApp.dailyReportModel
 		property QtObject pokemonModel: pokeHabitsApp.pokemonModel()

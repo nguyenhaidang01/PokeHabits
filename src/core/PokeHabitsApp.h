@@ -3,17 +3,17 @@
 #include <QMap>
 #include <QDate>
 
-#include "ViewController.h"
+#include "UiController.h"
 
 class PokeHabitsApp : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(ViewController* viewController READ viewController CONSTANT)
+	Q_PROPERTY(UiController* uiController READ uiController CONSTANT)
 
 public:
 	static PokeHabitsApp* getInstance();
 
-	ViewController* viewController();
+	UiController* uiController();
 public slots:
 
 signals:
@@ -21,5 +21,5 @@ signals:
 private:
 	explicit PokeHabitsApp(QObject *parent = nullptr);
 
-	ViewController* m_viewController;
+	UiController* m_uiController;
 };

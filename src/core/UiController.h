@@ -1,12 +1,12 @@
 #pragma once
 #include <QObject>
 
-class ViewController : public QObject
+class UiController : public QObject
 {
 	Q_OBJECT
 
 public:
-	explicit ViewController(QObject *parent = nullptr);
+	explicit UiController(QObject *parent = nullptr);
 
 public slots:
 	void changeToContentView();
@@ -15,7 +15,7 @@ public slots:
 	void changeToPreviousView();
 
 signals:
-	void viewStateChanged(QString viewState);
+	void uiStateChanged(QString uiState);
 
 private:
 	QString m_currentState;

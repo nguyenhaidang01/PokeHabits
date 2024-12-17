@@ -64,7 +64,7 @@ Rectangle {
 				MouseArea {
 					anchors.fill: parent
 					onClicked: function() {
-						internal.viewController.changeToHabitDetailView();
+						internal.uiController.changeToHabitDetailView();
 					}
 				}
 			}
@@ -79,7 +79,7 @@ Rectangle {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
-					internal.viewController.changeToHabitEditorView();
+					internal.uiController.changeToHabitEditorView();
 				}
 			}
 		}
@@ -110,7 +110,7 @@ Rectangle {
 
 		readonly property color backgroundColor: UiConstant.pureWhite
 
-		property QtObject viewController: root.controller ? root.controller.viewController : null
+		property QtObject uiController: root.controller ? root.controller.uiController : null
 		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
 	}
 }

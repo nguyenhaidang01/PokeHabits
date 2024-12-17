@@ -14,7 +14,7 @@ import "../component_v2"
 Rectangle {
 	id: root
 
-	property QtObject viewController: null
+	property QtObject uiController: null
 	property QtObject pokemonModel: null
 
 	color: internal.backgroundColor
@@ -29,7 +29,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				root.viewController.changeToPreviousView();
+				root.uiController.changeToPreviousView();
 			}
 		}
 
