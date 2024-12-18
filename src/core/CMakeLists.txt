@@ -1,8 +1,10 @@
 project(core)
 
-set(SOURCES 
+set(SOURCES
+	Pokemon.h
+	PokemonModel.h PokemonModel.cpp
 	CalendarModel.h CalendarModel.cpp
-        UiService.h UiService.cpp
+	UiService.h UiService.cpp
 	PokeHabitsController.h PokeHabitsController.cpp
 )
 
