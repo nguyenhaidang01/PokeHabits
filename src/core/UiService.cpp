@@ -1,11 +1,11 @@
 /******************************************************************************
 **
-** File      UiController.cpp
+** File      UiService.cpp
 ** Author    Dang Nguyen
 **
 ******************************************************************************/
 
-#include "UiController.h"
+#include "UiService.h"
 
 namespace {
 
@@ -15,13 +15,13 @@ const QString cDetailStateName("habitDetail");
 
 }
 
-UiController::UiController(QObject *parent)
+UiService::UiService(QObject *parent)
     : QObject(parent)
     , m_currentState(cContentStateName)
 {
 }
 
-void UiController::changeToContentView()
+void UiService::changeToContentView()
 {
 	m_previouState = m_currentState;
 	m_currentState = cContentStateName;
@@ -29,7 +29,7 @@ void UiController::changeToContentView()
 	emit uiStateChanged(m_currentState);
 }
 
-void UiController::changeToHabitEditorView()
+void UiService::changeToHabitEditorView()
 {
 	m_previouState = m_currentState;
 	m_currentState = cEditorStateName;
@@ -37,7 +37,7 @@ void UiController::changeToHabitEditorView()
 	emit uiStateChanged(m_currentState);
 }
 
-void UiController::changeToHabitDetailView()
+void UiService::changeToHabitDetailView()
 {
 	m_previouState = m_currentState;
 	m_currentState = cDetailStateName;
@@ -45,7 +45,7 @@ void UiController::changeToHabitDetailView()
 	emit uiStateChanged(m_currentState);
 }
 
-void UiController::changeToPreviousView()
+void UiService::changeToPreviousView()
 {
 	emit uiStateChanged(m_previouState);
 

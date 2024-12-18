@@ -1,6 +1,6 @@
 /******************************************************************************
 **
-** File      ViewV2.qml
+** File      MainView.qml
 ** Author    Dang Nguyen
 **
 ******************************************************************************/
@@ -44,7 +44,7 @@ ApplicationWindow  {
 			habitDetailViewSource: habitDetailView
 
 			Connections {
-				target: internal.uiController
+				target: internal.uiService
 
 				function onUiStateChanged(uiState) {
 					mainViewLoader.state = uiState;
@@ -64,7 +64,7 @@ ApplicationWindow  {
 				id: habitEditorView
 
 				HabitEditorView {
-					uiController: internal.uiController
+					uiService: internal.uiService
 					pokemonModel: internal.pokemonModel
 				}
 			}
@@ -72,7 +72,7 @@ ApplicationWindow  {
 			Component {
 				id: habitDetailView
 
-				HabitDetailView { uiController: internal.uiController }
+				HabitDetailView { uiService: internal.uiService }
 			}
 		}
 	}
@@ -86,7 +86,7 @@ ApplicationWindow  {
 		readonly property int sidebarWidth: 350
 
 		property QtObject controller: pokeHabitsController
-		property QtObject uiController: pokeHabitsController.uiController
+		property QtObject uiService: pokeHabitsController.uiService
 		property QtObject calendarModel: pokeHabitsController.calendarModel
 		property QtObject dailyReportModel: pokeHabitsController.dailyReportModel
 		property QtObject pokemonModel: pokeHabitsController.pokemonModel()

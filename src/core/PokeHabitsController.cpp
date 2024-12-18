@@ -17,7 +17,7 @@ PokeHabitsController* PokeHabitsController::getInstance()
 
 PokeHabitsController::PokeHabitsController(QObject *parent)
 	: QObject(parent)
-    , m_uiController{ new UiController() }
+    , m_uiService{ new UiService() }
 {
 	const auto &dates = createCalendarListForYear(QDate::currentDate().year());
 	m_calendarModel = new CalendarModel(std::make_shared<QVector<QDate>>(dates));
@@ -28,9 +28,9 @@ CalendarModel* PokeHabitsController::calendarModel()
 	return m_calendarModel;
 }
 
-UiController* PokeHabitsController::uiController()
+UiService* PokeHabitsController::uiService()
 {
-	return m_uiController;
+	return m_uiService;
 }
 
 QVector<QDate> PokeHabitsController::createCalendarListForYear(int year)

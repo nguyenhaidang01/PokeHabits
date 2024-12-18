@@ -13,7 +13,7 @@ import "../component"
 Rectangle {
 	id: root
 
-	property QtObject uiController: null
+	property QtObject uiService: null
 
 	color: internal.backgroundColor
 
@@ -27,7 +27,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				root.uiController.changeToContentView();
+				root.uiService.changeToContentView();
 			}
 		}
 
@@ -96,7 +96,7 @@ Rectangle {
 		pokemonUrl: internal.defaultPokemonUrl
 
 		onOpenEditorView: function() {
-			root.uiController.changeToHabitEditorView();
+			root.uiService.changeToHabitEditorView();
 		}
 	}
 

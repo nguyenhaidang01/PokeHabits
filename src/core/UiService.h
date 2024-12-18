@@ -1,6 +1,6 @@
 /******************************************************************************
 **
-** File      UiController.h
+** File      UiService.h
 ** Author    Dang Nguyen
 **
 ******************************************************************************/
@@ -8,12 +8,12 @@
 #pragma once
 #include <QObject>
 
-class UiController : public QObject
+class UiService : public QObject
 {
 	Q_OBJECT
 
 public:
-	explicit UiController(QObject *parent = nullptr);
+	explicit UiService(QObject *parent = nullptr);
 
 public slots:
 	void changeToContentView();

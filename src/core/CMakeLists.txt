@@ -2,7 +2,7 @@ project(core)
 
 set(SOURCES 
 	CalendarModel.h CalendarModel.cpp
-	UiController.h UiController.cpp
+        UiService.h UiService.cpp
 	PokeHabitsController.h PokeHabitsController.cpp
 )
 
