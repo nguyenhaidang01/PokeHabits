@@ -89,7 +89,7 @@ Popup {
 
 			delegate: PokedexDelegate {
 				pokemonName: name
-				pokemonUrl: imageSvg
+				pokemonUrl: image
 			}
 		}
 	}

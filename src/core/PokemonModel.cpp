@@ -37,9 +37,9 @@ QString toQString(Type type) {
 
 }
 
-PokemonModel::PokemonModel(PokemonListPtr pokemonList, QObject *parent)
-	: QAbstractListModel(parent)
-    , m_List{ pokemonList }
+PokemonModel::PokemonModel(QObject *parent)
+    : QAbstractListModel(parent)
+    , m_List{ std::make_shared<QVector<Pokemon>>() }
 {
 }
 
@@ -106,4 +106,12 @@ void PokemonModel::setList(PokemonListPtr list)
 	beginResetModel();
 	m_List = list;
 	endResetModel();
+}
+
+void PokemonModel::appendItem(Pokemon &pokemon)
+{
+	const int index = m_List->size();
+	beginInsertRows(QModelIndex(), index, index);
+	m_List->append(pokemon);
+	endInsertRows();
 }

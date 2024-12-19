@@ -89,6 +89,6 @@ ApplicationWindow  {
 		property QtObject uiService: pokeHabitsController.uiService
 		property QtObject calendarModel: pokeHabitsController.calendarModel
 		property QtObject dailyReportModel: pokeHabitsController.dailyReportModel
-		property QtObject pokemonModel: pokeHabitsController.pokemonModel()
+		property QtObject pokemonModel: pokeHabitsController.pokemonModel
 	}
 }

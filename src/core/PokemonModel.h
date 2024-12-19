@@ -19,7 +19,7 @@ class PokemonModel : public QAbstractListModel
 	Q_OBJECT
 
 public:
-	explicit PokemonModel(PokemonListPtr pokemonList, QObject *parent = nullptr);
+	explicit PokemonModel(QObject *parent = nullptr);
 
 	enum {
 		IdRole = Qt::UserRole,
@@ -37,6 +37,8 @@ public:
 
 	PokemonListPtr list() const;
 	void setList(PokemonListPtr list);
+
+	void appendItem(Pokemon &pokemon);
 
 private:
 	PokemonListPtr m_List;
