@@ -14,7 +14,7 @@ Rectangle {
 	id: root
 
 	property QtObject controller: null
-	property QtObject dailyReportModel: null
+	property QtObject habitModel: null
 
 	color: internal.backgroundColor
 
@@ -51,15 +51,15 @@ Rectangle {
 			clip: true
 
 			spacing:24
-			model: root.dailyReportModel
+			model: root.habitModel
 
 			delegate: HabitDelegate {
 				implicitWidth: internal.habitDelegateWidth
 				implicitHeight: 145
 
-				habitName: habitName
-				pokemonName: pkmName
-				pokemonUrl: pkmImageSvg
+				habitName: name
+				pokemonName: root.controller.getPokemonName(pokeId)
+				pokemonUrl: root.controller.getPokemonImage(pokeId)
 
 				MouseArea {
 					anchors.fill: parent

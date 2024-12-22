@@ -56,7 +56,7 @@ ApplicationWindow  {
 
 				ContentView {
 					controller: internal.controller
-					dailyReportModel: internal.dailyReportModel
+					habitModel: internal.habitModel
 				}
 			}
 
@@ -64,8 +64,8 @@ ApplicationWindow  {
 				id: habitEditorView
 
 				HabitEditorView {
-					uiService: internal.uiService
 					pokemonModel: internal.pokemonModel
+					controller: internal.controller
 				}
 			}
 
@@ -87,8 +87,9 @@ ApplicationWindow  {
 
 		property QtObject controller: pokeHabitsController
 		property QtObject uiService: pokeHabitsController.uiService
+
 		property QtObject calendarModel: pokeHabitsController.calendarModel
-		property QtObject dailyReportModel: pokeHabitsController.dailyReportModel
 		property QtObject pokemonModel: pokeHabitsController.pokemonModel
+		property QtObject habitModel: pokeHabitsController.habitModel
 	}
 }

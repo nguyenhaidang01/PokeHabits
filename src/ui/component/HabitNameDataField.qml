@@ -6,14 +6,15 @@
 ******************************************************************************/
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Basic
 import QtQuick.Layouts
+
 import "../component"
 
 RowLayout {
 	id: root
 
-	property string habitName: internal.defaultHabitName
+	property alias habitName: habitNameField.text
 
 	spacing: 0
 
@@ -23,7 +24,7 @@ RowLayout {
 
 		TextWithPokeball {
 			anchors.verticalCenter: parent.verticalCenter
-			text: "Habit Name"
+			text: "HABIT NAME"
 		}
 	}
 
@@ -34,18 +35,22 @@ RowLayout {
 		radius: internal.radius
 		border.width: internal.borderWidth
 
-		Text {
-			anchors.fill: parent
+		TextField {
+			id: habitNameField
 
+			anchors.fill: parent
 			font {
 				pixelSize: 21
 				weight: Font.Medium
 				family: "Poppins"
 			}
+
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 
-			text: "Go Gym"
+			background: Rectangle {
+				color: UiConstant.transparent
+			}
 		}
 	}
 
@@ -54,7 +59,5 @@ RowLayout {
 
 		readonly property int radius: 15
 		readonly property real borderWidth: 0.5
-
-		readonly property string defaultHabitName: "Go Gym"
 	}
 }

@@ -45,8 +45,8 @@ qt6_add_qml_module(${PROJECT_NAME}
         component/FrequencyDataField.qml
         component/SaveDischargeSelector.qml
         component/HabitNameDataField.qml
-        component/TargetPokeDataField.qml
-        component/TimeDataField.qml
+        component/PokemonDataField.qml
+        component/TargetDataField.qml
         component/PokedexDelegate.qml
         component/PokedexPopup.qml
         component/HabitDetailView.qml

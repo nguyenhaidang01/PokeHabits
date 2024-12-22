@@ -15,7 +15,7 @@ class PokeApiService : public QObject {
 	Q_OBJECT
 
 public:
-	explicit PokeApiService(QObject* parent = nullptr);
+	explicit PokeApiService(QString pokemonInfoFolder, QObject* parent = nullptr);
 
 	void fetchJsonFile(int id);
 	Pokemon readJsonFile(int id);

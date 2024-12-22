@@ -13,6 +13,8 @@ import "../component"
 Popup {
 	id: root
 
+	signal selectedIdChanged(int id)
+
 	property QtObject pokemonModel: null
 
 	width: internal.defaultPopupWidth
@@ -90,6 +92,14 @@ Popup {
 			delegate: PokedexDelegate {
 				pokemonName: name
 				pokemonUrl: image
+
+				MouseArea {
+					anchors.fill: parent
+					onClicked: function() {
+						root.selectedIdChanged(id);
+						root.close();
+					}
+				}
 			}
 		}
 	}

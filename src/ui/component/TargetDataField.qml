@@ -1,19 +1,20 @@
 /******************************************************************************
 **
-** File      TimeDataField.qml
+** File      TargetDataField.qml
 ** Author    Dang Nguyen
 **
 ******************************************************************************/
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Basic
 import QtQuick.Layouts
 import "../component"
 
 RowLayout {
 	id: root
 
-	property alias unit: unit.text
+	property alias unit: targetUnit.text
+	property alias value: targetValueField.text
 
 	Layout.fillWidth: true
 	Layout.preferredHeight: 48
@@ -26,7 +27,7 @@ RowLayout {
 
 		TextWithPokeball {
 			anchors.verticalCenter: parent.verticalCenter
-			text: "TIME"
+			text: "TARGET"
 		}
 	}
 
@@ -41,9 +42,10 @@ RowLayout {
 			radius: internal.radius
 			border.width: internal.borderWidth
 
-			Text {
-				anchors.fill: parent
+			TextField {
+				id: targetValueField
 
+				anchors.fill: parent
 				font {
 					pixelSize: 21
 					weight: Font.Medium
@@ -51,7 +53,14 @@ RowLayout {
 				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				text: "1"
+
+				validator: IntValidator {
+					bottom: 1
+					top: 1000
+				}
+				background: Rectangle {
+					color: UiConstant.transparent
+				}
 			}
 		}
 
@@ -68,10 +77,9 @@ RowLayout {
 			border.width: internal.borderWidth
 
 			Text {
-				id: unit
+				id: targetUnit
 
 				anchors.fill: parent
-
 				font {
 					pixelSize: 21
 					weight: Font.Medium

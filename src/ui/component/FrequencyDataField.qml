@@ -13,6 +13,8 @@ import "../component"
 RowLayout {
 	id: root
 
+	property alias frequency: value.text
+
 	spacing: 0
 
 	states: [
@@ -48,6 +50,7 @@ RowLayout {
 		border.width: internal.borderWidth
 
 		Text {
+			id: value
 			anchors.fill: parent
 
 			font {
@@ -58,7 +61,7 @@ RowLayout {
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 
-			text: "Everyday"
+			text: "everyday"
 		}
 
 		Image {

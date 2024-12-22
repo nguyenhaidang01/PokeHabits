@@ -1,6 +1,6 @@
 /******************************************************************************
 **
-** File      TargetPokeDataField.qml
+** File      PokemonDataField.qml
 ** Author    Dang Nguyen
 **
 ******************************************************************************/
@@ -13,8 +13,9 @@ import "../component"
 RowLayout {
 	id: root
 
-	property string pokemonUrl: internal.defaultPokemonUrl
+	property QtObject controller: null
 	property Popup pokedexPopup: null
+	property int pokeId: internal.defaultPokeId
 
 	Layout.alignment: Qt.AlignLeft
 	spacing: 0
@@ -41,7 +42,7 @@ RowLayout {
 			height: internal.pokemonSize
 			anchors.centerIn: parent
 
-			source: root.pokemonUrl
+			source: root.controller.getPokemonImage(root.pokeId)
 		}
 
 		Image {
@@ -74,7 +75,7 @@ RowLayout {
 		readonly property int editIconSize: 40
 		readonly property int pokemonSize: 150
 
-		readonly property string defaultPokemonUrl: "qrc:/ui/assets/bulbasaur.svg"
+		readonly property int defaultPokeId: 1 // Bulbasaur Id
 		readonly property string editUrl: "qrc:/ui/assets/pen.svg"
 	}
 }

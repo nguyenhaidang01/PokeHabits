@@ -13,6 +13,9 @@ import "../component"
 RowLayout {
 	id: root
 
+	signal save()
+	signal discharge()
+
 	spacing: internal.spacing
 
 	Item {
@@ -31,6 +34,10 @@ RowLayout {
 			height: internal.iconSize
 
 			source: internal.saveUrl
+			MouseArea {
+				anchors.fill: parent
+				onClicked: save()
+			}
 		}
 
 		Text {
@@ -60,6 +67,10 @@ RowLayout {
 			height: internal.iconSize
 
 			source: internal.dischargeUrl
+			MouseArea {
+				anchors.fill: parent
+				onClicked: discharge()
+			}
 		}
 
 		Text {

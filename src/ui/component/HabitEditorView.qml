@@ -14,8 +14,8 @@ import "../component"
 Rectangle {
 	id: root
 
-	property QtObject uiService: null
 	property QtObject pokemonModel: null
+	property QtObject controller: null
 
 	color: internal.backgroundColor
 
@@ -29,7 +29,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				root.uiService.changeToPreviousView();
+				internal.uiService.changeToPreviousView();
 			}
 		}
 
@@ -39,6 +39,7 @@ Rectangle {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
+			controller: root.controller
 			pokedexPopup: pokedexPopup
 		}
 	}
@@ -56,6 +57,8 @@ Rectangle {
 
 	QtObject {
 		id: internal
+
+		property QtObject uiService: root.controller ? root.controller.uiService : null
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222

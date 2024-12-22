@@ -27,7 +27,6 @@
 #include "Pokemon.h"
 
 #define APIURL "https://pokeapi.co/api/v2/pokemon/%1"
-#define POKEMONFOLDERNAME "/Pokemon"
 
 namespace {
 
@@ -44,9 +43,9 @@ void createFolder(QString path) {
 
 }
 
-PokeApiService::PokeApiService(QObject *parent)
+PokeApiService::PokeApiService(QString pokemonInfoFolder, QObject *parent)
     : QObject(parent)
-    , m_pokemonInfoFolder { QStandardPaths::writableLocation(QStandardPaths::AppDataLocation).append(POKEMONFOLDERNAME) }
+    , m_pokemonInfoFolder{ pokemonInfoFolder }
 {
 	createFolder(m_pokemonInfoFolder);
 	connect(QGuiApplication::instance(), &QGuiApplication::aboutToQuit,
