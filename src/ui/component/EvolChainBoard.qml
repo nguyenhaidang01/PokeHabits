@@ -53,7 +53,7 @@ Item {
 						Layout.alignment: Qt.AlignLeft
 
 						elementUrl: internal.defaultElementUrl
-						pokemonUrl: internal.defaultPokemonUrl
+						pokemonImage: internal.defaultPokemonUrl
 					}
 
 					Item {
@@ -91,7 +91,7 @@ Item {
 						Layout.alignment: Qt.AlignHCenter
 
 						elementUrl: internal.defaultElementUrl
-						pokemonUrl: internal.defaultPokemonUrl
+						pokemonImage: internal.defaultPokemonUrl
 					}
 
 					Item {
@@ -129,7 +129,7 @@ Item {
 						Layout.alignment: Qt.AlignRight
 
 						elementUrl: internal.defaultElementUrl
-						pokemonUrl: internal.defaultPokemonUrl
+						pokemonImage: internal.defaultPokemonUrl
 					}
 				}
 			}

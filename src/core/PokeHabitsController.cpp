@@ -32,7 +32,9 @@ PokeHabitsController::PokeHabitsController(QObject *parent)
     , m_pokemonInfoFolder{ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation).append(POKEMONFOLDERNAME) }
 {
 	m_pokeApiService = std::make_unique<PokeApiService>(m_pokemonInfoFolder);
+
 	createPokemonModelRange(1, POKEIDMAX);
+	m_pokemonHelper = new PokemonHelper(m_pokemonModel, m_pokemonInfoFolder);
 
 	const auto &dates = createCalendarListForYear(QDate::currentDate().year());
 	m_calendarModel = new CalendarModel(std::make_shared<QVector<QDate>>(dates));
@@ -58,32 +60,9 @@ UiService* PokeHabitsController::uiService()
 	return m_uiService;
 }
 
-QString PokeHabitsController::getPokemonName(int id)
+PokemonHelper* PokeHabitsController::pokemonHelper()
 {
-	QString filePath = QDir(m_pokemonInfoFolder).filePath(QString("%1.json").arg(id));
-	if (QFile::exists(filePath)) {
-		for (const Pokemon &pokemon : *(m_pokemonModel->list())) {
-			if (pokemon.id == id) {
-				return pokemon.name;
-			}
-		}
-	}
-
-	return QString();
-}
-
-QString PokeHabitsController::getPokemonImage(int id)
-{
-	QString filePath = QDir(m_pokemonInfoFolder).filePath(QString("%1.json").arg(id));
-	if (QFile::exists(filePath)) {
-		for (const Pokemon &pokemon : *(m_pokemonModel->list())) {
-			if (pokemon.id == id) {
-				return pokemon.image;
-			}
-		}
-	}
-
-	return QString();
+	return m_pokemonHelper;
 }
 
 void PokeHabitsController::appendHabit(int pokeId, QString habitName, QString targetUnit,

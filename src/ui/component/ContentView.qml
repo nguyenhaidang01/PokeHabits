@@ -58,8 +58,8 @@ Rectangle {
 				implicitHeight: 145
 
 				habitName: name
-				pokemonName: root.controller.getPokemonName(pokeId)
-				pokemonUrl: root.controller.getPokemonImage(pokeId)
+				pokemonName: internal.pokemonHelper.pokemonName(pokeId)
+				pokemonImage: internal.pokemonHelper.pokemonImage(pokeId)
 
 				MouseArea {
 					anchors.fill: parent
@@ -111,6 +111,7 @@ Rectangle {
 		readonly property color backgroundColor: UiConstant.pureWhite
 
 		property QtObject uiService: root.controller ? root.controller.uiService : null
+		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
 		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
 	}
 }

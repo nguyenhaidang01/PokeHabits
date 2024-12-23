@@ -42,7 +42,7 @@ RowLayout {
 			height: internal.pokemonSize
 			anchors.centerIn: parent
 
-			source: root.controller.getPokemonImage(root.pokeId)
+			source: internal.pokemonHelper.pokemonImage(root.pokeId)
 		}
 
 		Image {
@@ -68,6 +68,8 @@ RowLayout {
 
 	QtObject {
 		id: internal
+
+		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
 
 		readonly property int radius: 15
 		readonly property real borderWidth: 0.5

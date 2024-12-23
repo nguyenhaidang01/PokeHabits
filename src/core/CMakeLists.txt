@@ -3,8 +3,9 @@ project(core)
 set(SOURCES
 	Pokemon.h Habit.h
 	CalendarModel.h CalendarModel.cpp
-	PokemonModel.h PokemonModel.cpp
 	HabitModel.h HabitModel.cpp
+	PokemonModel.h PokemonModel.cpp
+	PokemonHelper.h PokemonHelper.cpp
 	PokeApiService.h PokeApiService.cpp
 	UiService.h UiService.cpp
 	PokeHabitsController.h PokeHabitsController.cpp

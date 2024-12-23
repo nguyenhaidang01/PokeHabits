@@ -13,7 +13,7 @@ Rectangle {
 	id: root
 
 	property string elementUrl
-	property string pokemonUrl
+	property string pokemonImage
 
 	implicitWidth: internal.frameSize
 	implicitHeight: internal.frameSize
@@ -38,7 +38,7 @@ Rectangle {
 		height: 86
 		anchors.centerIn: parent
 
-		source: root.pokemonUrl
+		source: root.pokemonImage
 	}
 
 	QtObject {

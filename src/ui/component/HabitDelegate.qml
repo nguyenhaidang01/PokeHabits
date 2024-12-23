@@ -16,7 +16,7 @@ Rectangle {
 	property string habitName: internal.defaultHabitName
 	property string pokemonName: internal.defaultPokemonName
 	property string elementUrl: internal.defaultElementUrl
-	property string pokemonUrl: internal.defaultPokemonUrl
+	property string pokemonImage: internal.defaultPokemonImage
 
 	radius: internal.radius
 	color: internal.defaultElementColor
@@ -38,7 +38,7 @@ Rectangle {
 			Layout.leftMargin: 20
 
 			elementUrl: root.elementUrl
-			pokemonUrl: root.pokemonUrl
+			pokemonImage: root.pokemonImage
 		}
 
 		HabitInfo {

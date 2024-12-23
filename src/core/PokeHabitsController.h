@@ -3,8 +3,9 @@
 #include <QMap>
 #include <QDate>
 
-#include "PokemonModel.h"
 #include "HabitModel.h"
+#include "PokemonModel.h"
+#include "PokemonHelper.h"
 #include "UiService.h"
 #include "PokeApiService.h"
 
@@ -17,6 +18,7 @@ class PokeHabitsController : public QObject
 	Q_PROPERTY(PokemonModel* pokemonModel READ pokemonModel CONSTANT)
 	Q_PROPERTY(HabitModel* habitModel READ habitModel CONSTANT)
 	Q_PROPERTY(UiService* uiService READ uiService CONSTANT)
+	Q_PROPERTY(PokemonHelper* pokemonHelper READ pokemonHelper CONSTANT)
 
 public:
 	static PokeHabitsController* getInstance();
@@ -26,12 +28,11 @@ public:
 	HabitModel* habitModel();
 
 	UiService* uiService();
+	PokemonHelper* pokemonHelper();
 
 signals:
 
 public slots:
-	QString getPokemonName(int id);
-	QString getPokemonImage(int id);
 	void appendHabit(int pokeId, QString habitName, QString targetUnit,
 	                 int targetValue, QString frequency);
 
@@ -51,5 +52,6 @@ private:
 	std::unique_ptr<PokeApiService> m_pokeApiService;
 	UiService* m_uiService;
 
+	PokemonHelper* m_pokemonHelper;
 	QString m_pokemonInfoFolder;
 };

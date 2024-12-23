@@ -93,7 +93,7 @@ Rectangle {
 		}
 
 		habitName: internal.defaultHabitName
-		pokemonUrl: internal.defaultPokemonUrl
+		pokemonImage: internal.defaultPokemonUrl
 
 		onOpenEditorView: function() {
 			root.uiService.changeToHabitEditorView();

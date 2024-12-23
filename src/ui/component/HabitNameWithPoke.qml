@@ -14,7 +14,7 @@ Item {
 	id: root
 
 	property string habitName
-	property string pokemonUrl
+	property string pokemonImage
 
 	signal openEditorView()
 
@@ -33,7 +33,7 @@ Item {
 
 			Image {
 				anchors.fill: parent
-				source: root.pokemonUrl
+				source: root.pokemonImage
 			}
 		}
 

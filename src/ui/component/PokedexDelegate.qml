@@ -14,7 +14,7 @@ Item {
 	id: root
 
 	property string pokemonName: internal.defaultPokemonName
-	property string pokemonUrl: internal.defaultPokemonUrl
+	property string pokemonImage: internal.defaultPokemonUrl
 
 	implicitWidth: internal.defaultDelegateSize
 	implicitHeight: internal.defaultDelegateSize
@@ -37,7 +37,7 @@ Item {
 				height: internal.pokemonSize
 
 				anchors.centerIn: parent
-				source: root.pokemonUrl
+				source: root.pokemonImage
 			}
 		}
 

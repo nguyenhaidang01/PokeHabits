@@ -21,7 +21,7 @@ class PokemonModel : public QAbstractListModel
 public:
 	explicit PokemonModel(QObject *parent = nullptr);
 
-	enum {
+	enum DataRole {
 		IdRole = Qt::UserRole,
 		NameRole,
 		ImageRole,

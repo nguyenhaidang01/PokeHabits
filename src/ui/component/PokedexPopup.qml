@@ -91,7 +91,7 @@ Popup {
 
 			delegate: PokedexDelegate {
 				pokemonName: name
-				pokemonUrl: image
+				pokemonImage: image
 
 				MouseArea {
 					anchors.fill: parent
