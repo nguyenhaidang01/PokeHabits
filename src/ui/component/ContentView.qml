@@ -60,10 +60,13 @@ Rectangle {
 				habitName: name
 				pokemonName: internal.pokemonHelper.pokemonName(pokeId)
 				pokemonImage: internal.pokemonHelper.pokemonImage(pokeId)
+				baseExp: internal.pokemonHelper.pokemonBaseExp(pokeId)
+				exp: root.habitModel.get(index).pokeExp
 
 				MouseArea {
 					anchors.fill: parent
 					onClicked: function() {
+						root.habitModel.selectedHabitIndex = index;
 						internal.uiService.changeToHabitDetailView();
 					}
 				}
@@ -79,7 +82,7 @@ Rectangle {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
-					internal.uiService.changeToHabitEditorView();
+					internal.uiService.changeToHabitEditorView(internal.appendIndex);
 				}
 			}
 		}
@@ -96,6 +99,8 @@ Rectangle {
 
 	QtObject {
 		id: internal
+
+		readonly property int appendIndex: -1
 
 		readonly property int contentMargin: 60
 		readonly property int habitDelegateWidth: root.width - 2 * contentMargin

@@ -15,6 +15,7 @@ Item {
 
 	property Popup pokedexPopup: null
 	property QtObject controller: null
+	property int editHabitIndex
 
 	Item {
 		implicitWidth: internal.contentWidth
@@ -35,6 +36,8 @@ Item {
 
 				controller: root.controller
 				pokedexPopup: root.pokedexPopup
+				pokeId: root.editHabitIndex !== internal.appendIndex ?
+							internal.editHabit.pokeId : internal.defaultPokeId
 			}
 
 			HabitNameDataField {
@@ -42,6 +45,9 @@ Item {
 
 				Layout.fillWidth: true
 				Layout.preferredHeight: 48
+
+				habitName: root.editHabitIndex !== internal.appendIndex ?
+							   internal.editHabit.name : null
 			}
 
 			TargetDataField {
@@ -49,6 +55,11 @@ Item {
 
 				Layout.fillWidth: true
 				Layout.preferredHeight: 48
+
+				unit: root.editHabitIndex !== internal.appendIndex ?
+						  internal.editHabit.targetUnit : internal.defaulTargetUnit
+				value: root.editHabitIndex !== internal.appendIndex ?
+						   internal.editHabit.targetValue : null
 			}
 
 			FrequencyDataField {
@@ -56,6 +67,9 @@ Item {
 
 				Layout.fillWidth: true
 				Layout.preferredHeight: 60
+
+				frequency: root.editHabitIndex !== internal.appendIndex ?
+							   internal.editHabit.frequency : "everyday"
 			}
 
 			SaveDischargeSelector {
@@ -72,7 +86,14 @@ Item {
 					var targetUnit = targetDataField.unit;
 					var targetValue = targetDataField.value;
 					var frequency = frequencyDataField.frequency;
-					root.controller.appendHabit(pokeId, habitName, targetUnit, targetValue, frequency);
+
+					if (root.editHabitIndex == internal.appendIndex) {
+						root.controller.appendHabit(pokeId, habitName, targetUnit, targetValue, frequency);
+					} else {
+						root.controller.replaceHabit(root.editHabitIndex, pokeId, habitName,
+													 targetUnit, targetValue, frequency);
+					}
+
 					internal.uiService.changeToPreviousView();
 				}
 				onDischarge: internal.uiService.changeToPreviousView();
@@ -91,7 +112,16 @@ Item {
 	QtObject {
 		id: internal
 
+		readonly property int appendIndex: -1
+		readonly property int defaultPokeId: 1
+		readonly property string defaulTargetUnit: "Time"
+
 		property QtObject uiService: root.controller ? root.controller.uiService : null
+		property QtObject habitModel: root.controller ? root.controller.habitModel : null
+
+		property var editHabit: root.editHabitIndex !== appendIndex ?
+									    habitModel.get(root.editHabitIndex) : null
+
 		readonly property int contentWidth: 834
 		readonly property int contentHeight: 708
 	}

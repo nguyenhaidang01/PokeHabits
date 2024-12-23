@@ -13,10 +13,12 @@ import "../component"
 Rectangle {
 	id: root
 
-	property string habitName: internal.defaultHabitName
-	property string pokemonName: internal.defaultPokemonName
+	property string habitName
+	property string pokemonName
+	property string pokemonImage
+	property int baseExp
+	property int exp
 	property string elementUrl: internal.defaultElementUrl
-	property string pokemonImage: internal.defaultPokemonImage
 
 	radius: internal.radius
 	color: internal.defaultElementColor
@@ -51,6 +53,8 @@ Rectangle {
 
 			habitName: root.habitName
 			pokemonName: root.pokemonName
+			exp: root.exp
+			baseExp: root.baseExp
 		}
 
 		Item {
@@ -78,10 +82,6 @@ Rectangle {
 		readonly property int checkboxSize: 50
 		readonly property int favoriteSize: 50
 		readonly property color defaultElementColor: UiConstant.lightGrassColor
-
-		readonly property string defaultHabitName: "Go Gym"
-		readonly property string defaultPokemonName: "Bulbasaur"
-		readonly property string defaultPokemonUrl: "qrc:/ui/assets/bulbasaur.svg"
 		readonly property string defaultElementUrl: "qrc:/ui/assets/grass.svg"
 	}
 }

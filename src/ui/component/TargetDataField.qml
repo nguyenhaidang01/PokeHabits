@@ -87,14 +87,13 @@ RowLayout {
 				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-
-				text: internal.getUnit(internal.unitIndex)
 			}
 
 			MouseArea {
 				anchors.fill: parent
 				onClicked: function() {
 					internal.gainUnitIndex();
+					targetUnit.text = internal.getUnit(internal.unitIndex);
 				}
 			}
 		}

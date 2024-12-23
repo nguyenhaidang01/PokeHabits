@@ -29,14 +29,6 @@ void UiService::changeToContentView()
 	emit uiStateChanged(m_currentState);
 }
 
-void UiService::changeToHabitEditorView()
-{
-	m_previouState = m_currentState;
-	m_currentState = cEditorStateName;
-
-	emit uiStateChanged(m_currentState);
-}
-
 void UiService::changeToHabitDetailView()
 {
 	m_previouState = m_currentState;
@@ -50,4 +42,13 @@ void UiService::changeToPreviousView()
 	emit uiStateChanged(m_previouState);
 
 	std::swap(m_currentState, m_previouState);
+}
+
+void UiService::changeToHabitEditorView(int habitIndex)
+{
+	m_previouState = m_currentState;
+	m_currentState = cEditorStateName;
+
+	emit editIndexChanged(habitIndex);
+	emit uiStateChanged(m_currentState);
 }

@@ -76,7 +76,7 @@ QHash<int, QByteArray> HabitModel::roleNames() const
 	names[NameRole] = "name";
 	names[PokeIdRole] = "pokeId";
 	names[PokeExpRole] = "pokeExp";
-	names[PokeLvlRole] = "pokeLvlRole";
+    names[PokeLvlRole] = "pokeLvl";
 	names[PokeHasNextFormRole] = "pokeHasNextForm";
 	names[StartDateRole] = "startDate";
 	names[StretchRole] = "stretch";
@@ -106,4 +106,47 @@ void HabitModel::appendItem(Habit &habit)
 	beginInsertRows(QModelIndex(), index, index);
 	m_List->append(habit);
 	endInsertRows();
+}
+
+void HabitModel::replaceItem(int index, Habit &habit)
+{
+	beginInsertRows(QModelIndex(), index, index);
+	m_List->replace(index, habit);
+	endInsertRows();
+}
+
+int HabitModel::selectedHabitIndex() const
+{
+	return m_selectedHabitIndex;
+}
+
+void HabitModel::setSelectedHabitIndex(int newSelectedHabitIndex)
+{
+	if (m_selectedHabitIndex == newSelectedHabitIndex) {
+		return;
+	}
+	m_selectedHabitIndex = newSelectedHabitIndex;
+	emit selectedHabitIndexChanged();
+}
+
+QVariantMap HabitModel::get(int index) const
+{
+	if (index < 0 || index >= m_List->size()) {
+		return QVariantMap();
+	}
+
+	const auto &item = m_List->at(index);
+	return QVariantMap {
+			{"name", item.name},
+			{"pokeId", item.pokeId},
+			{"pokeExp", item.evolState.exp},
+			{"pokeLvl", item.evolState.lvl},
+			{"pokeHasNextForm", item.evolState.hasNextForm},
+			{"startDate", item.statistics.startDate.toString("MMMM d, yyyy")},
+			{"stretch", item.statistics.stretch},
+			{"longestStretch", item.statistics.longestStretch},
+			{"targetUnit", item.statistics.targetUnit},
+			{"targetValue", item.statistics.targetValue},
+			{"frequency", "everyday"} // TODO
+		};
 }

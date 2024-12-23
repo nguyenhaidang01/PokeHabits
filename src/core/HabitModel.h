@@ -17,6 +17,8 @@ using HabitListPtr = std::shared_ptr<QVector<Habit>>;
 class HabitModel : public QAbstractListModel
 {
 	Q_OBJECT
+	Q_PROPERTY(int selectedHabitIndex READ selectedHabitIndex
+	           WRITE setSelectedHabitIndex NOTIFY selectedHabitIndexChanged FINAL)
 
 public:
 	explicit HabitModel(HabitListPtr habitListPtr, QObject *parent = nullptr);
@@ -44,8 +46,19 @@ public:
 	HabitListPtr list() const;
 	void setList(HabitListPtr list);
 
+	int selectedHabitIndex() const;
+	void setSelectedHabitIndex(int newSelectedHabitIndex);
+
 	void appendItem(Habit &habit);
+	void replaceItem(int index, Habit &habit);
+
+public slots:
+	QVariantMap get(int index) const;
+
+signals:
+	void selectedHabitIndexChanged();
 
 private:
+	int m_selectedHabitIndex;
 	HabitListPtr m_List = nullptr;
 };

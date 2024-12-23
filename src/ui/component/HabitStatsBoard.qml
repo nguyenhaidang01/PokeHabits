@@ -13,12 +13,7 @@ import "../component"
 Item {
 	id: root
 
-	property string startDate
-	property int strentch
-	property int currentExp
-	property int currentLvl
-	property int unit
-	property string frequency
+	property var habitData
 
 	ColumnLayout {
 		anchors.fill: parent
@@ -33,22 +28,22 @@ Item {
 
 			HabitStat {
 				stateName: "START DATE"
-				stateValue: root.startDate
+				stateValue: root.habitData.startDate
 			}
 
 			HabitStat {
 				stateName: "STRENTCH"
-				stateValue: root.strentch
+				stateValue: root.habitData.stretch
 			}
 
 			HabitStat {
 				stateName: "CURRENT EXP"
-				stateValue: root.currentExp
+				stateValue: root.habitData.pokeExp
 			}
 
 			HabitStat {
 				stateName: "CURRENT LVL"
-				stateValue: root.currentLvl
+				stateValue: root.habitData.pokeLvl
 			}
 		}
 
@@ -62,12 +57,12 @@ Item {
 
 			HabitStat {
 				stateName: "UNIT"
-				stateValue: root.unit
+				stateValue: root.habitData.targetValue
 			}
 
 			HabitStat {
 				stateName: "FREQUENCY"
-				stateValue: root.frequency
+				stateValue: root.habitData.frequency
 			}
 
 			Item {

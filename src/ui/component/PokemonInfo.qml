@@ -13,8 +13,8 @@ import "../component"
 Item {
 	id: root
 
-	property string pokemonName: internal.defaultPokemonName
 	property string pokemonId: internal.defaultPokemonId
+	property string pokemonName: internal.defaultPokemonName
 
 	ColumnLayout {
 		anchors.fill: parent
@@ -44,7 +44,7 @@ Item {
 					family: "Poppins"
 				}
 
-				text: "No " + root.pokemonId
+				text: "No " + ("0000" + root.pokemonId).slice(-4)
 			}
 		}
 

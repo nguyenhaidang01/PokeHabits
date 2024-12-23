@@ -35,6 +35,8 @@ signals:
 public slots:
 	void appendHabit(int pokeId, QString habitName, QString targetUnit,
 	                 int targetValue, QString frequency);
+	void replaceHabit(int index, int pokeId, QString habitName, QString targetUnit,
+	             int targetValue, QString frequency);
 
 private slots:
 	void appendPokemon(int id);

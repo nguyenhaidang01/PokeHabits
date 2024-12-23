@@ -13,8 +13,10 @@ import "../component"
 Item {
 	id: root
 
-	property string habitName
-	property string pokemonName
+	required property string habitName
+	required property string pokemonName
+	required property int exp
+	required property int baseExp
 
 	implicitWidth: 275
 	implicitHeight: 115
@@ -70,7 +72,7 @@ Item {
 					family: "Poppins"
 				}
 
-				text: "999/999"
+				text: ("000" + root.exp).slice(-3) + "/" + ("000" + root.baseExp).slice(-3)
 				color: "#1D1D1D"
 			}
 

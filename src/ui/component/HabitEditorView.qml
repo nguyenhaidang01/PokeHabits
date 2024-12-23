@@ -16,6 +16,7 @@ Rectangle {
 
 	property QtObject pokemonModel: null
 	property QtObject controller: null
+	property int editHabitIndex
 
 	color: internal.backgroundColor
 
@@ -41,6 +42,7 @@ Rectangle {
 
 			controller: root.controller
 			pokedexPopup: pokedexPopup
+			editHabitIndex: root.editHabitIndex
 		}
 	}
 

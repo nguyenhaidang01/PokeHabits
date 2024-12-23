@@ -90,6 +90,19 @@ void PokeHabitsController::appendHabit(int pokeId, QString habitName, QString ta
 	m_habitModel->appendItem(habit);
 }
 
+void PokeHabitsController::replaceHabit(int index, int pokeId, QString habitName, QString targetUnit,
+             int targetValue, QString frequency)
+{
+	Habit habit = m_habitModel->list()->at(index);
+
+	habit.pokeId = pokeId;
+	habit.name = habitName;
+	habit.statistics.targetUnit = targetUnit;
+	habit.statistics.targetValue = targetValue;
+
+	m_habitModel->replaceItem(index, habit);
+}
+
 QVector<QDate> PokeHabitsController::createCalendarListForYear(int year)
 {
 	QVector<QDate> dates;

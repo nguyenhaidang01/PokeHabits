@@ -49,6 +49,10 @@ ApplicationWindow  {
 				function onUiStateChanged(uiState) {
 					mainViewLoader.state = uiState;
 				}
+
+				function onEditIndexChanged(index) {
+					internal.habitIndex = index;
+				}
 			}
 
 			Component {
@@ -66,19 +70,22 @@ ApplicationWindow  {
 				HabitEditorView {
 					pokemonModel: internal.pokemonModel
 					controller: internal.controller
+					editHabitIndex: internal.habitIndex
 				}
 			}
 
 			Component {
 				id: habitDetailView
 
-				HabitDetailView { uiService: internal.uiService }
+				HabitDetailView { controller: internal.controller }
 			}
 		}
 	}
 
 	QtObject {
 		id: internal
+
+		property int habitIndex: -1
 
 		readonly property int windowWidth: 1280
 		readonly property int windowHeight: 960

@@ -13,7 +13,7 @@ import "../component"
 Rectangle {
 	id: root
 
-	property QtObject uiService: null
+	property QtObject controller: null
 
 	color: internal.backgroundColor
 
@@ -27,7 +27,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				root.uiService.changeToContentView();
+				internal.uiService.changeToContentView();
 			}
 		}
 
@@ -53,6 +53,9 @@ Rectangle {
 						Layout.preferredHeight: 126
 
 						Layout.alignment: Qt.AlignTop
+
+						pokemonId: internal.selectedHabit.pokeId
+						pokemonName: internal.pokemonHelper.pokemonName(pokemonId)
 					}
 
 					HabitStatsBoard {
@@ -61,12 +64,7 @@ Rectangle {
 						Layout.fillWidth: true
 						Layout.preferredHeight: 194
 
-						strentch: 100
-						currentExp: 100
-						currentLvl: 15
-						unit: 1
-						startDate: "10/10/2024"
-						frequency: "everyday"
+						habitData: internal.selectedHabit
 					}
 
 					EvolChainBoard {
@@ -92,25 +90,30 @@ Rectangle {
 			topMargin: internal.headerHeight/2
 		}
 
-		habitName: internal.defaultHabitName
-		pokemonImage: internal.defaultPokemonUrl
+		habitName: internal.selectedHabit.name
+		pokemonImage: internal.selectedPokemonImage
 
 		onOpenEditorView: function() {
-			root.uiService.changeToHabitEditorView();
+			internal.uiService.changeToHabitEditorView(internal.habitModel.selectedHabitIndex);
 		}
 	}
 
 	QtObject {
 		id: internal
 
+		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
+		property QtObject uiService: root.controller ? root.controller.uiService : null
+		property QtObject habitModel: root.controller ? root.controller.habitModel : null
+
+		property var selectedHabit: habitModel.get(habitModel.selectedHabitIndex)
+		property int selectedPokemonId: selectedHabit.pokeId
+		property string selectedPokemonImage: pokemonHelper.pokemonImage(selectedPokemonId)
+
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222
 
 		readonly property int pokedexPopupWidth: 840
 		readonly property int pokedexPopupHeight: 922
-
-		readonly property string defaultHabitName: "Go Gym"
-		readonly property string defaultPokemonUrl: "qrc:/ui/assets/bulbasaur.svg"
 
 		readonly property string editUrl: "qrc:/ui/assets/pen.svg"
 		readonly property color backgroundColor: UiConstant.pureWhite

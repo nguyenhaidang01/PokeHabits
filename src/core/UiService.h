@@ -17,12 +17,13 @@ public:
 
 public slots:
 	void changeToContentView();
-	void changeToHabitEditorView();
 	void changeToHabitDetailView();
 	void changeToPreviousView();
+	void changeToHabitEditorView(int habitIndex);
 
 signals:
 	void uiStateChanged(QString uiState);
+	void editIndexChanged(int index);
 
 private:
 	QString m_currentState;
