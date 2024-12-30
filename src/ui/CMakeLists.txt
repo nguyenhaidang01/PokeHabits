@@ -64,6 +64,7 @@ qt6_add_qml_module(${PROJECT_NAME}
         assets/rightdirection.svg
         assets/option.svg
         assets/favorite.svg
+        assets/done.svg
         assets/search.svg
         assets/bigsearch.svg
         assets/add.svg

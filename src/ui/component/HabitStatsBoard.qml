@@ -28,7 +28,7 @@ Item {
 
 			HabitStat {
 				stateName: "START DATE"
-				stateValue: root.habitData.startDate
+				stateValue: root.habitData.startDateStr
 			}
 
 			HabitStat {

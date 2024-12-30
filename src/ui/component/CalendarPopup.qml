@@ -98,7 +98,8 @@ Popup {
 				anchors.bottom: parent.bottom
 
 				radius: 15
-				color: isCurrentDate && index !== dateList.currentIndex ? internal.highlightColor_50 : UiConstant.transparent
+				color: isCurrentDate && index !== dateList.currentIndex ?
+						   internal.highlightColor_50 : UiConstant.transparent
 
 				Text {
 					anchors.fill: parent
@@ -120,7 +121,8 @@ Popup {
 					anchors.fill: parent
 					onClicked: function() {
 						dateList.currentIndex = index;
-						root.controller.setSelectedDate(day, numericMonth, year);
+						internal.calendarModel.setSelectedDate(year, monthNumber, day);
+						root.close();
 					}
 				}
 			}

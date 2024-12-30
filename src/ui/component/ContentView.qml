@@ -54,20 +54,27 @@ Rectangle {
 			model: root.habitModel
 
 			delegate: HabitDelegate {
+				visible: isExist
 				implicitWidth: internal.habitDelegateWidth
 				implicitHeight: 145
 
 				habitName: name
-				pokemonName: internal.pokemonHelper.pokemonName(pokeId)
-				pokemonImage: internal.pokemonHelper.pokemonImage(pokeId)
-				baseExp: internal.pokemonHelper.pokemonBaseExp(pokeId)
-				exp: root.habitModel.get(index).pokeExp
+				doneStatus: done
+				exp: pokeExp
+				pokeName: internal.pokemonHelper.pokemonName(pokeId)
+				pokeImage: internal.pokemonHelper.pokemonImage(pokeId)
+				pokeBaseExp: internal.pokemonHelper.pokemonBaseExp(pokeId)
 
-				MouseArea {
-					anchors.fill: parent
-					onClicked: function() {
-						root.habitModel.selectedHabitIndex = index;
-						internal.uiService.changeToHabitDetailView();
+				onOpenDetailHabit: function() {
+					root.habitModel.selectedHabitIndex = index;
+					internal.uiService.changeToHabitDetailView();
+				}
+
+				onRequestChangeDoneStatus: function(status) {
+					var currentDateStr = internal.calendarModel.currentDateStr;
+					var selectedDateStr = internal.selectedDateStr;
+					if (selectedDateStr === currentDateStr) {
+						root.habitModel.toggleDoneStatus(index, selectedDateStr);
 					}
 				}
 			}
@@ -118,5 +125,7 @@ Rectangle {
 		property QtObject uiService: root.controller ? root.controller.uiService : null
 		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
 		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
+
+		property string selectedDateStr: internal.calendarModel.selectedDateStr
 	}
 }

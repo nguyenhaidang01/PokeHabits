@@ -38,6 +38,8 @@ PokeHabitsController::PokeHabitsController(QObject *parent)
 
 	const auto &dates = createCalendarListForYear(QDate::currentDate().year());
 	m_calendarModel = new CalendarModel(std::make_shared<QVector<QDate>>(dates));
+
+	connect(m_calendarModel, &CalendarModel::selectedDateChanged, m_habitModel, &HabitModel::setSelectedDate);
 }
 
 CalendarModel* PokeHabitsController::calendarModel()

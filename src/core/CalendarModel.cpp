@@ -87,9 +87,9 @@ int CalendarModel::currentDateIndex() const
 	return m_List->indexOf(QDate::currentDate());
 }
 
-QString CalendarModel::selectedDateStr() const
+QString CalendarModel::currentDateStr() const
 {
-	return m_selectedDate.toString("MMMM d, yyyy");
+	return QDate::currentDate().toString("MMMM d, yyyy");
 }
 
 QDate CalendarModel::selectedDate() const
@@ -97,10 +97,18 @@ QDate CalendarModel::selectedDate() const
 	return m_selectedDate;
 }
 
-void CalendarModel::setSelectedDate(QDate newSelectedDate)
+QString CalendarModel::selectedDateStr() const
 {
+	return m_selectedDate.toString("MMMM d, yyyy");
+}
+
+void CalendarModel::setSelectedDate(int year, int month, int day)
+{
+	QDate newSelectedDate = QDate(year, month, day);
 	if (newSelectedDate == m_selectedDate) {
 		return;
 	}
+
 	m_selectedDate = newSelectedDate;
+	emit selectedDateChanged(m_selectedDate);
 }

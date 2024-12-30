@@ -16,6 +16,7 @@ class CalendarModel : public QAbstractListModel
 {
 	Q_OBJECT
 	Q_PROPERTY(int currentDateIndex READ currentDateIndex CONSTANT)
+	Q_PROPERTY(QString currentDateStr READ currentDateStr CONSTANT)
 	Q_PROPERTY(QString selectedDateStr READ selectedDateStr NOTIFY selectedDateChanged FINAL)
 
 public:
@@ -40,13 +41,16 @@ public:
 	void setList(CalendarListPtr list);
 
 	int currentDateIndex() const;
-	QString selectedDateStr() const;
+	QString currentDateStr() const;
 
 	QDate selectedDate() const;
-	void setSelectedDate(QDate newSelectedDate);
+	QString selectedDateStr() const;
+
+public slots:
+	void setSelectedDate(int year, int month, int day);
 
 signals:
-	void selectedDateChanged();
+	void selectedDateChanged(QDate date);
 
 private:
 	int m_currentDateIndex;

@@ -9,6 +9,7 @@
 
 #include <QAbstractListModel>
 #include <QVector>
+#include <QDate>
 
 struct Habit;
 
@@ -26,11 +27,13 @@ public:
 
 	enum {
 		NameRole = Qt::UserRole,
+		DoneRole,
+		IsExistRole,
 		PokeIdRole,
 		PokeExpRole,
 		PokeLvlRole,
 		PokeHasNextFormRole,
-		StartDateRole,
+		StartDateStrRole,
 		StretchRole,
 		LongestStretchRole,
 		TargetValueRole,
@@ -40,6 +43,7 @@ public:
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+	bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 	Qt::ItemFlags flags(const QModelIndex& index) const override;
 	virtual QHash<int, QByteArray> roleNames() const override;
 
@@ -50,15 +54,20 @@ public:
 	void setSelectedHabitIndex(int newSelectedHabitIndex);
 
 	void appendItem(Habit &habit);
-	void replaceItem(int index, Habit &habit);
+	bool replaceItem(int index, Habit &habit);
 
 public slots:
 	QVariantMap get(int index) const;
+	void setSelectedDate(QDate newSelectedDate);
+	void toggleDoneStatus(const int index, QString selectedDateStr);
 
 signals:
 	void selectedHabitIndexChanged();
+	void selectedDateChanged();
 
 private:
+	void initConnection();
+	QDate m_selectedDate;
 	int m_selectedHabitIndex;
 	HabitListPtr m_List = nullptr;
 };

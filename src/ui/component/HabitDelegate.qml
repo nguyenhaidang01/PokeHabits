@@ -13,11 +13,16 @@ import "../component"
 Rectangle {
 	id: root
 
+	signal openDetailHabit()
+	signal requestChangeDoneStatus(bool status)
+
 	property string habitName
-	property string pokemonName
-	property string pokemonImage
-	property int baseExp
+	property bool doneStatus
 	property int exp
+	property string pokeName
+	property string pokeImage
+	property int pokeBaseExp
+
 	property string elementUrl: internal.defaultElementUrl
 
 	radius: internal.radius
@@ -34,13 +39,31 @@ Rectangle {
 
 			radius: internal.checkboxSize/2
 			color: UiConstant.pureBlack_7
+
+			Image {
+				visible: root.doneStatus
+				anchors.fill: parent
+				source: "qrc:/ui/assets/done.svg"
+			}
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: function() {
+					root.requestChangeDoneStatus(!root.doneStatus);
+				}
+			}
 		}
 
 		PokemonFrame {
 			Layout.leftMargin: 20
 
 			elementUrl: root.elementUrl
-			pokemonImage: root.pokemonImage
+			pokemonImage: root.pokeImage
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: root.openDetailHabit()
+			}
 		}
 
 		HabitInfo {
@@ -52,9 +75,14 @@ Rectangle {
 			Layout.leftMargin: 25
 
 			habitName: root.habitName
-			pokemonName: root.pokemonName
+			pokemonName: root.pokeName
 			exp: root.exp
-			baseExp: root.baseExp
+			baseExp: root.pokeBaseExp
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: openDetailHabit()
+			}
 		}
 
 		Item {
