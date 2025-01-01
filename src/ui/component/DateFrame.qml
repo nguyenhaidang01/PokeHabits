@@ -13,7 +13,7 @@ import "../component"
 Item {
 	id: root
 
-	property QtObject calendarModel: null
+	property string date
 
 	RowLayout {
 		anchors.fill: parent
@@ -39,7 +39,7 @@ Item {
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
 
-			text: calendarModel.selectedDateStr
+			text: root.date
 		}
 
 		Image {

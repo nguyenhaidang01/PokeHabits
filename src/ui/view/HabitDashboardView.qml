@@ -13,8 +13,9 @@ import "../component"
 Rectangle {
 	id: root
 
+	property QtObject model: null //HabitModel
 	property QtObject controller: null
-	property QtObject habitModel: null
+	property QtObject calendarModel: null //CalendarModel
 
 	color: internal.backgroundColor
 
@@ -32,7 +33,7 @@ Rectangle {
 			Layout.fillWidth: true
 			Layout.preferredHeight: 60
 
-			calendarModel: internal.calendarModel
+			date: internal.selectedDate
 
 			onOpenCalendarPopup: function() {
 				calendarPopup.open();
@@ -51,7 +52,7 @@ Rectangle {
 			clip: true
 
 			spacing:24
-			model: root.habitModel
+			model: root.model
 
 			delegate: HabitDelegate {
 				visible: isExist
@@ -61,21 +62,20 @@ Rectangle {
 				habitName: name
 				doneStatus: done
 				exp: pokeExp
-				pokeName: internal.pokemonHelper.pokemonName(pokeId)
-				pokeImage: internal.pokemonHelper.pokemonImage(pokeId)
-				pokeBaseExp: internal.pokemonHelper.pokemonBaseExp(pokeId)
+				pokeName: internal.pokemonHelper.name(pokeId)
+				pokeImage: internal.pokemonHelper.image(pokeId)
+				pokeBaseExp: internal.pokemonHelper.baseExp(pokeId)
 
 				onOpenDetailHabit: function() {
-					root.habitModel.selectedHabitIndex = index;
+					root.model.selectedHabitIndex = index;
 					internal.uiService.changeToHabitDetailView();
 				}
 
 				onRequestChangeDoneStatus: function(status) {
-					var currentDateStr = internal.calendarModel.currentDateStr;
-					var selectedDateStr = internal.selectedDateStr;
-					if (selectedDateStr === currentDateStr) {
-						root.habitModel.toggleDoneStatus(index, selectedDateStr);
+					if (internal.selectedDate !== internal.currentDate) {
+						return
 					}
+					root.model.toggleDoneStatus(index, internal.selectedDate);
 				}
 			}
 		}
@@ -101,7 +101,7 @@ Rectangle {
 		topMargin: internal.calendarPopupTopMargin
 		leftMargin: internal.calendarPopupLeftMargin
 
-		controller: root.controller
+		model: root.calendarModel
 	}
 
 	QtObject {
@@ -122,10 +122,10 @@ Rectangle {
 
 		readonly property color backgroundColor: UiConstant.pureWhite
 
+		property string currentDate: root.calendarModel.currentDateStr
+		property string selectedDate: root.calendarModel.selectedDateStr
+
 		property QtObject uiService: root.controller ? root.controller.uiService : null
 		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
-		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
-
-		property string selectedDateStr: internal.calendarModel.selectedDateStr
 	}
 }

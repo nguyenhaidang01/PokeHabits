@@ -15,7 +15,7 @@ Popup {
 
 	signal selectedIdChanged(int id)
 
-	property QtObject pokemonModel: null
+	property QtObject model: null // PokemonModel
 
 	width: internal.defaultPopupWidth
 	height: internal.defaultPopupHeight
@@ -87,7 +87,7 @@ Popup {
 			cellHeight: internal.pokedexEntrySize
 
 			clip: true
-			model: root.pokemonModel
+			model: root.model
 
 			delegate: PokedexDelegate {
 				pokemonName: name

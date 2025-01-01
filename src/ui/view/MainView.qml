@@ -43,7 +43,7 @@ Item {
 				}
 
 				function onEditIndexChanged(index) {
-					internal.habitIndex = index;
+					internal.selectedHabitIndex = index;
 				}
 			}
 
@@ -51,8 +51,9 @@ Item {
 				id: habitDashboardView
 
 				HabitDashboardView {
+					model: internal.habitModel
 					controller: internal.controller
-					habitModel: internal.habitModel
+					calendarModel: internal.calendarModel
 				}
 			}
 
@@ -60,16 +61,21 @@ Item {
 				id: habitEditorView
 
 				HabitEditorView {
-					pokemonModel: internal.pokemonModel
+					model: internal.habitModel
 					controller: internal.controller
-					editHabitIndex: internal.habitIndex
+
+					editIndex: internal.selectedHabitIndex
+					pokemonModel: internal.pokemonModel
 				}
 			}
 
 			Component {
 				id: habitDetailView
 
-				HabitDetailView { controller: internal.controller }
+				HabitDetailView {
+					model: internal.habitModel
+					controller: internal.controller
+				}
 			}
 		}
 	}
@@ -77,7 +83,7 @@ Item {
 	QtObject {
 		id: internal
 
-		property int habitIndex: -1
+		property int selectedHabitIndex: -1
 		readonly property int sidebarWidth: 350
 
 		property QtObject controller: pokeHabitsController

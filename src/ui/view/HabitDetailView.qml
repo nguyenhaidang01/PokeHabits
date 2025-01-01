@@ -13,6 +13,7 @@ import "../component"
 Rectangle {
 	id: root
 
+	property QtObject model: null //HabitModel
 	property QtObject controller: null
 
 	color: internal.backgroundColor
@@ -55,7 +56,7 @@ Rectangle {
 						Layout.alignment: Qt.AlignTop
 
 						pokemonId: internal.selectedHabit.pokeId
-						pokemonName: internal.pokemonHelper.pokemonName(pokemonId)
+						pokemonName: internal.pokemonHelper.name(pokemonId)
 					}
 
 					HabitStatsBoard {
@@ -94,7 +95,7 @@ Rectangle {
 		pokemonImage: internal.selectedPokemonImage
 
 		onOpenEditorView: function() {
-			internal.uiService.changeToHabitEditorView(internal.habitModel.selectedHabitIndex);
+			internal.uiService.changeToHabitEditorView(internal.selectedHabitIndex);
 		}
 	}
 
@@ -103,11 +104,11 @@ Rectangle {
 
 		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
 		property QtObject uiService: root.controller ? root.controller.uiService : null
-		property QtObject habitModel: root.controller ? root.controller.habitModel : null
 
-		property var selectedHabit: habitModel.get(habitModel.selectedHabitIndex)
+		property int selectedHabitIndex: root.model.selectedHabitIndex
+		property var selectedHabit: root.model.get(selectedHabitIndex)
 		property int selectedPokemonId: selectedHabit.pokeId
-		property string selectedPokemonImage: pokemonHelper.pokemonImage(selectedPokemonId)
+		property string selectedPokemonImage: pokemonHelper.image(selectedPokemonId)
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222

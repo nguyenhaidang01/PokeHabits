@@ -14,9 +14,11 @@ import "../component"
 Rectangle {
 	id: root
 
-	property QtObject pokemonModel: null
+	property QtObject model: null //HabitModel
 	property QtObject controller: null
-	property int editHabitIndex
+
+	property int editIndex
+	property QtObject pokemonModel: null //PokemonModel
 
 	color: internal.backgroundColor
 
@@ -40,9 +42,11 @@ Rectangle {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
-			controller: root.controller
+			editIndex: root.editIndex
 			pokedexPopup: pokedexPopup
-			editHabitIndex: root.editHabitIndex
+
+			model: root.model
+			controller: root.controller
 		}
 	}
 
@@ -54,7 +58,7 @@ Rectangle {
 
 		anchors.centerIn: parent
 
-		pokemonModel: root.pokemonModel
+		model: root.pokemonModel
 	}
 
 	QtObject {

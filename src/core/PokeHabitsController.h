@@ -14,21 +14,21 @@ class CalendarModel;
 class PokeHabitsController : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(CalendarModel* calendarModel READ calendarModel CONSTANT)
-	Q_PROPERTY(PokemonModel* pokemonModel READ pokemonModel CONSTANT)
-	Q_PROPERTY(HabitModel* habitModel READ habitModel CONSTANT)
-	Q_PROPERTY(UiService* uiService READ uiService CONSTANT)
-	Q_PROPERTY(PokemonHelper* pokemonHelper READ pokemonHelper CONSTANT)
+	Q_PROPERTY(QObject* calendarModel READ calendarModel CONSTANT)
+	Q_PROPERTY(QObject* pokemonModel READ pokemonModel CONSTANT)
+	Q_PROPERTY(QObject* habitModel READ habitModel CONSTANT)
+	Q_PROPERTY(QObject* uiService READ uiService CONSTANT)
+	Q_PROPERTY(QObject* pokemonHelper READ pokemonHelper CONSTANT)
 
 public:
 	static PokeHabitsController* getInstance();
 
-	CalendarModel* calendarModel();
-	PokemonModel* pokemonModel();
-	HabitModel* habitModel();
+	QObject* calendarModel();
+	QObject* pokemonModel();
+	QObject* habitModel();
 
-	UiService* uiService();
-	PokemonHelper* pokemonHelper();
+	QObject* uiService();
+	QObject* pokemonHelper();
 
 signals:
 

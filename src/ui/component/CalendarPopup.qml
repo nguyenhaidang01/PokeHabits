@@ -13,7 +13,7 @@ import "../component"
 Popup {
 	id: root
 
-	property QtObject controller: null
+	property QtObject model: null //CalendarModel
 
 	implicitWidth: internal.defaultWidth
 	implicitHeight: internal.defaultHeight
@@ -34,7 +34,7 @@ Popup {
 
 			Layout.alignment: Qt.AlignHCenter
 
-			calendarModel: internal.calendarModel
+			date: root.model.selectedDateStr
 		}
 
 		ColumnLayout {
@@ -75,7 +75,7 @@ Popup {
 				clip: true
 				highlightMoveDuration: 0
 
-				model: internal.calendarModel
+				model: root.model
 				currentIndex: model.currentDateIndex
 
 				delegate: dateDelegate
@@ -122,7 +122,7 @@ Popup {
 					anchors.fill: parent
 					onClicked: function() {
 						dateList.currentIndex = index;
-						internal.calendarModel.setSelectedDate(year, monthNumber, day);
+						root.model.setSelectedDate(year, monthNumber, day);
 						root.close();
 					}
 				}
@@ -205,7 +205,5 @@ Popup {
 		readonly property color highlightColor_50: Qt.rgba(highlightColor.r, highlightColor.g, highlightColor.b, 0.5)
 
 		readonly property color backgroundColor: UiConstant.pureWhite
-
-		property QtObject calendarModel: root.controller ? root.controller.calendarModel : null
 	}
 }

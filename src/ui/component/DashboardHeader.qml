@@ -13,7 +13,7 @@ import "../component"
 Item {
 	id: root
 
-	property QtObject calendarModel: null
+	property string date
 
 	signal openCalendarPopup()
 
@@ -44,7 +44,7 @@ Item {
 			Layout.fillHeight: true
 			Layout.alignment: Qt.AlignHCenter
 
-			calendarModel: root.calendarModel
+			date: root.date
 
 			MouseArea {
 				anchors.fill: parent
@@ -82,6 +82,3 @@ Item {
 		readonly property color optionButtonColor: "#D9D9D9"
 	}
 }
-
-
-

@@ -48,47 +48,47 @@ PokemonHelper::PokemonHelper(PokemonModel* pokemonModel,
 {
 }
 
-QString PokemonHelper::pokemonName(int id)
+QString PokemonHelper::name(int id)
 {
-	return pokemonInfo(id, PokemonModel::DataRole::NameRole).toString();
+	return pokemonInfo(id, PokemonModel::Roles::NameRole).toString();
 }
 
-QString PokemonHelper::pokemonImage(int id)
+QString PokemonHelper::image(int id)
 {
-	return pokemonInfo(id, PokemonModel::DataRole::ImageRole).toString();
+	return pokemonInfo(id, PokemonModel::Roles::ImageRole).toString();
 }
 
-int PokemonHelper::pokemonBaseExp(int id)
+int PokemonHelper::baseExp(int id)
 {
-	return pokemonInfo(id, PokemonModel::DataRole::BaseExpRole).toInt();
+	return pokemonInfo(id, PokemonModel::Roles::BaseExpRole).toInt();
 }
 
-QString PokemonHelper::pokemonFirstType(int id)
+QString PokemonHelper::firstType(int id)
 {
-	return pokemonInfo(id, PokemonModel::DataRole::FirstTypeRole).toString();
+	return pokemonInfo(id, PokemonModel::Roles::FirstTypeRole).toString();
 }
 
-QString PokemonHelper::pokemonSecondType(int id)
+QString PokemonHelper::secondType(int id)
 {
-	return pokemonInfo(id, PokemonModel::DataRole::SecondTypeRole).toString();
+	return pokemonInfo(id, PokemonModel::Roles::SecondTypeRole).toString();
 }
 
-QVariant PokemonHelper::pokemonInfo(int id, PokemonModel::DataRole role)
+QVariant PokemonHelper::pokemonInfo(int id, PokemonModel::Roles role)
 {
 	QString filePath = QDir(m_pokemonInfoFolder).filePath(QString("%1.json").arg(id));
 	if (QFile::exists(filePath)) {
 		for (const Pokemon &pokemon : *(m_pokemonModel->list())) {
 			if (id == pokemon.id) {
 				switch (role) {
-				case PokemonModel::DataRole::NameRole:
+				case PokemonModel::Roles::NameRole:
 					return QVariant(pokemon.name);
-				case PokemonModel::DataRole::ImageRole:
+				case PokemonModel::Roles::ImageRole:
 					return QVariant(pokemon.image);
-				case PokemonModel::DataRole::BaseExpRole:
+				case PokemonModel::Roles::BaseExpRole:
 					return QVariant(pokemon.baseExp);
-				case PokemonModel::DataRole::FirstTypeRole:
+				case PokemonModel::Roles::FirstTypeRole:
 					return QVariant(toQString(pokemon.types.first()));
-				case PokemonModel::DataRole::SecondTypeRole:
+				case PokemonModel::Roles::SecondTypeRole:
 					return pokemon.types.size() > 1 ?
 					            QVariant(toQString(pokemon.types.last())) : QVariant();
 				default:

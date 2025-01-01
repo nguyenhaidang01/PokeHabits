@@ -42,7 +42,7 @@ RowLayout {
 			height: internal.pokemonSize
 			anchors.centerIn: parent
 
-			source: internal.pokemonHelper.pokemonImage(root.pokeId)
+			source: internal.pokemonHelper.image(root.pokeId)
 		}
 
 		Image {

@@ -18,14 +18,14 @@ public:
 	explicit PokemonHelper(PokemonModel* pokemonModel,
 	                       QString &pokemonInfoFolder, QObject *parent = nullptr);
 public slots:
-	QString pokemonName(int id);
-	QString pokemonImage(int id);
-	int pokemonBaseExp(int id);
-	QString pokemonFirstType(int id);
-	QString pokemonSecondType(int id);
+	QString name(int id);
+	QString image(int id);
+	int baseExp(int id);
+	QString firstType(int id);
+	QString secondType(int id);
 
 private:
-	QVariant pokemonInfo(int id, PokemonModel::DataRole role);
+	QVariant pokemonInfo(int id, PokemonModel::Roles role);
 
 	QString m_pokemonInfoFolder;
 	PokemonModel* m_pokemonModel;

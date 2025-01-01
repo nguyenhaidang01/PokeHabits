@@ -47,27 +47,27 @@ void PokeHabitsController::initModel()
 	connect(m_calendarModel, &CalendarModel::selectedDateChanged, m_habitModel, &HabitModel::setSelectedDate);
 }
 
-CalendarModel* PokeHabitsController::calendarModel()
+QObject* PokeHabitsController::calendarModel()
 {
 	return m_calendarModel;
 }
 
-PokemonModel* PokeHabitsController::pokemonModel()
+QObject* PokeHabitsController::pokemonModel()
 {
 	return m_pokemonModel;
 }
 
-HabitModel* PokeHabitsController::habitModel()
+QObject* PokeHabitsController::habitModel()
 {
 	return m_habitModel;
 }
 
-UiService* PokeHabitsController::uiService()
+QObject* PokeHabitsController::uiService()
 {
 	return m_uiService;
 }
 
-PokemonHelper* PokeHabitsController::pokemonHelper()
+QObject* PokeHabitsController::pokemonHelper()
 {
 	return m_pokemonHelper;
 }

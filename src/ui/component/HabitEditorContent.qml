@@ -13,9 +13,11 @@ import "../component"
 Item {
 	id: root
 
-	property Popup pokedexPopup: null
+	property QtObject model: null //HabitModel
 	property QtObject controller: null
-	property int editHabitIndex
+
+	property int editIndex
+	property Popup pokedexPopup: null
 
 	Item {
 		implicitWidth: internal.contentWidth
@@ -36,7 +38,7 @@ Item {
 
 				controller: root.controller
 				pokedexPopup: root.pokedexPopup
-				pokeId: root.editHabitIndex !== internal.appendIndex ?
+				pokeId: root.editIndex !== internal.appendIndex ?
 							internal.editHabit.pokeId : internal.defaultPokeId
 			}
 
@@ -46,7 +48,7 @@ Item {
 				Layout.fillWidth: true
 				Layout.preferredHeight: 48
 
-				habitName: root.editHabitIndex !== internal.appendIndex ?
+				habitName: root.editIndex !== internal.appendIndex ?
 							   internal.editHabit.name : null
 			}
 
@@ -56,9 +58,9 @@ Item {
 				Layout.fillWidth: true
 				Layout.preferredHeight: 48
 
-				unit: root.editHabitIndex !== internal.appendIndex ?
+				unit: root.editIndex !== internal.appendIndex ?
 						  internal.editHabit.targetUnit : internal.defaulTargetUnit
-				value: root.editHabitIndex !== internal.appendIndex ?
+				value: root.editIndex !== internal.appendIndex ?
 						   internal.editHabit.targetValue : null
 			}
 
@@ -68,7 +70,7 @@ Item {
 				Layout.fillWidth: true
 				Layout.preferredHeight: 60
 
-				frequency: root.editHabitIndex !== internal.appendIndex ?
+				frequency: root.editIndex !== internal.appendIndex ?
 							   internal.editHabit.frequency : "everyday"
 			}
 
@@ -87,10 +89,10 @@ Item {
 					var targetValue = targetDataField.value;
 					var frequency = frequencyDataField.frequency;
 
-					if (root.editHabitIndex == internal.appendIndex) {
+					if (root.editIndex == internal.appendIndex) {
 						root.controller.appendHabit(pokeId, habitName, targetUnit, targetValue, frequency);
 					} else {
-						root.controller.replaceHabit(root.editHabitIndex, pokeId, habitName,
+						root.controller.replaceHabit(root.editIndex, pokeId, habitName,
 													 targetUnit, targetValue, frequency);
 					}
 
@@ -117,10 +119,9 @@ Item {
 		readonly property string defaulTargetUnit: "Time"
 
 		property QtObject uiService: root.controller ? root.controller.uiService : null
-		property QtObject habitModel: root.controller ? root.controller.habitModel : null
 
-		property var editHabit: root.editHabitIndex !== appendIndex ?
-									    habitModel.get(root.editHabitIndex) : null
+		property var editHabit: root.editIndex !== appendIndex ?
+									    root.model.get(root.editIndex) : null
 
 		readonly property int contentWidth: 834
 		readonly property int contentHeight: 708
