@@ -1,6 +1,6 @@
 /******************************************************************************
 **
-** File      ContentView.qml
+** File      HabitDashboardView.qml
 ** Author    Dang Nguyen
 **
 ******************************************************************************/
@@ -19,15 +19,15 @@ Rectangle {
 	color: internal.backgroundColor
 
 	ColumnLayout {
-		id: contentLayout
+		id: dashboardLayout
 
 		anchors.fill: parent
-		anchors.margins: internal.contentMargin
+		anchors.margins: internal.dashboardMargin
 
 		spacing: 0
 
-		ContentHeader {
-			id: contentHeader
+		DashboardHeader {
+			id: dashboardHeader
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: 60
@@ -80,8 +80,8 @@ Rectangle {
 			}
 		}
 
-		ContentFooter {
-			id: contentFooter
+		DashboardFooter {
+			id: dashboardFooter
 
 			Layout.fillWidth: true
 			Layout.preferredHeight: 112
@@ -109,8 +109,8 @@ Rectangle {
 
 		readonly property int appendIndex: -1
 
-		readonly property int contentMargin: 60
-		readonly property int habitDelegateWidth: root.width - 2 * contentMargin
+		readonly property int dashboardMargin: 60
+		readonly property int habitDelegateWidth: root.width - 2 * dashboardMargin
 
 		readonly property int calendarPopupWidth: 518
 		readonly property int calendarPopupHeight: 535

@@ -9,22 +9,22 @@
 
 namespace {
 
-const QString cContentStateName("displayHabits");
-const QString cEditorStateName("editorHabit");
-const QString cDetailStateName("habitDetail");
+const QString cDashboardStateName("dashboardState");
+const QString cEditStateName("editState");
+const QString cDetailStateName("detailState");
 
 }
 
 UiService::UiService(QObject *parent)
     : QObject(parent)
-    , m_currentState(cContentStateName)
+    , m_currentState(cDashboardStateName)
 {
 }
 
-void UiService::changeToContentView()
+void UiService::changeToHabitDashboardView()
 {
 	m_previouState = m_currentState;
-	m_currentState = cContentStateName;
+	m_currentState = cDashboardStateName;
 
 	emit uiStateChanged(m_currentState);
 }
@@ -47,7 +47,7 @@ void UiService::changeToPreviousView()
 void UiService::changeToHabitEditorView(int habitIndex)
 {
 	m_previouState = m_currentState;
-	m_currentState = cEditorStateName;
+	m_currentState = cEditStateName;
 
 	emit editIndexChanged(habitIndex);
 	emit uiStateChanged(m_currentState);

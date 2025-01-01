@@ -16,7 +16,7 @@ public:
 	explicit UiService(QObject *parent = nullptr);
 
 public slots:
-	void changeToContentView();
+	void changeToHabitDashboardView();
 	void changeToHabitDetailView();
 	void changeToPreviousView();
 	void changeToHabitEditorView(int habitIndex);

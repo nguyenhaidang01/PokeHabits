@@ -27,7 +27,7 @@ Rectangle {
 			Layout.preferredHeight: internal.headerHeight
 
 			onExitView: function() {
-				internal.uiService.changeToContentView();
+				internal.uiService.changeToHabitDashboardView();
 			}
 		}
 

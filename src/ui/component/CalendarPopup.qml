@@ -113,7 +113,8 @@ Popup {
 					verticalAlignment: Text.AlignVCenter
 					horizontalAlignment: Text.AlignHCenter
 
-					color: !isInCurrentMonth ? UiConstant.silverGray : index === dateList.currentIndex ? UiConstant.pureWhite : UiConstant.pureBlack
+					color: !isInCurrentMonth ? UiConstant.silverGray : index === dateList.currentIndex ?
+												   UiConstant.pureWhite : UiConstant.pureBlack
 					text: day
 				}
 
