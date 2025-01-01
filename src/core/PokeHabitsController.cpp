@@ -31,6 +31,11 @@ PokeHabitsController::PokeHabitsController(QObject *parent)
     , m_uiService{ new UiService() }
     , m_pokemonInfoFolder{ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation).append(POKEMONFOLDERNAME) }
 {
+	initModel();
+}
+
+void PokeHabitsController::initModel()
+{
 	m_pokeApiService = std::make_unique<PokeApiService>(m_pokemonInfoFolder);
 
 	createPokemonModelRange(1, POKEIDMAX);

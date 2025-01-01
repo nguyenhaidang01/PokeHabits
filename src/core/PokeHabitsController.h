@@ -44,6 +44,7 @@ private slots:
 private:
 	explicit PokeHabitsController(QObject *parent = nullptr);
 
+	void initModel();
 	QVector<QDate> createCalendarListForYear(int year);
 	void createPokemonModelRange(int start, int end);
 
