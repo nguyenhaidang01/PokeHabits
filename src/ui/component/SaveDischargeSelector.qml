@@ -10,82 +10,87 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import "../component"
 
-RowLayout {
+Item {
 	id: root
 
 	signal save()
 	signal discharge()
 
-	spacing: internal.spacing
+	property bool saveEnabled: false
 
-	Item {
-		Layout.preferredWidth: internal.iconSize
-		Layout.fillHeight: true
-	}
+	RowLayout {
+		anchors.fill: parent
+		spacing: internal.spacing
 
-	ColumnLayout {
-		Layout.preferredWidth: internal.iconSize
-		Layout.fillHeight: true
-
-		spacing: 0
-
-		Image {
-			width: internal.iconSize
-			height: internal.iconSize
-
-			source: internal.saveUrl
-			MouseArea {
-				anchors.fill: parent
-				onClicked: save()
-			}
-		}
-
-		Text {
+		Item {
 			Layout.preferredWidth: internal.iconSize
-			Layout.preferredHeight: 32
-
-			font {
-				pixelSize: 21
-				weight: Font.Medium
-				family: "Poppins"
-			}
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter
-
-			text: "Save"
-		}
-	}
-
-	ColumnLayout {
-		Layout.preferredWidth: internal.iconSize
-		Layout.fillHeight: true
-
-		spacing: 0
-
-		Image {
-			width: internal.iconSize
-			height: internal.iconSize
-
-			source: internal.dischargeUrl
-			MouseArea {
-				anchors.fill: parent
-				onClicked: discharge()
-			}
+			Layout.fillHeight: true
 		}
 
-		Text {
+		ColumnLayout {
 			Layout.preferredWidth: internal.iconSize
-			Layout.preferredHeight: 32
+			Layout.fillHeight: true
 
-			font {
-				pixelSize: 21
-				weight: Font.Medium
-				family: "Poppins"
+			spacing: 0
+
+			Image {
+				width: internal.iconSize
+				height: internal.iconSize
+
+				source: root.saveEnabled ? internal.saveUrl : internal.grayedSaveUrl
+				MouseArea {
+					anchors.fill: parent
+					onClicked: root.save()
+				}
 			}
-			horizontalAlignment: Text.AlignHCenter
-			verticalAlignment: Text.AlignVCenter
 
-			text: "Discharge"
+			Text {
+				Layout.preferredWidth: internal.iconSize
+				Layout.preferredHeight: 32
+
+				font {
+					pixelSize: 21
+					weight: Font.Medium
+					family: "Poppins"
+				}
+				horizontalAlignment: Text.AlignHCenter
+				verticalAlignment: Text.AlignVCenter
+
+				text: "Save"
+			}
+		}
+
+		ColumnLayout {
+			Layout.preferredWidth: internal.iconSize
+			Layout.fillHeight: true
+
+			spacing: 0
+
+			Image {
+				width: internal.iconSize
+				height: internal.iconSize
+
+				source: internal.dischargeUrl
+				MouseArea {
+					anchors.fill: parent
+					onClicked: root.discharge()
+				}
+			}
+
+			Text {
+				Layout.preferredWidth: internal.iconSize
+				Layout.preferredHeight: 32
+
+				font {
+					pixelSize: 21
+					weight: Font.Medium
+					family: "Poppins"
+				}
+				horizontalAlignment: Text.AlignHCenter
+				verticalAlignment: Text.AlignVCenter
+
+				text: "Discharge"
+			}
 		}
 	}
 
@@ -96,6 +101,7 @@ RowLayout {
 		readonly property int iconSize: 100
 
 		readonly property string saveUrl: "qrc:/ui/assets/save.svg"
+		readonly property string grayedSaveUrl: "qrc:/ui/assets/grayedsave.svg"
 		readonly property string dischargeUrl: "qrc:/ui/assets/discharge.svg"
 	}
 }

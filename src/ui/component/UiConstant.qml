@@ -60,8 +60,11 @@ QtObject {
 	// rgba color
 	readonly property color pureBlack_7: Qt.rgba(pureBlack.r, pureBlack.g, pureBlack.b, 0.07)
 
-	// string
+	// state
 	readonly property string dashboardState: "dashboardState"
 	readonly property string editState: "editState"
 	readonly property string detailState: "detailState"
+
+	// null value
+	readonly property string nullstr: ""
 }

@@ -89,6 +89,7 @@ qt6_add_qml_module(${PROJECT_NAME}
 	assets/pen.svg
 	assets/nochange.svg
 	assets/save.svg
+	assets/grayedsave.svg
 	assets/discharge.svg
 	assets/close.svg
 	assets/pokeball.svg

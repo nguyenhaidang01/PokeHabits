@@ -82,7 +82,14 @@ Item {
 
 				Layout.alignment: Qt.AlignHCenter
 
+				saveEnabled: habitNameDataField.habitName !== UiConstant.nullstr
+							 && targetDataField.value !== UiConstant.nullstr
+
 				onSave: function() {
+					if (!saveEnabled) {
+						return;
+					}
+
 					var pokeId = targetPokeDataField.pokeId;
 					var habitName = habitNameDataField.habitName;
 					var targetUnit = targetDataField.unit;
