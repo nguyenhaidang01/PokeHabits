@@ -101,6 +101,13 @@ Popup {
 					}
 				}
 			}
+
+			ScrollBar.vertical: ScrollBar {
+				hoverEnabled: true
+				active: hovered || pressed
+				minimumSize: 0.05
+				width: 15
+			}
 		}
 	}
 
