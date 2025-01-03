@@ -8,6 +8,7 @@
 #include "PokemonHelper.h"
 #include "UiService.h"
 #include "PokeApiService.h"
+#include "Repository.h"
 
 class CalendarModel;
 
@@ -45,16 +46,21 @@ private:
 	explicit PokeHabitsController(QObject *parent = nullptr);
 
 	void initModel();
+	void initConnection();
+
 	QVector<QDate> createCalendarListForYear(int year);
 	void createPokemonModelRange(int start, int end);
+
+	void saveHabits();
 
 	CalendarModel* m_calendarModel;
 	PokemonModel* m_pokemonModel;
 	HabitModel* m_habitModel;
 
-	std::unique_ptr<PokeApiService> m_pokeApiService;
 	UiService* m_uiService;
+	std::unique_ptr<PokeApiService> m_pokeApiService;
+	std::unique_ptr<Repository> m_repository;
 
 	PokemonHelper* m_pokemonHelper;
-	QString m_pokemonInfoFolder;
+	Account m_account;
 };

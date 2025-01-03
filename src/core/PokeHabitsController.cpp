@@ -3,14 +3,20 @@
 #include <QFile>
 #include <QDir>
 #include <QStandardPaths>
+#include <QGuiApplication>
 
-#include "CalendarModel.h"
-#include "PokeApiService.h"
 #include "Pokemon.h"
 #include "Habit.h"
+#include "CalendarModel.h"
+#include "PokeApiService.h"
+#include "Repository.h"
 
 #define POKEIDMAX 1008
 #define POKEMONFOLDERNAME "/Pokemon"
+
+#define DATABASEFOLDER "/Database"
+#define DATABASENAME "pokehabits.db"
+
 #define USERNAME "DangNH"
 #define PASSWORD "CR7GOAT"
 
@@ -29,22 +35,44 @@ PokeHabitsController::PokeHabitsController(QObject *parent)
     , m_pokemonModel{ new PokemonModel() }
     , m_habitModel{ new HabitModel() }
     , m_uiService{ new UiService() }
-    , m_pokemonInfoFolder{ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation).append(POKEMONFOLDERNAME) }
+    , m_account{ USERNAME, PASSWORD }
 {
 	initModel();
+	initConnection();
 }
 
 void PokeHabitsController::initModel()
 {
-	m_pokeApiService = std::make_unique<PokeApiService>(m_pokemonInfoFolder);
+	QString pokemonInfoFolder = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
+	                       .append(POKEMONFOLDERNAME);
+	QString databaseFolder = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
+	        .append(DATABASEFOLDER);
 
+	// HabitModel
+	m_repository = std::make_unique<Repository>(DATABASENAME, databaseFolder);
+	const auto habitList = m_repository->readHabitListFromDatabase(m_account);
+	m_habitModel->setList(habitList);
+
+	// PokemonModel
+	m_pokeApiService = std::make_unique<PokeApiService>(pokemonInfoFolder);
 	createPokemonModelRange(1, POKEIDMAX);
-	m_pokemonHelper = new PokemonHelper(m_pokemonModel, m_pokemonInfoFolder);
+	m_pokemonHelper = new PokemonHelper(m_pokemonModel, pokemonInfoFolder);
 
+	// CalendarModel
 	const auto &dates = createCalendarListForYear(QDate::currentDate().year());
 	m_calendarModel = new CalendarModel(std::make_shared<QVector<QDate>>(dates));
+}
 
+void PokeHabitsController::initConnection()
+{
+	connect(QGuiApplication::instance(), &QGuiApplication::aboutToQuit,
+	        this, &PokeHabitsController::saveHabits);
 	connect(m_calendarModel, &CalendarModel::selectedDateChanged, m_habitModel, &HabitModel::setSelectedDate);
+}
+
+void PokeHabitsController::saveHabits()
+{
+	m_repository->writeHabitListToDatabase(m_account, m_habitModel->list());
 }
 
 QObject* PokeHabitsController::calendarModel()

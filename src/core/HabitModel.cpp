@@ -163,6 +163,9 @@ HabitListPtr HabitModel::list() const
 
 void HabitModel::setList(HabitListPtr list)
 {
+	if (!list) {
+		return;
+	}
 	m_List = list;
 }
 

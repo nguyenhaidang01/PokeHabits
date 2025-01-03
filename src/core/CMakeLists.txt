@@ -8,6 +8,7 @@ set(SOURCES
 	PokemonHelper.h PokemonHelper.cpp
 	PokeApiService.h PokeApiService.cpp
 	UiService.h UiService.cpp
+	Repository.h Repository.cpp
 	PokeHabitsController.h PokeHabitsController.cpp
 )
 
