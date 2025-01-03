@@ -13,8 +13,10 @@ import "../component"
 Item {
 	id: root
 
-	property string pokemonId: internal.defaultPokemonId
-	property string pokemonName: internal.defaultPokemonName
+	property string pokeId: internal.defaultPokemonId
+	property string pokeName: internal.defaultPokemonName
+	property string pokeFirstType: internal.defaultPokeType
+	property string pokeSecondType: UiConstant.nullstr
 
 	ColumnLayout {
 		anchors.fill: parent
@@ -32,7 +34,7 @@ Item {
 					family: "Poppins"
 				}
 
-				text: root.pokemonName
+				text: root.pokeName
 			}
 
 			Text {
@@ -44,7 +46,7 @@ Item {
 					family: "Poppins"
 				}
 
-				text: "No " + ("0000" + root.pokemonId).slice(-4)
+				text: "No " + ("0000" + root.pokeId).slice(-4)
 			}
 		}
 
@@ -57,11 +59,15 @@ Item {
 			ElementFrame {
 				Layout.preferredWidth: internal.elementFrameWidth
 				Layout.preferredHeight: internal.elementFrameHeight
+
+				elementName: root.pokeFirstType
 			}
 
 			ElementFrame {
 				Layout.preferredWidth: internal.elementFrameWidth
 				Layout.preferredHeight: internal.elementFrameHeight
+
+				elementName: root.pokeSecondType
 			}
 		}
 	}
@@ -74,5 +80,6 @@ Item {
 
 		property string defaultPokemonName: "Bulbasour"
 		property string defaultPokemonId: "001"
+		property string defaultPokeType: "grass"
 	}
 }

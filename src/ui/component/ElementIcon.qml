@@ -12,6 +12,7 @@ import "../component"
 Rectangle {
 	id: root
 
+	property string elementName: internal.defaultElementName
 	property int elementSize: internal.defaultElementSize
 	property int backgroundSize: internal.defaultBackgroundSize
 
@@ -29,7 +30,9 @@ Rectangle {
 
 		anchors.centerIn: parent
 
-		source: internal.elementUrl
+		source: root.elementName !== UiConstant.nullstr ?
+					UiConstant.typeColorImageUrlMap[root.elementName] :
+					UiConstant.typeColorImageUrlMap[internal.defaultElementName]
 	}
 
 	QtObject {
@@ -37,6 +40,6 @@ Rectangle {
 
 		readonly property int defaultBackgroundSize: 20
 		readonly property int defaultElementSize: 13
-		readonly property string elementUrl: "qrc:/ui/assets/grassColor.svg"
+		readonly property string defaultElementName: "grass"
 	}
 }

@@ -31,6 +31,10 @@ Rectangle {
 			Layout.fillWidth: true
 			Layout.preferredHeight: internal.headerHeight
 
+			elementName: root.editIndex !== internal.appendIndex ?
+							 internal.pokemonHelper.firstType(internal.editHabit.pokeId) :
+							 internal.defaultElementName
+
 			onExitView: function() {
 				internal.uiService.changeToPreviousView();
 			}
@@ -64,7 +68,13 @@ Rectangle {
 	QtObject {
 		id: internal
 
+		readonly property int appendIndex: -1
+		readonly property string defaultElementName: "grass"
+
+		property var editHabit: root.editIndex !== appendIndex ?
+									    root.model.get(root.editIndex) : null
 		property QtObject uiService: root.controller ? root.controller.uiService : null
+		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
 
 		readonly property int circleHeaderSize: 2000
 		readonly property int headerHeight: 222

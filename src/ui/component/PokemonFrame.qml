@@ -12,14 +12,14 @@ import "../component"
 Rectangle {
 	id: root
 
-	property string elementUrl
-	property string pokemonImage
+	property string pokeImage
+	property string pokeType
 
 	implicitWidth: internal.frameSize
 	implicitHeight: internal.frameSize
 
 	radius: internal.frameRadius
-	color: UiConstant.grassColor
+	color: UiConstant.typeColorMap[pokeType]
 
 	Image {
 		id: element
@@ -28,7 +28,7 @@ Rectangle {
 		height: internal.elementSize
 		anchors.centerIn: parent
 
-		source: root.elementUrl
+		source: UiConstant.typeImageUrlMap[pokeType]
 	}
 
 	Image {
@@ -38,7 +38,7 @@ Rectangle {
 		height: 86
 		anchors.centerIn: parent
 
-		source: root.pokemonImage
+		source: root.pokeImage
 	}
 
 	QtObject {

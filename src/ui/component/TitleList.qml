@@ -16,7 +16,7 @@ ListView {
 	spacing: internal.spacing
 	interactive: false
 
-	model: 5
+	model: 1
 	delegate: TitleFrame {}
 
 	QtObject {

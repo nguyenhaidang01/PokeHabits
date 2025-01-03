@@ -17,6 +17,8 @@ Item {
 	required property string pokemonName
 	required property int exp
 	required property int baseExp
+	required property string pokeFirstType
+	required property string pokeSecondType
 
 	implicitWidth: 275
 	implicitHeight: 115
@@ -60,7 +62,7 @@ Item {
 				}
 
 				text: "EXP"
-				color: "#74CB48"
+				color: UiConstant.typeColorMap[pokeFirstType]
 			}
 
 			Text {
@@ -88,13 +90,24 @@ Item {
 				color: UiConstant.pureWhite
 
 				Rectangle {
-					width: parent.width/2
+					width: parent.width * (root.exp/root.baseExp)
 					height: parent.height
 
 					radius: 4
 					border.width: 0.5
 
-					color: "#74CB48"
+					color: UiConstant.typeColorMap[pokeFirstType]
+				}
+			}
+		}
+
+		ListModel {
+			id: elementModel
+
+			Component.onCompleted: function() {
+				elementModel.append({ name: root.pokeFirstType });
+				if (root.pokeSecondType !== UiConstant.nullstr) {
+					elementModel.append({ name: root.pokeSecondType });
 				}
 			}
 		}
@@ -108,8 +121,8 @@ Item {
 			orientation: ListView.Horizontal
 			spacing: 20
 
-			model: 2
-			delegate: ElementFrame {}
+			model: elementModel
+			delegate: ElementFrame { elementName: name }
 		}
 	}
 }

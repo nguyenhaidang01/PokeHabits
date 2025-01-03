@@ -22,11 +22,11 @@ Rectangle {
 	property string pokeName
 	property string pokeImage
 	property int pokeBaseExp
-
-	property string elementUrl: internal.defaultElementUrl
+	property string pokeFirstType
+	property string pokeSecondType
 
 	radius: internal.radius
-	color: internal.defaultElementColor
+	color: UiConstant.typeBackgroundColorMap[pokeFirstType]
 
 	RowLayout {
 		anchors.fill: parent
@@ -57,8 +57,8 @@ Rectangle {
 		PokemonFrame {
 			Layout.leftMargin: 20
 
-			elementUrl: root.elementUrl
-			pokemonImage: root.pokeImage
+			pokeImage: root.pokeImage
+			pokeType: root.pokeFirstType
 
 			MouseArea {
 				anchors.fill: parent
@@ -78,6 +78,8 @@ Rectangle {
 			pokemonName: root.pokeName
 			exp: root.exp
 			baseExp: root.pokeBaseExp
+			pokeFirstType: root.pokeFirstType
+			pokeSecondType: root.pokeSecondType
 
 			MouseArea {
 				anchors.fill: parent
@@ -109,7 +111,5 @@ Rectangle {
 		readonly property int radius: 15
 		readonly property int checkboxSize: 50
 		readonly property int favoriteSize: 50
-		readonly property color defaultElementColor: UiConstant.lightGrassColor
-		readonly property string defaultElementUrl: "qrc:/ui/assets/grass.svg"
 	}
 }

@@ -13,8 +13,8 @@ import "../component"
 Item {
 	id: root
 
-	property int firstEvoLvl: internal.defaultFirstEvoLvl
-	property int secondEvoLvl: internal.defaultSecondEvoLvl
+	property QtObject controller: null
+	property int pokeId
 
 	ColumnLayout {
 		anchors.fill: parent
@@ -52,8 +52,8 @@ Item {
 					PokemonFrame {
 						Layout.alignment: Qt.AlignLeft
 
-						elementUrl: internal.defaultElementUrl
-						pokemonImage: internal.defaultPokemonUrl
+						pokeImage: internal.pokeImage
+						pokeType: internal.pokeType
 					}
 
 					Item {
@@ -74,7 +74,7 @@ Item {
 								}
 
 								color: internal.textColor
-								text: "Level " +  root.firstEvoLvl
+								text: "Level " +  internal.defaultFirstEvoLvl
 							}
 
 							Image {
@@ -90,8 +90,8 @@ Item {
 					PokemonFrame {
 						Layout.alignment: Qt.AlignHCenter
 
-						elementUrl: internal.defaultElementUrl
-						pokemonImage: internal.defaultPokemonUrl
+						pokeImage: internal.pokeImage
+						pokeType: internal.pokeType
 					}
 
 					Item {
@@ -112,7 +112,7 @@ Item {
 								}
 
 								color: internal.textColor
-								text: "Level " + root.secondEvoLvl
+								text: "Level " + internal.defaultSecondEvoLvl
 							}
 
 							Image {
@@ -128,8 +128,8 @@ Item {
 					PokemonFrame {
 						Layout.alignment: Qt.AlignRight
 
-						elementUrl: internal.defaultElementUrl
-						pokemonImage: internal.defaultPokemonUrl
+						pokeImage: internal.pokeImage
+						pokeType: internal.pokeType
 					}
 				}
 			}
@@ -147,11 +147,15 @@ Item {
 		readonly property int defaultFirstEvoLvl: 16
 		readonly property int defaultSecondEvoLvl: 32
 
+		property QtObject pokemonHelper: root.controller ? root.controller.pokemonHelper : null
+		property string pokeImage: internal.pokemonHelper.image(root.pokeId)
+		property string pokeType: internal.pokemonHelper.firstType(root.pokeId)
 
 		readonly property int arrowWidth: 24
 		readonly property int arrowHeight: 37
 		readonly property string arrowUrl: "qrc:/ui/assets/bluerightarrow.svg"
 		readonly property string defaultElementUrl: "qrc:/ui/assets/grass.svg"
 		readonly property string defaultPokemonUrl: "qrc:/ui/assets/bulbasaur.svg"
+		readonly property string defaultPokemonFirstType: "grass"
 	}
 }

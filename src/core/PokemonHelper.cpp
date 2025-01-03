@@ -14,25 +14,13 @@
 namespace {
 
 QString toQString(Type type) {
-	switch(type) {
-	case Type::Normal: return "Normal";
-	case Type::Fire: return "Fire";
-	case Type::Water: return "Water";
-	case Type::Grass: return "Grass";
-	case Type::Electric: return "Electric";
-	case Type::Ice: return "Ice";
-	case Type::Fighting: return "Fighting";
-	case Type::Poison: return "Poison";
-	case Type::Ground: return "Ground";
-	case Type::Flying: return "Flying";
-	case Type::Psychic: return "Psychic";
-	case Type::Bug: return "Bug";
-	case Type::Rock: return "Rock";
-	case Type::Ghost: return "Ghost";
-	case Type::Dragon: return "Dragon";
-	case Type::Dark: return "Dark";
-	case Type::Steel: return "Steel";
-	case Type::Fairy: return "Fairy";
+	if (type == Type::Unknown) {
+		return QString();
+	}
+
+	auto it = pokemon_util::enumToTypeNameMap.find(type);
+	if (it != pokemon_util::enumToTypeNameMap.end()) {
+		return it->second;
 	}
 
 	return QString();

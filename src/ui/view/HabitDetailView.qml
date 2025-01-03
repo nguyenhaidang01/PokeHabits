@@ -27,6 +27,8 @@ Rectangle {
 			Layout.fillWidth: true
 			Layout.preferredHeight: internal.headerHeight
 
+			elementName: internal.pokemonHelper.firstType(internal.selectedHabit.pokeId)
+
 			onExitView: function() {
 				internal.uiService.changeToHabitDashboardView();
 			}
@@ -55,8 +57,10 @@ Rectangle {
 
 						Layout.alignment: Qt.AlignTop
 
-						pokemonId: internal.selectedHabit.pokeId
-						pokemonName: internal.pokemonHelper.name(pokemonId)
+						pokeId: internal.selectedHabit.pokeId
+						pokeName: internal.pokemonHelper.name(pokeId)
+						pokeFirstType: internal.pokemonHelper.firstType(pokeId)
+						pokeSecondType: internal.pokemonHelper.secondType(pokeId)
 					}
 
 					HabitStatsBoard {
@@ -75,6 +79,9 @@ Rectangle {
 						Layout.preferredHeight: 260
 
 						Layout.alignment: Qt.AlignBottom
+
+						controller: root.controller
+						pokeId: internal.selectedPokemonId
 					}
 				}
 			}

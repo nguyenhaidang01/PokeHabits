@@ -14,6 +14,8 @@ import "../component"
 Item {
 	id: root
 
+	property string elementName
+
 	signal exitView()
 
 	clip: true
@@ -57,7 +59,7 @@ Item {
 			height: internal.elementSize
 
 			anchors.centerIn: parent
-			source: internal.elementUrl
+			source: UiConstant.typeImageUrlMap[root.elementName]
 		}
 
 		Image {
@@ -109,11 +111,10 @@ Item {
 		readonly property int backSize: 70
 		readonly property int favoriteSize: 50
 
-		readonly property string elementUrl: "qrc:/ui/assets/grass.svg"
 		readonly property string backUrl: "qrc:/ui/assets/leftarrow.svg"
 		readonly property string favoriteUrl: "qrc:/ui/assets/lightfavorite.svg"
 
-		readonly property color headerColor: UiConstant.grassColor
+		readonly property color headerColor: UiConstant.typeColorMap[root.elementName]
 		readonly property color headerColor_50: Qt.rgba(headerColor.r, headerColor.g, headerColor.b, 0.5)
 	}
 }

@@ -7,6 +7,7 @@
 #include "PokeApiService.h"
 
 #include <memory>
+#include <unordered_map>
 #include <QFile>
 #include <QDir>
 #include <QFileInfo>
@@ -28,7 +29,7 @@
 
 #define APIURL "https://pokeapi.co/api/v2/pokemon/%1"
 
-namespace {
+namespace util {
 
 void createFolder(QString path) {
 	QDir dir(path);
@@ -41,13 +42,23 @@ void createFolder(QString path) {
 	}
 }
 
+Type toType(const QString &typeName) {
+	auto it = pokemon_util::typeNameToEnumMap.find(typeName);
+	if (it != pokemon_util::typeNameToEnumMap.end()) {
+		return it->second;
+	}
+
+	qWarning() << "Invalid type name: " << typeName.toStdString();
+	return Type::Unknown;
+}
+
 }
 
 PokeApiService::PokeApiService(QString pokemonInfoFolder, QObject *parent)
     : QObject(parent)
     , m_pokemonInfoFolder{ pokemonInfoFolder }
 {
-	createFolder(m_pokemonInfoFolder);
+	util::createFolder(m_pokemonInfoFolder);
 	connect(QGuiApplication::instance(), &QGuiApplication::aboutToQuit,
 	        this, &PokeApiService::cancelFetchJsonFiles);
 }
@@ -127,6 +138,13 @@ Pokemon PokeApiService::readJsonFile(int id) {
 		pokemon.image = pkmObject["sprites"].toObject()["other"].toObject()["official-artwork"].toObject()["front_default"].toString();
 	} else {
 		pokemon.image = svgObject.toString();
+	}
+
+	for (const QJsonValue &type : pkmObject["types"].toArray()) {
+		QString typeName = type.toObject().value("type").toObject().value("name").toString();
+		if (!typeName.isEmpty()) {
+			pokemon.types.push_back(util::toType(typeName));
+		}
 	}
 
 	return pokemon;

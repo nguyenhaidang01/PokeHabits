@@ -37,6 +37,7 @@ Item {
 
 				Layout.leftMargin: 20
 
+				elementName: internal.defaultElementName
 				backgroundSize: internal.elementBgSize
 				elementSize: internal.elementSize
 			}
@@ -73,5 +74,6 @@ Item {
 
 		readonly property color defaultElementColor: "#EDF6EC"
 		readonly property string defaultHabitName: "Habits"
+		readonly property string defaultElementName: "grass"
 	}
 }

@@ -113,24 +113,24 @@ qt6_add_qml_module(${PROJECT_NAME}
 	assets/dark.svg
 	assets/steel.svg
 	assets/fairy.svg
-	assets/normalColor.svg
-	assets/fireColor.svg
-	assets/waterColor.svg
-	assets/electricColor.svg
-	assets/grassColor.svg
-	assets/iceColor.svg
-	assets/fightingColor.svg
-	assets/poisonColor.svg
-	assets/groundColor.svg
-	assets/flyingColor.svg
-	assets/psychicColor.svg
-	assets/bugColor.svg
-	assets/rockColor.svg
-	assets/ghostColor.svg
-	assets/dragonColor.svg
-	assets/darkColor.svg
-	assets/steelColor.svg
-	assets/fairyColor.svg
+	assets/normal_color.svg
+	assets/fire_color.svg
+	assets/water_color.svg
+	assets/electric_color.svg
+	assets/grass_color.svg
+	assets/ice_color.svg
+	assets/fighting_color.svg
+	assets/poison_color.svg
+	assets/ground_color.svg
+	assets/flying_color.svg
+	assets/psychic_color.svg
+	assets/bug_color.svg
+	assets/rock_color.svg
+	assets/ghost_color.svg
+	assets/dragon_color.svg
+	assets/dark_color.svg
+	assets/steel_color.svg
+	assets/fairy_color.svg
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

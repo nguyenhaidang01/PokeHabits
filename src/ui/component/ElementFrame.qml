@@ -13,13 +13,15 @@ import "../component"
 Rectangle {
 	id: root
 
-	property string elementName: internal.defaultElementName
+	property string elementName
+
+	visible: elementName !== UiConstant.nullstr
 
 	implicitWidth: internal.defaultFrameWidth
 	implicitHeight: internal.defaultFrameHeight
 
 	radius: internal.radius
-	color: internal.elementColor
+	color: visible ? UiConstant.typeColorMap[elementName] : UiConstant.transparent
 
 	RowLayout {
 		anchors.fill: parent
@@ -28,6 +30,7 @@ Rectangle {
 			id: elementIcon
 
 			Layout.leftMargin: 6
+			elementName: root.elementName
 		}
 
 		Text {
@@ -42,7 +45,7 @@ Rectangle {
 			}
 
 			color: UiConstant.pureBlack
-			text: root.elementName
+			text: root.elementName.charAt(0).toUpperCase() + root.elementName.substring(1)
 		}
 
 		Item {
@@ -58,8 +61,5 @@ Rectangle {
 		readonly property int defaultFrameHeight: 26
 
 		readonly property int radius: 50
-
-		readonly property color elementColor: UiConstant.grassColor
-		readonly property string defaultElementName: "Grass"
 	}
 }

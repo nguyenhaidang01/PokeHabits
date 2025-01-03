@@ -65,6 +65,8 @@ Rectangle {
 				pokeName: internal.pokemonHelper.name(pokeId)
 				pokeImage: internal.pokemonHelper.image(pokeId)
 				pokeBaseExp: internal.pokemonHelper.baseExp(pokeId)
+				pokeFirstType: internal.pokemonHelper.firstType(pokeId)
+				pokeSecondType: internal.pokemonHelper.secondType(pokeId)
 
 				onOpenDetailHabit: function() {
 					root.model.selectedHabitIndex = index;
